@@ -26,7 +26,7 @@ set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 set :keep_releases, 5
 
 # secrets.yml用のシンボリックリンクを追加
-set :linked_files, %w{ config/secrets.yml }
+# set :linked_files, %w{ config/secrets.yml }
 
 # デプロイ処理が終わった後、Unicornを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
@@ -35,15 +35,15 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  desc 'upload secrets.yml'
-  task :upload do
-    on roles(:app) do |host|
-      if test "[ ! -d #{shared_path}/config ]"
-        execute "mkdir -p #{shared_path}/config"
-      end
-      upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
-    end
-  end
-  before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup'
+  # desc 'upload secrets.yml'
+  # task :upload do
+  #   on roles(:app) do |host|
+  #     if test "[ ! -d #{shared_path}/config ]"
+  #       execute "mkdir -p #{shared_path}/config"
+  #     end
+  #     upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+  #   end
+  # end
+  # before :starting, 'deploy:upload'
+  # after :finishing, 'deploy:cleanup'
 end
