@@ -1,0 +1,17 @@
+.container{
+  text-align: center;
+  margin: 0 auto;
+  &__header{
+    height: 100px;
+  }
+  &__main{
+    font-size: 100;
+    text-align: center;
+  }
+  &__new_user{
+    height: 100px;
+  }
+  &__actions{
+
+  }
+}
