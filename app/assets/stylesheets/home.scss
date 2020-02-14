@@ -1,3 +1,24 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.header{
+  width: 80%;
+  height: 100px;
+  margin: 0 auto;
+  background-color: red;
+  &__title {
+    width: 100%;
+    height: 60px;
+    background-color: yellow;
+    display: flex;
+    justify-content: space-around;
+
+    &__logo {
+      width: 200px;
+      height: 60px;
+      // background-color: blue;
+    }
+    &__search-bar {
+      width: calc(100% - 200px);
+      height: 60px;
+      background-color: green;
+    }
+  }
+}
