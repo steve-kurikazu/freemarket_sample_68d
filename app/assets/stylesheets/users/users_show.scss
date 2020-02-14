@@ -1,0 +1,31 @@
+.my_page {
+  width: 100%;
+  height: 100vh;
+  border: 2px solid red;
+  display: flex;
+  &__sidebar {
+    width: calc(100% - 70%);
+    height: 100%;
+    border: 2px solid blue;
+    &__top {
+      width: 100%;
+      border: 2px solid red;
+      height: 100px;
+    }
+    &__center {
+      width: 100%;
+      border: 2px solid red;
+      height: 100px;
+    }
+    &__bottom {
+      width: 100%;
+      border: 2px solid red;
+      height: 100px;
+    }
+  }
+  &__main {
+    width: calc(100% - 30%);
+    height: 100%;
+    border: 2px solid blue  ;
+  }
+}
