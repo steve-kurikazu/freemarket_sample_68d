@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  }
+  .item-new {
+    width: 100%;
+    height: 100vh;
+    background-color: lightgray;
+    }
+    .item-headder{
+      height: 128px;
+      background-color: grey;
+    }
+      .itmem-headder-title{
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+        color: red($color: #fd0707);
+        text-align: center; 
+        background-color: gold;
+        margin: auto;
+      }
