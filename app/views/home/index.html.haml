@@ -9,10 +9,10 @@
           = image_tag '/assets/icon/icon-search 1.png'
   .header__menu 
     %ul.header__menu__search_list
-      %li 
+      %li
         = link_to "#", class: "header__menu__search_list--category" do
           カテゴリー
-      %li 
+      %li
         = link_to "#", class: "header__menu__search_list--brand" do
           ブランド
     %ul.header__menu__menu-list
@@ -87,8 +87,54 @@
           = link_to "#", class: "gBtn" do
             = image_tag '/assets/badge/google-play-badge.svg'
 
-    .main__service__point  service__box
-    .main__item__category  item__box
+    .main__service__point
+      %h2.main__service__point__subtitle
+        FURIMAの特徴
+      %ul.main__service__point__lists
+        %li.main__service__point__lists--list
+          .main__service__point__lists--list--pict
+            = image_tag '/assets/icon/icon-01.png'
+          %h3.main__service__point__lists--list--subtitle
+            簡単に売り買いできる
+          %p.main__service__point__lists--list--text
+            スマホひとつで、いつでもどこでも簡単に出品・購入が可能!        
+        %li.main__service__point__lists--list
+          .main__service__point__lists--list--pict
+            = image_tag '/assets/icon/icon-03.png'
+          %h3.main__service__point__lists--list--subtitle
+            売上金は即日振込みに対応
+          %p.main__service__point__lists--list--text
+            午前9時までに振込をいただければ、翌日に指定の口座に入金いたします！
+        %li.main__service__point__lists--list
+          .main__service__point__lists--list--pict
+            = image_tag '/assets/icon/icon-04.png'
+          %h3.main__service__point__lists--list--subtitle
+            様々な支払いに対応
+          %p.main__service__point__lists--list--text
+            お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+    .main__item__category
+      %h2.main__item__category__title
+        ピックアップカテゴリー
+      .main__item__category__item_box
+        = link_to "#", class: "main__item__category__item_box__title" do
+          新規投稿商品
+        %ul.main__item__category__item_box__lists
+          %li
+            = link_to "#", class: "main__item__category__item_box__lists--list" do
+              = image_tag "/assets/temp/a007.png"
+              .main__item__category__item_box__lists--list--body
+                %h3 product3
+                %ul
+                  %li 30000円
+                  %li
+                    = icon 'fas', 'star'
+                    0
+
+
+
+      
+      
     .main__item__brand  item__box
 .footer   
   .footer__image
