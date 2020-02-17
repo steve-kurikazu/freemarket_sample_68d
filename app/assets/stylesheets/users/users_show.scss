@@ -1,31 +1,163 @@
+@mixin side_bar{
+  width: 280px;
+  height: 50px;
+  color: rgb(102, 100, 100);
+  font-size: 14px;
+  background-color: rgb(247, 250, 252);
+  line-height: 50px;
+  padding-left: 20px;
+  margin: 1px auto;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(218, 243, 252) ! important;
+    
+  }
+}
+@mixin tab-for-change {
+  width: 350px;
+  height: 60px;
+  font-size: 15px;
+  font-weight: 900  ;
+  text-align: center;
+  line-height: 60px;
+}
+
+@mixin change_box {
+  height: 350px;
+  background-color: rgb(247, 250, 252);
+  overflow: scroll;
+  .box {
+    border-bottom: 1px solid rgb(196, 192, 192);
+    height: 80px;
+    &:hover {
+      background-color: rgb(243, 253, 253);
+      cursor: pointer;
+    }
+  }
+}
+
 .my_page {
   width: 100%;
-  height: 100vh;
-  border: 2px solid red;
+  height: 100%;
   display: flex;
+  padding-bottom: 50px;
   &__sidebar {
-    width: calc(100% - 70%);
+    width: 280px;
     height: 100%;
-    border: 2px solid blue;
+    margin: 0 80px 0 150px;
     &__top {
       width: 100%;
-      border: 2px solid red;
-      height: 100px;
-    }
-    &__center {
-      width: 100%;
-      border: 2px solid red;
-      height: 100px;
+      margin: 50px 0 100px 0;
+      & ul {
+        & li {
+          @include side_bar;
+        }
+      }
     }
     &__bottom {
       width: 100%;
-      border: 2px solid red;
-      height: 100px;
+      margin-bottom: 50px;
+      .title {
+        width:280px;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      & ul {
+        & li {
+          @include side_bar;
+        }
+      }
     }
   }
   &__main {
-    width: calc(100% - 30%);
-    height: 100%;
-    border: 2px solid blue  ;
+    width: 700px;
+    height: 100%  ;
+    &__user-icon-box {
+      margin-top: 50px;
+      height: 300px;
+      border: 1px solid rgb(170, 179, 178);
+      background-image: url(/assets/blue.jpg);
+      background-size: cover;
+      border-radius: 10px;
+      .user-icon {
+        width: 100px;
+        height: 100px;
+        margin: 40px auto 30px auto;
+        border-radius: 40px;  
+        background-color: rgb(103, 109, 110);
+      }
+      .user-name{
+        width: 300px;
+        font-size: 18px;
+        font-weight: 800;
+        color: rgb(53, 50, 50);
+        margin: 0 auto;
+        text-align: center;
+      }
+      .user-info{
+        display: flex;
+        justify-content: space-between;
+        width: 230px;
+        margin: 30px auto;
+        & span {
+          font-weight: 900;
+        }
+      }
+    }
+    &__product-container {
+      background-color: rgb(247, 250, 252);
+      h3 {
+      padding: 30px 0  0 40px;
+      background-color: rgb(247, 250, 252);
+      }
+      ul {
+        display: flex;
+        #during-trading {
+          @include tab-for-change;
+          border-top: 3px solid rgb(4, 230, 218);
+        }
+        #past {
+          @include tab-for-change;
+          background-color: rgb(218, 213, 213);
+          color: rgb(117, 120, 121);
+          cursor: pointer;
+          border-top: 3px solid rgb(255, 255, 255);
+        }
+      }
+      .during-trading-boxs {
+        @include change_box;
+      }
+      .past-boxs {
+        display: none;
+        @include change_box;
+      }
+    }
+    &__logout {
+      display: none;
+      width: 700px;
+      height: 410px;
+      margin-top: 20px;
+      background-color: red;
+      background-color: rgb(247, 250, 252);
+      & h3 {
+        padding: 80px 0  0 200px;
+      }
+      .logout-btn {
+        display: block;
+        width: 400px;
+        height: 70px;
+        color: white;
+        text-align: center;
+        line-height: 70px;
+        margin: 70px auto;
+        border-radius: 10px;
+        background-color: rgb(127, 196, 192);
+        text-decoration: none;
+        &:hover {
+          background-color: rgb(143, 218, 214);
+        }
+      }
+    }
   }
 }
