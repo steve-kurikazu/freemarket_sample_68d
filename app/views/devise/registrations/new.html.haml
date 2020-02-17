@@ -1,53 +1,75 @@
 .container
-
   .container__header
-    %h1 
-      %a{href: '#'}
-  .container__main
-  %h2 会員情報入力
+    %img(src="/assets/images/furima_logo.svg" alt="Furima_Logo")
+
+
+
+  -# :javascript
+  -#   $(document).ready( function() {
+  -#     alert('JavaScriptのアラート');
+  -#   } );
+
   
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = render "devise/shared/error_messages", resource: resource
-    .field
-      = f.label :ニックネーム
-      %br/
-      = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
-    .field
-      = f.label :email
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field
-      = f.label :パスワード
-      - if @minimum_password_length
-        %em
-          (#{@minimum_password_length} characters minimum)
-      %br/
-      = f.password_field :password, autocomplete: "new-password"
-    -# .field
-    -#   = f.label :password_confirmation
-    -#   %br/
-    -#   = f.password_field :password_confirmation, autocomplete: "new-password"
+  .container__main
+    %h2 会員情報入力
+    = form_with model: @user, url:user_registration_path, id: 'new_user', class: 'new_user' ,local:true do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .container__main__form
+        .field
+          = f.label :ニックネーム
+          %span{"class"=>"require"} 必須
+          %br/
+          = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: '例）ヤマダマン', class: "nickname_box"
+        .field
+          = f.label :メールアドレス
+          %span{"class"=>"require"} 必須
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '例）PC・携帯どちらでも可', class: "nickname_box"
+        .field
+          = f.label :パスワード
+          %span{"class"=>"require"} 必須
+          - if @minimum_password_length
+            %em
+              -# (#{@minimum_password_length} characters minimum)
+          %br/
+          = f.password_field :password, autocomplete: "new-password", placeholder: '７文字以上の半角英数字', class: "nickname_box"
 
-    .field
-      = f.label :お名前（全角）
-      %br/
-      = f.text_field :firstname, autofocus: true, autocomplete: "firstname"
-      = f.text_field :firstname, autofocus: true, autocomplete: "firstname"
-      
-    .field
-      = f.label :お名前カナ（全角）
-      %br/
-      = f.text_field :lastname, autofocus: true, autocomplete: "lastname"
-      = f.text_field :lastname, autofocus: true, autocomplete: "lastname"
-      
-    .field
-      = f.label :生年月日
-      %br/
-      = f.text_field :birthday, autofocus: true, autocomplete: "birthday"
-      = f.text_field :birthday, autofocus: true, autocomplete: "birthday"
-      = f.text_field :birthday, autofocus: true, autocomplete: "birthday"
-      
-    .actions
-      = f.submit "Sign up"
+          %h3 本人確認
+          %p 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        .field
+          = f.label :お名前（全角）
+          %span{"class"=>"require"} 必須
+          %br/
+          = f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder: '例）山田', class: "name_box"
+          = f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder: '例）太郎', class: "name_box"
 
-  = render "devise/shared/links"
+        .field
+          = f.label :お名前カナ（全角）
+          %span{"class"=>"require"} 必須
+          %br/
+          = f.text_field :lastname, autofocus: true, autocomplete: "lastname", placeholder: '例）ヤマダ', class: "name_box"
+          = f.text_field :lastname, autofocus: true, autocomplete: "lastname", placeholder: '例）タロウ', class: "name_box"
+          
+        .field
+          = f.label :生年月日
+          %span{"class"=>"require"} 必須
+          %br/
+          = f.select :birth_year, ["--"], {}, {class: "year_box", id: "year_box"} 
+          %span 年
+          = f.select :birth_month, ["--"], {}, {class: "month_box"}
+          %span 月
+          = f.select :birth_day, ["--"], {}, {class: "day_box"}
+          %span 日
+                 
+          %p{class: "caution"} ※本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+
+        .container__low
+          %p 「新規登録」のボタンを押すことにより、利用規約に同意したものとみなします
+          = f.submit "新規登録", class: "form_submit"
+
+
+        = render "devise/shared/links"
+
+  .container__footer    
+
+   
