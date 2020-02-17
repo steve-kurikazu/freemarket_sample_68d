@@ -1,10 +1,11 @@
 .container{
-  padding:0 300px;
+  padding-bottom: 50px;
   background-color: #f5f5f5;
   &__header{
     height: 300px;
   }
   &__main{
+    margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;
     width: 700px;
@@ -45,18 +46,19 @@
 
         }
         
-        .year_box{
+        #user_birth_year {
           display: inline-block;
           width: calc(30% - 17px);
           height: 48px;
           background-color: white;
+          border: 1px solid red;
         }
-        .month_box{
+        #user_birth_month {
           width: calc(30% - 17px);
           height: 48px;
           background-color: white;
         }
-        .day_box{
+        #user_birth_day {
           width: calc(30% - 17px);
           height: 48px;
           background-color: white;
@@ -79,5 +81,7 @@
       color: white;
     }
   }
-  
+  .another_link {
+    margin: 50px 0 0 70px; 
+  }
 }

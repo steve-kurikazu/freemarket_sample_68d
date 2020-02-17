@@ -12,7 +12,7 @@
   
   .container__main
     %h2 会員情報入力
-    = form_with model: @user, url:user_registration_path, id: 'new_user', class: 'new_user' ,local:true do |f|
+    = form_with model: @user, user_registration_path, id: 'new_user', class: 'new_user' ,local:true do |f|
       = render "devise/shared/error_messages", resource: resource
       .container__main__form
         .field
@@ -54,11 +54,11 @@
           = f.label :生年月日
           %span{"class"=>"require"} 必須
           %br/
-          = f.select :birth_year, ["--"], {}, {class: "year_box", id: "year_box"} 
+          = f.select :birth_year, [*(1900..2018)], prompt:"--"
           %span 年
-          = f.select :birth_month, ["--"], {}, {class: "month_box"}
+          = f.select :birth_month, [*(1..12)], prompt:"--"
           %span 月
-          = f.select :birth_day, ["--"], {}, {class: "day_box"}
+          = f.select :birth_day, [*(1..31)], prompt:"--"
           %span 日
                  
           %p{class: "caution"} ※本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
@@ -67,8 +67,9 @@
           %p 「新規登録」のボタンを押すことにより、利用規約に同意したものとみなします
           = f.submit "新規登録", class: "form_submit"
 
-
-        = render "devise/shared/links"
+        .another_link
+          = render "devise/shared/links"
+       
 
   .container__footer    
 
