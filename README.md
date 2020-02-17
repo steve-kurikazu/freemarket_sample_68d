@@ -44,7 +44,7 @@
 - belongs_to :size
 - has_one :order
 - has_many :images, dependent: :destroy
-- has_many :likes
+- has_many :likes, dependent: :destroy
 - has_many :users, through: :likes
 - has_many :comments
 
