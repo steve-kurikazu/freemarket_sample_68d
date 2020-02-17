@@ -1,4 +1,4 @@
-# mercari DB設計(2020_02_17)
+# mercari DB設計
 ## users table
 |Column|Type|Options|
 |------|----|-------|
