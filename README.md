@@ -104,10 +104,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |path|string|null: false|
-|brand_name|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :items
-- has_ancestry
 
 
 ## orders table
@@ -155,7 +154,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |path|string|null:false|
-|category_name|string|null:false|
+|name|string|null:false|
 ### Association
 - has_many :items
 - has_many :sizes_categories
