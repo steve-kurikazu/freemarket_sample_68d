@@ -1,7 +1,7 @@
 .header   
   .header__title  
     .header__title__logo
-      = image_tag "/assets/logo/logo.png", alt: "Furima_Logo"
+      = image_tag "/logo.png", alt: "Furima_Logo"
     .header__title__search_bar
       = form_with(model: @item, local: true) do |f|
         = f.text_field :search_text, placeholder: "キーワードから探す", type: "text", class: :header__title__search_bar__text
