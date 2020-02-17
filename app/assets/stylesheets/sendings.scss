@@ -1,3 +1,144 @@
 // Place all the styles related to the sendings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {
+  background-color: #eeeeee;
+
+  .wrap {
+    background-color: white;
+    margin: 0 auto;
+    width: calc( 100vw - 700px );
+
+    .sending__header {
+      text-align: center;
+      padding-top: 30px;
+    }
+
+    .sending-message {
+      .sending-message__info {
+        text-align: center;
+        font-weight: bold;
+        font-size: x-large;
+        
+        margin-top: 40px;
+      }
+    }
+
+    .sending-info {
+      &__name {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 40px;
+
+      }
+      
+      &__kana {
+        text-align: center;
+        padding-right: 240px;
+        padding-top: 20px;
+      
+      }
+
+      &__postal-code {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+      }
+
+      &__prefecture {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+      }
+
+      &__city {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+      }
+
+      &__address {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+        
+      }
+
+      &__building-name {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+      }
+
+      &__tell {
+        text-align: center;
+        padding-right: 250px;
+        padding-top: 20px;
+      }
+
+      
+    }
+    .require {
+      background-color: red;
+      color: white;
+    }
+    .requires {
+      background-color:gray;
+      color: white;
+    }
+
+    .form__top {
+      height: 50px;
+      width: 300px;
+      margin-left: 200px; 
+      
+      
+    }
+    .form__bottom {
+      height: 50px;
+      width: 300px;
+      margin-top: 10px;
+      margin-left: 200px;
+    }
+
+    .form__single {
+      height: 50px;
+      width: 300px;
+      margin-left: 200px;
+    }
+
+    .sending-info__kama {
+      text-align: center;
+      font-weight: bold;
+      font-size: x-large;
+    }
+
+    .btn-red {
+      background-color: red;
+      color: white;
+      height: 50px;
+      width: 300px;
+      margin-left: 200px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+  
+  }
+  .fotter-message {
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+    text-decoration: none;
+  }
+
+  .fotter-logo {
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+  .fotter-mark {
+    text-align: center;
+  }
+}
