@@ -1,17 +1,92 @@
 .header   
   .header__title  
     .header__title__logo
-      %img(src="/assets/images/furima_logo.svg" alt="Furima_Logo")
-    .header__title__search-bar
-      
+      = image_tag "/assets/logo/logo.png", alt: "Furima_Logo"
+    .header__title__search_bar
+      = form_with(model: @item, local: true) do |f|
+        = f.text_field :search_text, placeholder: "キーワードから探す", type: "text", class: :header__title__search_bar__text
+        = button_tag type: "submit", class: :header__title__search_bar__image do
+          = image_tag '/assets/icon/icon-search 1.png'
   .header__menu 
-    .header__menu__search-list
-    .header__menu__menu-list
+    %ul.header__menu__search_list
+      %li 
+        = link_to "#", class: "header__menu__search_list--category" do
+          カテゴリー
+      %li 
+        = link_to "#", class: "header__menu__search_list--brand" do
+          ブランド
+    %ul.header__menu__menu-list
+      %li
+        = link_to "#", class: "header__menu__menu_list--login" do
+          ログイン
+      %li
+        = link_to "#", class: "header__menu__menu_list--registration" do
+          新規会員登録
+  .header__breadclumbs
+
 .main   
-  .main__service  
+  .main__service
     .main__service__image-top
-    .main__service__reason  service__box
+      .main__service__image-top__contents
+        %h2.main__service__image-top__contents__subtitle
+          %br 人生を変えるフリマアプリ
+        %p.main__service__image-top__contents__text
+          FURIMAはだれでもかんたんに出品・購入できる
+          %br フリマアプリです
+        .main__service__image-top__contents__btn
+          = link_to "#", class: "aBtn" do
+            = image_tag '/assets/badge/app-store-badge.svg'
+          = link_to "#", class: "gBtn" do
+            = image_tag '/assets/badge/google-play-badge.svg'
+    .main__service__introduction
+      %h2.main__service__introduction__subtitle
+        FURIMAが選ばれる３つの理由
+      %ul.main__service__introduction__lists
+        %li.main__service__introduction__lists--list
+          .main__service__introduction__lists--list--pict
+            %span.main__service__introduction__lists--list--pict--number
+              1
+            = image_tag '/assets/pict/pict-reason-01.jpg'
+          %h3.main__service__introduction__lists--list--subtitle
+            %span 3分
+            ですぐに出品
+          %p.main__service__introduction__lists--list--text
+            スマホで入力するだけで簡単に出品できる!        
+        %li.main__service__introduction__lists--list
+          .main__service__introduction__lists--list--pict
+            %span.main__service__introduction__lists--list--pict--number
+              2
+            = image_tag '/assets/pict/pict-reason-02.jpg'
+          %h3.main__service__introduction__lists--list--subtitle
+            %span シンプル
+            で使いやすい
+          %p.main__service__introduction__lists--list--text
+            めんどくさい入力は必要なく、検索も購入もスムーズ!        
+        %li.main__service__introduction__lists--list
+          .main__service__introduction__lists--list--pict
+            %span.main__service__introduction__lists--list--pict--number
+              3
+            = image_tag '/assets/pict/pict-reason-03.jpg'
+          %h3.main__service__introduction__lists--list--subtitle
+            手数料
+            %span 業界最安
+          %p.main__service__introduction__lists--list--text
+            最大3％でお得に出品&購入!        
+
     .main__service__image-middle
+      .main__service__image-middle__contents
+        %h2.main__service__image-middle__contents__subtitle
+          %br 会員数日本一位
+        %p.main__service__image-middle__contents__text
+          FURIMAは、フリマアプリで最も人気。
+          %br 出品・購入回数も業界最多です！
+          ほしかったあの商品に出会えるかもしれません。
+        .main__service__image-middle__contents__btn
+          = link_to "#", class: "aBtn" do
+            = image_tag '/assets/badge/app-store-badge.svg'
+          = link_to "#", class: "gBtn" do
+            = image_tag '/assets/badge/google-play-badge.svg'
+
     .main__service__point  service__box
     .main__item__category  item__box
     .main__item__brand  item__box
