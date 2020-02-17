@@ -1,6 +1,71 @@
+:css
+  #a {
+    color: rgb(102, 100, 100);
+    background-color: rgb(170, 250, 250);
+    pointer-events:none;
+    font-weight: 900;
+  }
 .my_page
   .my_page__sidebar
     .my_page__sidebar__top
-    .my_page__sidebar__center
+      %ul
+        %li{class:"my_page-list", id:"a"}< マイページ
+        %li{class:"my_page-list", id:"b"}< いいね！一覧
+        %li{class:"my_page-list", id:"c"}< 出品する
+        %li{class:"my_page-list", id:"d"}< 出品した商品・出品中
+        %li{class:"my_page-list", id:"e"}< 出品した商品・取引中
+        %li{class:"my_page-list", id:"f"}< 出品した商品・売却済み
+        %li{class:"my_page-list", id:"g"}< 購入した商品・取引中
+        %li{class:"my_page-list", id:"h"}< 購入した商品・過去の取引
     .my_page__sidebar__bottom
+      .title 設定
+      %ul
+        %li{class:"my_page-list", id:"i"}< 発送元・お届け先住所変更
+        %li{class:"my_page-list", id:"g"}< 支払い方法
+        %li{class:"my_page-list", id:"k"}< メール/パスワード
+        %li{class:"my_page-list", id:"l"}< 本人情報
+        %li{class:"my_page-list", id:"m"}< ログアウト
   .my_page__main
+    .my_page__main__user-icon-box
+      .user-icon
+        = image_tag (src='')
+      .user-name
+        新宅あつし
+      .user-info
+        .evaluation-count
+          評価:
+          %span 5
+        .exhibition-count
+          出品数:
+          %span 3
+    .my_page__main__product-container{class: "main"}
+      %h3 購入した商品
+      %ul
+        %li{id:"during-trading"}取引中
+        %li{id:"past"} 過去の取引
+      .during-trading-boxs
+        .box
+          aiueo
+        .box
+          aiueo
+        .box
+          aiueo
+        .box
+          aiueo
+      .past-boxs
+        .box
+          kakikukeko
+        .box
+          kakikukeko
+        .box
+          kakikukeko
+        .box
+          kakikukeko
+        .box
+          kakikukeko
+    .my_page__main__logout{class: "main"}
+      %h3 ログアウトしてよろしいですか？
+      -# = link_to destroy_user_session_path, method: :delete, class: "header_btn" do
+      -#   %b ログアウトする
+      = link_to("#", class: "logout-btn") do
+        %b ログアウトする
