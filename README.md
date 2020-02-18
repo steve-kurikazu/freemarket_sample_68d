@@ -1,4 +1,4 @@
-# mercari DB設計
+# furima DB設計
 ## users table
 |Column|Type|Options|
 |------|----|-------|

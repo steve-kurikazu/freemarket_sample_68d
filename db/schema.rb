@@ -58,9 +58,8 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
     t.string "lastname", default: "", null: false
     t.string "firstname_kana", default: "", null: false
     t.string "lastname_kana", default: "", null: false
-    t.string "birth_year", default: ""
-    t.string "birth_month", default: ""
-    t.string "birth_day", default: ""
+    t.string "birthday", default: "", null: false
+    t.string "tell", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
