@@ -85,23 +85,8 @@ a {
           font-size: 18px;
           color: #ffffff;
           text-shadow: 0 0 5px #a9a9a9;
-
         }
-        &__btn {
-          margin-top: 15px;
-          display: flex;
-          & a:hover {
-            opacity: 0.5;
-          }
-        }
-        .aBtn img {
-          width: 180px;
-          height: 50px;
-        }
-        .gBtn img {
-          width: 180px;
-          height: 50px;
-        }
+        @include app_btn();
       }
     }
     &__introduction {
@@ -190,21 +175,7 @@ a {
           text-shadow: 0 0 5px #a9a9a9;
           margin: 20px 0 30px;
         }
-        &__btn {
-          margin-top: 15px;
-          display: flex;
-          & a:hover {
-            opacity: 0.5;
-          }
-        }
-        .aBtn img {
-          width: 180px;
-          height: 50px;
-        }
-        .gBtn img {
-          width: 180px;
-          height: 50px;
-        }
+        @include app_btn();
       }
     }
     &__point {
@@ -265,85 +236,17 @@ a {
     background-color: #f8f8f8;
     padding: 80px 0 0;
     text-align: center;
-    &__title {
-    }
-    &__item_box {
-      &__title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #3ccace;
-      }
-      &__lists {
-        width: 780px;
-        padding: 26px 0;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
-      }
-    }
+    @include display_lists();
   }
   &__item__brand {
     height: 100%;
     background-color: #f8f8f8;
     padding: 80px 0 80px;
     text-align: center;
-    &__title {
-    }
-    &__item_box {
-      &__title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #3ccace;
-      }
-      &__lists {
-        width: 780px;
-        padding: 26px 0;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
-      }
-    }
+    @include display_lists();
   }
 }
-
-.item_list {
-  width: 220px;
-  height: 245px;
-  color: #000000;
-  background-color: #ffffff;
-  display: inline-block;
-  position: relative;
-  &:hover {
-    opacity: 0.5;
-  }
-  &__picture {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 150px;
-    z-index: auto;
-    object-fit: cover;
-  }
-  &__body {
-    margin-top: 150px;
-    padding: 16px;
-    &__name {
-    font-size: 16px;
-    text-align: left;
-    }
-    & ul {
-      display: flex;
-      justify-content: space-between;
-    }
-    & p {
-      font-size: 10px;
-      text-align: left;
-    }
-  }
-}
+@include item_list();
 
 .footer {
   &__image {
@@ -363,22 +266,11 @@ a {
         font-size: 35px;
       }
       &__btn {
-        margin-top: 15px;
         display: flex;
         justify-content: center;
-        & a:hover {
-          opacity: 0.5;
-        }
       }
-      .aBtn img {
-        width: 180px;
-        height: 50px;
-      }
-      .gBtn img {
-        width: 180px;
-        height: 50px;
-      }
-  }
+      @include app_btn();
+    }
   }
   &__menu {
     color: #ffffff;
@@ -416,24 +308,5 @@ a {
     }
   }
 }
-.item_btn {
-  width: 120px;
-  background-color: #3ccace;
-  border-radius: 4%;
-  padding: 15px;
-  text-align: center;
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  &:hover {
-    opacity: 0.7;
-  }
-  &__text {
-    font-size: 18px;
-    color: #ffffff;
-    display: block;
-  }
-  &__logo {
-    width: 60%;
-  }
-}
+
+@include item_btn();
