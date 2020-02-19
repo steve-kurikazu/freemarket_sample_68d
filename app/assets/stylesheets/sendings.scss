@@ -4,141 +4,112 @@
 
 .wrapper {
   background-color: #eeeeee;
-
   .wrap {
     background-color: white;
     margin: 0 auto;
     width: calc( 100vw - 700px );
-
     .sending__header {
       text-align: center;
       padding-top: 30px;
+      padding-bottom: 50px;
+      background-color: #eeeeee;
     }
-
+    .sending__header__logo {
+    }
     .sending-message {
-      .sending-message__info {
+      .sending-message__info{
         text-align: center;
         font-weight: bold;
         font-size: x-large;
-        
-        margin-top: 40px;
+        border: 2px solid #eeeeee;     
       }
     }
-
     .sending-info {
-      &__name {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 40px;
-
-      }
+      .sending-info-wrap {
+        margin: 0 auto;
+        max-width: 343px;
+        &__name {
+          margin-top: 30px; 
+        } 
+        &__kana {
+          margin-top: 30px;
+        }
+        &__postal-code {
+          margin-top: 30px;
+        }
+        &__prefecture {
+          margin-top: 30px;
+        }
+        &__city {
+          margin-top: 30px;
+        }
+        &__address {
+          margin-top: 30px;
+        }
+        &__building-name {
+          margin-top: 30px;
+        }
+        &__tell {
+          margin-top: 30px; 
+        }
+        .identification__form__field  {
+          width: 350px;
+        }
       
-      &__kana {
-        text-align: center;
-        padding-right: 240px;
-        padding-top: 20px;
-      
       }
-
-      &__postal-code {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
+      .require {
+        background-color: red;
+        color: white;
       }
-
-      &__prefecture {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
+      .requires {
+        background-color:gray;
+        color: white;
+      } 
+      @mixin first {
+        height: 50px;
+        width: 350px;
+      }    
+      .form__top {
+        @include first;
       }
-
-      &__city {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
+      .form__bottom {
+        @include first;
+        margin-top: 10px;
       }
-
-      &__address {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
-        
+      .form__single {
+        @include first;
       }
-
-      &__building-name {
+      .sending-info__kama {
         text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
+        font-weight: bold;
+        font-size: x-large;
       }
-
-      &__tell {
-        text-align: center;
-        padding-right: 250px;
-        padding-top: 20px;
+      .btn-red {
+        background-color: red;
+        color: white;
+        @include first;
+        margin-top: 20px;
+        margin-bottom: 30px;
       }
-
-      
     }
-    .require {
-      background-color: red;
-      color: white;
-    }
-    .requires {
-      background-color:gray;
-      color: white;
-    }
-
-    .form__top {
-      height: 50px;
-      width: 300px;
-      margin-left: 200px; 
-      
-      
-    }
-    .form__bottom {
-      height: 50px;
-      width: 300px;
-      margin-top: 10px;
-      margin-left: 200px;
-    }
-
-    .form__single {
-      height: 50px;
-      width: 300px;
-      margin-left: 200px;
-    }
-
-    .sending-info__kama {
-      text-align: center;
-      font-weight: bold;
-      font-size: x-large;
-    }
-
-    .btn-red {
-      background-color: red;
-      color: white;
-      height: 50px;
-      width: 300px;
-      margin-left: 200px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-  
   }
-  .fotter-message {
-    text-align: center;
-    margin-top: 30px;
-    color: black;
-    text-decoration: none;
-  }
-
   .fotter-logo {
     text-align: center;
     margin-top: 20px;
-    text-decoration: none;
   }
   .fotter-mark {
     text-align: center;
+    font-size: 12px;
+    padding-bottom: 80px;
+    text-decoration: none;
+  }
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
   }
 }
