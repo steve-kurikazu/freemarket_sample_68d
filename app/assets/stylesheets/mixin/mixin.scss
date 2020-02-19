@@ -1,0 +1,107 @@
+// For home#index
+// apple store and google store
+@mixin app_btn() {
+  &__btn {
+    margin-top: 15px;
+    display: flex;
+    & a:hover {
+      opacity: 0.5;
+    }
+  }
+  .aBtn img {
+    width: 180px;
+    height: 50px;
+  }
+  .gBtn img {
+    width: 180px;
+    height: 50px;
+  }
+}
+
+// link to items#new
+@mixin item_btn() {
+  .item_btn {
+    width: 120px;
+    background-color: #3ccace;
+    border-radius: 4%;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    &:hover {
+      opacity: 0.7;
+    }
+    &__text {
+      font-size: 18px;
+      color: #ffffff;
+      display: block;
+    }
+    &__logo {
+      width: 60%;
+    }
+  }
+}
+
+// display item_list
+@mixin item_list() {
+  .item_list {
+    width: 220px;
+    height: 245px;
+    color: #000000;
+    background-color: #ffffff;
+    display: inline-block;
+    position: relative;
+    &:hover {
+      opacity: 0.5;
+    }
+    &__picture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      z-index: auto;
+      object-fit: cover;
+    }
+    &__body {
+      margin-top: 150px;
+      padding: 16px;
+      &__name {
+      font-size: 16px;
+      text-align: left;
+      }
+      & ul {
+        display: flex;
+        justify-content: space-between;
+      }
+      & p {
+        font-size: 10px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@mixin display_lists() {
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__item_box {
+    &__title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3ccace;
+    }
+    &__lists {
+      width: 780px;
+      padding: 26px 0;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
