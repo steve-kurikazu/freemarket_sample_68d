@@ -4,15 +4,16 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(params[:image])
+    Item.create(params[:item_image])
     @new_item = Item.last
-    Image.create(item_id: @new_item.id, item_image: image_params[:image])
+    image = image_params[:image]
+    Image.create(item_id: @new_item.id, item_image: image_params[:item_image])
   end
 
   private
 
   def image_params
-    params.require(:item).permit(:image)
+    params.require(:item).permit(:item_image)
   end
 
 end
