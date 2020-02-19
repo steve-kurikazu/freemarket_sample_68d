@@ -21,16 +21,16 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "item_name"
-    t.text "item_text"
-    t.string "condition"
-    t.string "delivery_fee"
-    t.string "shipping_area"
-    t.date "delivery_time"
-    t.integer "price"
-    t.bigint "user_id"
-    t.integer "profit"
-    t.string "status"
+    t.string "item_name", null: false
+    t.text "item_text", null: false
+    t.string "condition", null: false
+    t.string "delivery_fee", null: false
+    t.string "shipping_area", null: false
+    t.date "delivery_time", null: false
+    t.integer "price", null: false
+    t.bigint "user_id", null: false
+    t.integer "profit", null: false
+    t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -38,13 +38,15 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
 
   create_table "sendings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "sending_name", null: false
-    t.string "sending_namekana", null: false
+    t.string "sending_first_name", null: false
+    t.string "sending_last_name", null: false
+    t.string "sending_first_namekana", null: false
+    t.string "sending_last_namekana", null: false
     t.string "postal_code", null: false
     t.string "prefectures", null: false
     t.string "city", null: false
     t.string "address", null: false
-    t.string "bullding_name", null: false
+    t.string "building_name", null: false
     t.string "sending_tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,9 +68,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "birth_year"
-    t.date "birth_month"
-    t.date "birth_day"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
