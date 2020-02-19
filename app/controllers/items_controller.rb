@@ -10,6 +10,10 @@ class ItemsController < ApplicationController
     Image.create(item_id: @new_item.id, item_image: image_params[:item_image])
   end
 
+  def show
+  end
+  
+
   private
 
   def image_params
