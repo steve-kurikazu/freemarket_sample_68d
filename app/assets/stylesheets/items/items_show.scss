@@ -4,15 +4,46 @@
 .main{
   
   &__show{
+    padding: 40px;
     margin: 0 auto;
-    border: solid 1px red;
-    width: 700px;
-    margin: 0 auto;
-    padding: 24px 40px 40px;
-    &__header{
+    &__top{
       text-align: center;
       font-weight: bold;
       font-size: 24px;
+      &__item_box{
+        padding: 24px 40px 40px;
+        &__name{
+          text-align: center;
+          font-weight: bold;
+          font-size: 24px;
+        }
+        &__body{
+
+          & ul{
+            & li{
+              margin: 0 auto;
+              display: flex;
+              width: 560px;
+              align-items: center;
+              margin: 0 auto;
+              & ul{
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                & li{
+                  width: 25%;
+                  margin: 0 10px 0 0;
+                  
+
+                }
+              }
+            }
+          }
+
+        }
+
+      }
+
     }
     &__body{
 

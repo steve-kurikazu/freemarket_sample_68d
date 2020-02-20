@@ -5,11 +5,21 @@
   .main__show
     .main__show__top
       .main__show__top__item_box
-        = link_to "#", class: "aBtn" do
-          = image_tag '/images/blue.jpg'
       %h1.main__show__top__item_box__name product
 
-    
-
-    .main__show__body
-    .main__show__footer
+      .main__show__top__item_box__body
+      %ul.main__show__top__item_box__body__lists
+        %li.main__show__top__item_box__body__lists__list
+          = link_to "#", class: "aBtn" do
+            = image_tag '/images/pict/bg-appBanner-pict.jpg'
+            %ul.main__show__top__item_box__body__lists__list__detail
+              %li.main__show__top__item_box__body__lists__list__detail__list
+                = link_to "#", class: "aBtn" do
+                  = image_tag '/images/pict/pict-reason-01.jpg'
+              %li.main__show__top__item_box__body__lists__list__detail__list
+                = link_to "#", class: "aBtn" do
+                  = image_tag '/images/pict/pict-reason-02.jpg'
+              %li.main__show__top__item_box__body__lists__list__detail__list
+                = link_to "#", class: "aBtn" do
+                  = image_tag '/images/pict/pict-reason-03.jpg'
+      .main__show__footer
