@@ -10,9 +10,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :lastname,           null: false, default: ""
       t.string :firstname_kana,     null: false, default: ""
       t.string :lastname_kana,      null: false, default: ""
-      t.string :birth_year,                      default: ""
-      t.string :birth_month,                     default: ""
-      t.string :birth_day,                       default: ""
+      t.string :birth_year,         null: false, default: ""
+      t.string :birth_month,        null: false, default: ""
+      t.string :birth_day,          null: false, default: ""
 
 
       t.string :encrypted_password, null: false, default: ""
