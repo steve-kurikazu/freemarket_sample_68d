@@ -1,4 +1,4 @@
-# mercari DB設計
+# furima DB設計
 ## users table
 |Column|Type|Options|
 |------|----|-------|
@@ -25,8 +25,8 @@
 ## items table
 |Column|Type|Options|
 |------|----|-------|
-|item_name|string|null:false|
-|item_text|text||null:false|
+|name|string|null:false|
+|text|text||null:false|
 |condition|string|null:false|
 |delivery_fee|string|null:false|
 |shipping_area|string|null:false|
@@ -36,7 +36,7 @@
 |profit|integer|null:false|
 |category_id|integer|null: false, foreign_key: true|
 |brand_id|integer|null: false, foreign_key: true|
-|status|string|null: false|
+|status|integer|null: false|
 ### Association
 - belongs_to :user
 - belongs_to :brand
@@ -44,7 +44,7 @@
 - belongs_to :size
 - has_one :order
 - has_many :images, dependent: :destroy
-- has_many :likes
+- has_many :likes, dependent: :destroy
 - has_many :users, through: :likes
 - has_many :comments
 
@@ -104,10 +104,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |path|string|null: false|
-|brand_name|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :items
-- has_ancestry
 
 
 ## orders table
@@ -155,7 +154,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |path|string|null:false|
-|category_name|string|null:false|
+|name|string|null:false|
 ### Association
 - has_many :items
 - has_many :sizes_categories
