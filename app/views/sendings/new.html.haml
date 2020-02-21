@@ -1,9 +1,6 @@
 .wrapper  
   .wrap
-    .sending__header
-      .sending-header__logo
-        = link_to image_tag "/assets/logo/logo.png", size: "190x100"
-       
+    = render "shared/share_header"  
     .sending-message
       .sending-message__info
         発送元・お届け先住所入力
@@ -69,7 +66,4 @@
           .action
             
             = form.submit "登録する", class: "btn-red"
-  .fotter-logo
-    = link_to image_tag "/assets/logo/logo.png", size: "120x60"
-  .fotter-mark
-    ©︎FURIMA
+  = render "shared/footer_logo"

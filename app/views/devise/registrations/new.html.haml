@@ -1,6 +1,6 @@
 .container
   .container__header
-    %img(src="/assets/images/furima_logo.svg" alt="Furima_Logo")
+    = render "shared/share_header" 
     = devise_error_messages!
   .container__main
     %h2 会員情報入力
@@ -63,8 +63,6 @@
 
         .another_link
           = render "devise/shared/links"
-       
-
-  .container__footer    
+  = render "shared/footer_logo" 
 
    
