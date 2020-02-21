@@ -45,6 +45,8 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-git-copy', require: false
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 
 end
 
