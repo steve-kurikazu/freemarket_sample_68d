@@ -35,15 +35,15 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  # desc 'upload secrets.yml'
-  # task :upload do
-  #   on roles(:app) do |host|
-  #     if test "[ ! -d #{shared_path}/config ]"
-  #       execute "mkdir -p #{shared_path}/config"
-  #     end
-  #     upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
-  #   end
-  # end
-  # before :starting, 'deploy:upload'
-  # after :finishing, 'deploy:cleanup'
+  desc 'upload master.key'
+  task :upload do
+    on roles(:app) do |host|
+      if test "[ ! -d #{shared_path}/config ]"
+        execute "mkdir -p #{shared_path}/config"
+      end
+      upload!('config/master.key', "#{shared_path}/config/secrets.yml")
+    end
+  end
+  before :starting, 'deploy:upload'
+  after :finishing, 'deploy:cleanup'
 end

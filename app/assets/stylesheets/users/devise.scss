@@ -1,13 +1,26 @@
+@mixin devise_form {
+  width: calc(30% - 17px);
+  height: 48px;
+  background-color: white;
+}
 .container{
-  padding-bottom: 50px;
+  height: 100%;
   background-color: #f5f5f5;
+  padding-bottom: 300px;
   &__header{
-    height: 300px;
+  }
+    #error_explanation {
+      border: 5px solid red;
+      width: 800px;
+      height: 500px;
+      padding-top: 60px;
+      margin: 50px auto;
+      text-align: center;
+      display: block;
   }
   &__main{
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
     font-size: 16px;
-    line-height: 1.5;
     width: 700px;
     background-color: white;
     h2{
@@ -21,9 +34,9 @@
     }
     &__form{
       max-width: 343px;
-      margin: 0 auto;
+      margin: 0px auto;
       .field{
-        margin-bottom: 24px;
+        margin-top: 30px;
         .require{
           background-color: red;
           color: white;
@@ -38,30 +51,23 @@
           border-radius: 6px;
           border: 1px solid #ccc;  
         }
+        .field_with_errors {
+          display: inline;
+        }
         .name_box{
           height: 48px;
           width: calc(50% - 6px);
           border-radius: 6px;
-          border: 1px solid #ccc;
 
         }
-        
         #user_birth_year {
-          display: inline-block;
-          width: calc(30% - 17px);
-          height: 48px;
-          background-color: white;
-          border: 1px solid red;
+          @include devise_form;
         }
         #user_birth_month {
-          width: calc(30% - 17px);
-          height: 48px;
-          background-color: white;
+          @include devise_form;
         }
         #user_birth_day {
-          width: calc(30% - 17px);
-          height: 48px;
-          background-color: white;
+          @include devise_form;
         }
         .caution{
           color: #888;
@@ -74,14 +80,17 @@
     max-width: 343px;  
     margin: 0 auto;
     .form_submit{
-      margin-top: 32px;
+      margin-top: 20px;
       line-height: 48px;
       width: 100%;
-      background-color: red;
       color: white;
+      background-color: red;
     }
   }
   .another_link {
-    margin: 50px 0 0 70px; 
+    height: 30px;
+    width: 230px;
+    margin: 30px 0 0 70px; 
+    padding-bottom: 80px;
   }
 }
