@@ -27,7 +27,19 @@
     .sending-info {
       .sending-info-wrap {
         margin: 0 auto;
-        max-width: 343px;
+        max-width: 370px;
+        .sending-form__errors {
+          color: red;
+          & ul {
+            border: 5px solid red;
+            width: 300px;
+            padding: 30px;
+            margin: 50px auto;
+            text-align: center;
+            display: block;
+        }
+        
+      }
         &__name {
           margin-top: 30px; 
         } 
@@ -112,4 +124,5 @@
     border: 1px solid #ccc;
     background: #fff;
   }
+  
 }

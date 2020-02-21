@@ -38,16 +38,16 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
 
   create_table "sendings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "sending_first_name", null: false
-    t.string "sending_last_name", null: false
-    t.string "sending_first_namekana", null: false
-    t.string "sending_last_namekana", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_namekana", null: false
+    t.string "last_namekana", null: false
     t.string "postal_code", null: false
     t.string "prefectures", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building_name", null: false
-    t.string "sending_tell", null: false
+    t.string "tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sendings_on_user_id"
