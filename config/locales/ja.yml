@@ -1,5 +1,14 @@
 ja:
   activerecord:
+    attributes:
+      first_name: 名前
+      Last name: 名字
+      First namekana: 名前（かな）
+      Last namekana: 名字(かな）
+      Postal code: 郵便番号
+      Prefectures: 都道府県
+      City: 市町村区 
+      Address: 番地
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -204,3 +213,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+ 
