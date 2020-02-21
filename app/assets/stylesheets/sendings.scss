@@ -8,13 +8,11 @@
     background-color: white;
     margin: 0 auto;
     width: calc( 100vw - 700px );
-    .sending__header {
+    .share__header {
       text-align: center;
       padding-top: 30px;
       padding-bottom: 50px;
       background-color: #eeeeee;
-    }
-    .sending__header__logo {
     }
     .sending-message {
       .sending-message__info{
@@ -27,7 +25,19 @@
     .sending-info {
       .sending-info-wrap {
         margin: 0 auto;
-        max-width: 343px;
+        max-width: 370px;
+        .sending-form__errors {
+          color: red;
+          & ul {
+            border: 5px solid red;
+            width: 300px;
+            padding: 30px;
+            margin: 50px auto;
+            text-align: center;
+            display: block;
+        }
+        
+      }
         &__name {
           margin-top: 30px; 
         } 
@@ -93,11 +103,11 @@
       }
     }
   }
-  .fotter-logo {
+  .footer-logo {
     text-align: center;
     margin-top: 20px;
   }
-  .fotter-mark {
+  .footer-mark {
     text-align: center;
     font-size: 12px;
     padding-bottom: 80px;
@@ -112,4 +122,5 @@
     border: 1px solid #ccc;
     background: #fff;
   }
+  
 }

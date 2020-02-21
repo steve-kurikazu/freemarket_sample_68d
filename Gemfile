@@ -47,8 +47,11 @@ group :development, :test do
   gem 'capistrano-git-copy', require: false
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+
+
   gem 'rails-controller-testing'
   gem 'faker'
+
 end
 
 group :development do

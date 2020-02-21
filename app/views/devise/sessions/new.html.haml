@@ -1,6 +1,6 @@
 .container
   .container__header
-    %img(src="/assets/images/furima_logo.svg" alt="Furima_Logo")
+    = render "shared/share_header"  
     
   .container__main
     %h2 ログイン画面
@@ -27,5 +27,4 @@
         .another_link
           = render "devise/shared/links"
        
-
-  .container__footer    
+  = render "shared/footer_logo"
