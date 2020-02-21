@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_014349) do
+ActiveRecord::Schema.define(version: 2020_02_21_054545) do
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
@@ -38,16 +48,14 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
 
   create_table "sendings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "first_namekana", null: false
-    t.string "last_namekana", null: false
+    t.string "sending_name", null: false
+    t.string "sending_namekana", null: false
     t.string "postal_code", null: false
     t.string "prefectures", null: false
     t.string "city", null: false
     t.string "address", null: false
-    t.string "building_name", null: false
-    t.string "tell", null: false
+    t.string "bullding_name", null: false
+    t.string "sending_tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sendings_on_user_id"
@@ -60,9 +68,9 @@ ActiveRecord::Schema.define(version: 2020_02_17_014349) do
     t.string "lastname", default: "", null: false
     t.string "firstname_kana", default: "", null: false
     t.string "lastname_kana", default: "", null: false
-    t.string "birth_year", default: "", null: false
-    t.string "birth_month", default: "", null: false
-    t.string "birth_day", default: "", null: false
+    t.string "birth_year", default: ""
+    t.string "birth_month", default: ""
+    t.string "birth_day", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
