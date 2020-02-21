@@ -8,7 +8,6 @@ class SendingsController < ApplicationController
     if  @sending.save 
       redirect_to user_path(1)
     else
-
       render new_sending_path
     end
     #redirect_to new_sending_path
