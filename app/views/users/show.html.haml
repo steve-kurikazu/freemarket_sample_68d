@@ -6,6 +6,14 @@
     font-weight: 900;
   }
 .my_page
+  .content
+    %p
+      = @item.name
+    %p
+      = @item.price
+      円
+    -@item.images.each do |image|
+      = image_tag image.photo.url
   .my_page__sidebar
     .my_page__sidebar__top
       %ul
@@ -67,5 +75,5 @@
       %h3 ログアウトしてよろしいですか？
       -# = link_to destroy_user_session_path, method: :delete, class: "header_btn" do
       -#   %b ログアウトする
-      = link_to("#", class: "logout-btn") do
+      = link_to(destroy_user_session_path, method: :delete, class: "logout-btn") do
         %b ログアウトする

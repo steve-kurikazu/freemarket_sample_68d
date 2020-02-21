@@ -1,3 +1,89 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.main{
+  margin: 0 auto;
+  background-color: #f8f8f8f8;
+  &__show{
+    width: 700px;
+    padding: 40px;
+    margin: 0 auto;
+    &__top{
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      background-color: white;
+
+      &__item_box{
+        padding: 24px 40px 40px;
+        &__name{
+          text-align: center;
+          font-weight: bold;
+          font-size: 24px;
+        }
+        &__body{
+
+              & ul{
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                & li{
+                  width: 25%;
+                  margin: 0 10px 0 0;
+                
+                }
+              }
+            }
+        &__price{
+          margin: 24px 0 24px;
+          &__detail{
+            font-size: 16px;
+          }
+
+        }
+
+      }
+      
+    }
+
+    &__btn{
+  
+      & ul{
+        color: #3CCACE;
+        justify-content: space-between;
+        display: flex;
+        font-size: 16px;
+        & li{
+          
+          & a{
+            color: #3CCACE;
+           
+          }
+        }
+      }
+    }
+    &__footer{
+      font-size: 20px;
+      margin: 24px 0;
+      & a{
+        color: #3CCACE;
+      }
+    }
+    
+  }
+  
+}
+
+.table_item{
+  width: 100%;
+  height: 375px;
+  border-collapse: collapse;
+  font-size: 14px;
+  border: solid 1px #eee;
+  .record{
+    border: solid 1px #eee;
+    padding: 0.5em;
+    .table_header{
+      background-color: #eee;
+    }
+
+  }
+  
+}
