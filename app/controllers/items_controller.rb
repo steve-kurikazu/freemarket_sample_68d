@@ -1,25 +1,37 @@
 class ItemsController < ApplicationController
   def new
     @item = Item.new
+    @item.images.new
   end
 
   def create
-    Item.create(params[:item_image])
-    @new_item = Item.last
-    image = image_params[:image]
-    Image.create(item_id: @new_item.id, item_image: image_params[:item_image])
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to user_path(1)
+    else
+      render :new
+    end
   end
 
   def show
     
   end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
   
 
   private
 
-  def image_params
-    params.require(:item).permit(:item_image)
+  def item_params
+    
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: 1)
   end
 
 end
-

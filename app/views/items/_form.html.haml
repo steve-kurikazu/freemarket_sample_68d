@@ -1,0 +1,34 @@
+.item-new
+  
+  .item-new__form
+    = form_with model:@item ,local: true do |f|
+      .item-new__imgages
+        = f.fields_for :images do |i|
+          .js-box{data:{index: i.index}}
+            = i.file_field :photo, class: "js-file"
+            %span{class: "js-remove"}
+              削除
+      %br/  
+        
+      商品名
+      = f.text_field :name 
+      %br/
+      商品説明
+      = f.text_field :text
+      %br/
+      価格
+      = f.number_field :price
+      %br/
+      = f.submit
+      商品の状態
+      = f.select :condition, [['新品、未使用', 1], ['未使用に近い', 2], ['目立った傷や汚れなし', 3], ['やや傷や汚れあり', 4], ['傷や汚れあり', 5], ['全体に状態が悪い', 6]], { include_blank: true, selected: 1 } 
+      %br/
+      発送料の負担
+      = f.select :delivery_fee, [['送料込み（出品者負担）', 1], ['着払い（購入者負担）', 2]], { include_blank: true, selected: 1 }
+      %br/
+      発送元の地域
+      = f.text_field :shipping_area
+      %br/
+      発送までの日数
+      = f.number_field :delivery_time
+      %br/
