@@ -1,0 +1,30 @@
+.container
+  .container__header
+    = render "shared/share_header"  
+    
+  .container__main
+    %h2 ログイン画面
+    = form_with model: @user, url: session_path(resource_name) do |f|
+      .container__main__form
+        .field
+          = f.label :メールアドレス
+          %span{"class"=>"require"} 必須
+          %br/  
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '例）PC・携帯どちらでも可', class: "nickname_box"
+          %br/
+          %br/
+          = f.label :パスワード
+          %span{"class"=>"require"} 必須
+          - if @minimum_password_length
+            %em
+            -# (#{@minimum_password_length} characters minimum)    
+          %br/
+          = f.password_field :password, autofocus: "new-password", placeholder: '例）7文字以上の半角英数字', class: "nickname_box"
+
+        .container__low
+          %p 
+            = f.submit "ログイン", class: "form_submit"
+        .another_link
+          = render "devise/shared/links"
+       
+  = render "shared/footer_logo"

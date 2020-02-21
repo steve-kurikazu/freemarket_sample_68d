@@ -1,0 +1,70 @@
+.wrapper  
+  .wrap
+    = render "shared/share_header"  
+    .sending-message
+      .sending-message__info
+        発送元・お届け先住所入力
+    .sending-info
+      .sending-info-wrap
+        .sending-form__errors
+          - if @sending.errors.any?
+            %ul
+              -@sending.errors.full_messages.each do |message|
+                %li
+                  =message
+        =form_with model: @sending, class: :sending_form, local: true do |form| 
+          .sending-info-wrap__name
+            お名前
+            %span.require
+              必須
+              = form.text_field :first_name, placeholder: :例）山田, class: :form__top
+              = form.text_field :last_name, placeholder: :例）彩, class: :form__bottom 
+          .sending-info-wrap__kana
+            
+            お名前カナ
+            %span.require
+              必須
+              = form.text_field :first_namekana, placeholder: :例）ヤマダ, class: :form__top
+              = form.text_field :last_namekana, placeholder: :例）アヤ, class: :form__bottom 
+          .sending-info-wrap__postal-code
+            郵便番号  
+            %span.require
+              必須
+            
+              = form.text_field :postal_code, placeholder: :例）１２３−４５６, class: :form__single
+          .sending-info-wrap__prefecture
+            都道府県  
+            %span.require
+              必須
+          .identification__form__field
+            .identification__form__field--input.icon-relative
+              = form.collection_select :prefectures, Prefecture.all, :id, :name, prompt: "--", class: 'input'              
+          .sending-info-wrap__city
+            市町村区  
+            %span.require
+              必須
+            
+              = form.text_field :city, placeholder: :例）横浜市緑区, class: :form__single
+          .sending-info-wrap__address
+            番地  
+            %span.require
+              必須
+            
+              = form.text_field :address, placeholder: :例）青山１−１−１, class: :form__single
+          .sending-info-wrap__building-name
+            建物名  
+            %span.requires
+              任意
+            
+              = form.text_field :building_name, placeholder: :例）柳ビル１０３, class: :form__single
+          .sending-info-wrap__tell
+            電話  
+            %span.requires
+              任意
+            
+              = form.text_field :tell, placeholder: :例）０９０１２３４５６７８９, class: :form__single
+          .action
+            
+            = form.submit "登録する", class: "btn-red"
+  = render "shared/footer_logo"
+
