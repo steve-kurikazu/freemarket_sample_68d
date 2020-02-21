@@ -6,6 +6,14 @@
     font-weight: 900;
   }
 .my_page
+  .content
+    %p
+      = @item.name
+    %p
+      = @item.price
+      円
+    -@item.images.each do |image|
+      = image_tag image.photo.url
   .my_page__sidebar
     .my_page__sidebar__top
       %ul
