@@ -67,5 +67,5 @@
       %h3 ログアウトしてよろしいですか？
       -# = link_to destroy_user_session_path, method: :delete, class: "header_btn" do
       -#   %b ログアウトする
-      = link_to("#", class: "logout-btn") do
+      = link_to(destroy_user_session_path, method: :delete, class: "logout-btn") do
         %b ログアウトする
