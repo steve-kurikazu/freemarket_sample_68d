@@ -11,7 +11,7 @@ class SendingsController < ApplicationController
 
       render new_sending_path
     end
-    #redirect_to new_sending_path
+    
   
 end
 
