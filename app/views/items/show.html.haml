@@ -10,20 +10,12 @@
       %h1.main__show__top__item_box__name @name
 
       .main__show__top__item_box__body
-        %ul @images.each.do |image|
-        
-          
-          = link_to "#", class: "aBtn" do
-            = image_tag @image
-          %li
-            = link_to "#", class: "aBtn" do
-              = image_tag '/images/pict/pict-reason-01.jpg'
-          %li
-            = link_to "#", class: "aBtn" do
-              = image_tag '/images/pict/pict-reason-02.jpg'
-          %li
-            = link_to "#", class: "aBtn" do
-              = image_tag '/images/pict/pict-reason-03.jpg'
+        .first_image
+          = image_tag @first_image.photo.url 
+        .image_a
+          - @images.each do |image|
+            .image_b
+              = image_tag image.photo.url  
 
       .main__show__top__item_box__price
         %span 2000円
@@ -56,6 +48,9 @@
         %tr.record
           %th.table_header 発送日の目安
           %td １〜２日で発送
+
+    .main__show__purchase
+      =link_to "購入する", orders_path(id: @item.id)
     
     .main__show__btn
       %ul

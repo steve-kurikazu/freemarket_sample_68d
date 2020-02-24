@@ -2,7 +2,7 @@
   margin: 0 auto;
   background-color: #f8f8f8f8;
   &__show{
-    width: 700px;
+    width: 800px;
     padding: 40px;
     margin: 0 auto;
     &__top{
@@ -34,17 +34,28 @@
           font-size: 24px;
         }
         &__body{
-          padding: 10px 70px;
-              & ul{
-                justify-content: center;
-                margin-top: 10px;
-                & li{
-                  width: 25%;
-                  margin: 20px 10px 0 0;
-                  display: inline-block;
-                }
+          .first_image {
+            height: 265px;
+            width: 400px;
+            margin: 0 auto;
+            overflow: scroll;
+          }
+            .image_a{
+              margin: 50px auto 50px;
+              width: 670px;
+              display: flex;
+              overflow-x: scroll;
+              height: 133px;
+              .image_b {
+                min-width: 200px;
+                max-width: 200px;
+                min-height: 133px;
+                max-height: 133px;
+                overflow: scroll;
+                margin-right: 10px;
               }
             }
+        }
         &__price{
           margin: 24px 0 24px;
           &__detail{
@@ -55,6 +66,19 @@
 
       }
       
+    }
+    &__purchase{
+      text-align: center;
+      margin-top: 20px;
+      & a{
+        background-color: red;
+        font-size: 30px;
+        color: white;
+        border-radius: 15px;
+        margin-top: 15px;
+        padding: 15px 100px;
+        width: 50px;
+      }
     }
 
     &__btn{
