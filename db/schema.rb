@@ -24,23 +24,21 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
-    t.string "item_image"
+    t.string "photo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "item_name"
-    t.text "item_text"
-    t.string "condition"
-    t.string "delivery_fee"
-    t.string "shipping_area"
-    t.date "delivery_time"
-    t.integer "price"
-    t.bigint "user_id"
-    t.integer "profit"
-    t.string "status"
+    t.string "name", null: false
+    t.text "text", null: false
+    t.string "condition", null: false
+    t.string "delivery_fee", null: false
+    t.string "shipping_area", null: false
+    t.integer "delivery_time", null: false
+    t.integer "price", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -48,14 +46,16 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
 
   create_table "sendings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "sending_name", null: false
-    t.string "sending_namekana", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_namekana", null: false
+    t.string "last_namekana", null: false
     t.string "postal_code", null: false
     t.string "prefectures", null: false
     t.string "city", null: false
     t.string "address", null: false
-    t.string "bullding_name", null: false
-    t.string "sending_tell", null: false
+    t.string "building_name", null: false
+    t.string "tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sendings_on_user_id"
@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
     t.string "lastname", default: "", null: false
     t.string "firstname_kana", default: "", null: false
     t.string "lastname_kana", default: "", null: false
-    t.string "birth_year", default: ""
-    t.string "birth_month", default: ""
-    t.string "birth_day", default: ""
+    t.string "birth_year", default: "", null: false
+    t.string "birth_month", default: "", null: false
+    t.string "birth_day", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
