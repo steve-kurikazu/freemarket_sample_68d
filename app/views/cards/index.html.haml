@@ -1,3 +1,7 @@
+= render "shared/item_btn"
+= render "shared/share_header"
+
+
 %label 登録クレジットカード情報
 
 - if @default_cards_information.nil?
@@ -20,3 +24,5 @@
   カード登録
 = link_to edit_user_path(current_user.id) do
   マイページに戻る
+
+= render "shared/footer"
