@@ -5,15 +5,8 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :show]
   resources :sendings, only: [:new, :create]
   resources :users, only: [:edit]
-  
-  resources :cards, only: [:new, :show] do
-    collection do
-      post 'show', to: 'cards#show'
-      post 'pay', to: 'cards#pay'
-      post 'delete', to: 'cards#delete'
-    end
-  end
-  resources :orders, only: [:index] do
+  resources :cards, only: [:new, :create, :index, :destroy]
+  resources :orders, only: [:index, :new, :create] do  
     collection do
       get 'index', to: 'orders#index'
       post 'pay', to: 'orders#pay'
