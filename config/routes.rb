@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:new, :create, :show]
   resources :sendings, only: [:new, :create]
-  resources :users, only: [:show]
+  resources :users, only: [:edit]
   
   resources :cards, only: [:new, :show] do
     collection do
