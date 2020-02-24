@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     # @item = Item.find(params[:id])
     @item = Item.find(1)
-    binding.pry
+    @images = @item.images
     card = Card.where(user_id: current_user.id).first
     if card.blank?
       redirect_to controller: "card", action: "new"

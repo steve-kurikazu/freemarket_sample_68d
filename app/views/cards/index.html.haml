@@ -18,5 +18,5 @@
       %button 削除する
 = link_to new_card_path, class: "login" do
   カード登録
-= link_to user_path(current_user.id) do
+= link_to edit_user_path(current_user.id) do
   マイページに戻る
