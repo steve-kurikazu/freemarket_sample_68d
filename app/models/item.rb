@@ -19,4 +19,3 @@ class Item < ApplicationRecord
     validates :images
   end
 end
-

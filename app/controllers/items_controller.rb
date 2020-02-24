@@ -26,7 +26,6 @@ class ItemsController < ApplicationController
 
   def destroy
   end
-  
 
   private
 

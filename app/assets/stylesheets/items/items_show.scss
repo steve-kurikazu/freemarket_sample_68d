@@ -13,21 +13,35 @@
 
       &__item_box{
         padding: 24px 40px 40px;
+        font-size: 16px;
+        list-style: none;
+        text-align: right;
+        height: 50px;
+
+        & a{
+          color:#3CCACE;
+          border: solid 1px;
+          width: 50px;
+          border-radius: 5px;
+          margin-right: 5px;
+          padding: 5px;
+        }
+
+
         &__name{
           text-align: center;
           font-weight: bold;
           font-size: 24px;
         }
         &__body{
-
+          padding: 10px 70px;
               & ul{
-                display: flex;
                 justify-content: center;
                 margin-top: 10px;
                 & li{
                   width: 25%;
-                  margin: 0 10px 0 0;
-                
+                  margin: 20px 10px 0 0;
+                  display: inline-block;
                 }
               }
             }
