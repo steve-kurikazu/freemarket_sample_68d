@@ -13,6 +13,16 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @images = @item.images
+
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
   
 
