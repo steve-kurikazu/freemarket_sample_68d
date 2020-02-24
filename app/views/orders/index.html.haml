@@ -1,5 +1,6 @@
 %h2 購入内容の確認
-= image_tag @item.images.find(1)
+- @images.each do |image|
+  = image_tag image.photo.url
 %p Apple MacBook Pro 13インチ
 %p ¥50(送料込み)
 %br
