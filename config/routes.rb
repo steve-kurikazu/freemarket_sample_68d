@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :items, only: [:new, :create, :show]
   resources :sendings, only: [:new, :create]
-
   resources :users, only: [:show]
+  
   resources :cards, only: [:new, :show] do
     collection do
       post 'show', to: 'cards#show'
