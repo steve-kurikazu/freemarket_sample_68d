@@ -4,10 +4,9 @@ Rails.application.routes.draw do
 
   resources :items, only: [:new, :create, :show]
   resources :sendings, only: [:new, :create]
-
-  resources :users, only: [:show]
+  resources :users, only: [:edit]
   resources :cards, only: [:new, :create, :index, :destroy]
-  resources :orders, only: [:index, :new, :create] do
+  resources :orders, only: [:index, :new, :create] do  
     collection do
       get 'index', to: 'orders#index'
       post 'pay', to: 'orders#pay'

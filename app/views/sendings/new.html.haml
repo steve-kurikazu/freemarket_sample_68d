@@ -1,56 +1,62 @@
-.wrapper  
+.wrapper
+  = render "shared/share_header"
+  - if @sending.errors.any?
+    .sending-form__errors
+      %h2 本人情報を登録できませんでした
+      %br
+      %h4
+        <
+        = @sending.errors.full_messages.length
+        件のエラーメッセージ>
+      %ul
+        -@sending.errors.full_messages.each do |message|
+          %li
+            ・
+            =message
+  .container__main
+    %h2  発送元・お届け先住所入力
   .wrap
-    = render "shared/share_header"  
-    .sending-message
-      .sending-message__info
-        発送元・お届け先住所入力
     .sending-info
       .sending-info-wrap
-        .sending-form__errors
-          - if @sending.errors.any?
-            %ul
-              -@sending.errors.full_messages.each do |message|
-                %li
-                  =message
         =form_with model: @sending, class: :sending_form, local: true do |form| 
           .sending-info-wrap__name
-            お名前
+            お名前（全角）
             %span.require
               必須
-              = form.text_field :first_name, placeholder: :例）山田, class: :form__top
-              = form.text_field :last_name, placeholder: :例）彩, class: :form__bottom 
+              = form.text_field :first_name, placeholder: :例）山田, required: true, class: :form__top
+              = form.text_field :last_name, placeholder: :例）彩, required: true, class: :form__bottom 
           .sending-info-wrap__kana
             
-            お名前カナ
+            お名前ふりがな（全角）
             %span.require
               必須
-              = form.text_field :first_namekana, placeholder: :例）ヤマダ, class: :form__top
-              = form.text_field :last_namekana, placeholder: :例）アヤ, class: :form__bottom 
+              = form.text_field :first_namekana, placeholder: :例）ヤマダ, required: true, class: :form__top
+              = form.text_field :last_namekana, placeholder: :例）アヤ, required: true, class: :form__bottom 
           .sending-info-wrap__postal-code
             郵便番号  
             %span.require
               必須
             
-              = form.text_field :postal_code, placeholder: :例）１２３−４５６, class: :form__single
+              = form.text_field :postal_code, placeholder: :例）１２３−４５６, required: true, class: :form__single
           .sending-info-wrap__prefecture
             都道府県  
             %span.require
               必須
           .identification__form__field
             .identification__form__field--input.icon-relative
-              = form.collection_select :prefectures, Prefecture.all, :id, :name, prompt: "--", class: 'input'              
+              = form.collection_select :prefectures, Prefecture.all, :id, :name, prompt: "--", required: true, class: 'input'              
           .sending-info-wrap__city
             市町村区  
             %span.require
               必須
             
-              = form.text_field :city, placeholder: :例）横浜市緑区, class: :form__single
+              = form.text_field :city, placeholder: :例）横浜市緑区, required: true, class: :form__single
           .sending-info-wrap__address
             番地  
             %span.require
               必須
             
-              = form.text_field :address, placeholder: :例）青山１−１−１, class: :form__single
+              = form.text_field :address, placeholder: :例）青山１−１−１, required: true, class: :form__single
           .sending-info-wrap__building-name
             建物名  
             %span.requires
@@ -64,7 +70,9 @@
             
               = form.text_field :tell, placeholder: :例）０９０１２３４５６７８９, class: :form__single
           .action
-            
             = form.submit "登録する", class: "btn-red"
+            %div
+              = link_to "戻る", edit_user_path(current_user.id),class: "mypage-btn"
+
   = render "shared/footer_logo"
 

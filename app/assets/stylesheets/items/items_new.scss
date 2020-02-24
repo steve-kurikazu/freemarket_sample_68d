@@ -1,8 +1,201 @@
-.item-new {
+@mixin form-box {
+    width: 100%;
+    padding:  0 50px 50px;
+    border-bottom: 1px solid rgb(206, 204, 204);
+    .new-item__head {
+      display: inline-block;
+      font-weight: 900;
+      margin: 50px 0px 15px;
+      & h3 {
+        display: inline-block;
+      }
+      .require {
+        background-color: red;
+        border-radius: 5px;
+        color: white;
+        font-size: 13px;
+        padding: 3px;
+      }
+    }
+}
+@mixin form-size {
+  width: 80%;
+  height: 50px;
+  padding-left: 15px;
+  margin-left: 40px;
+}
+
+@mixin btn-size {
+  display: block;
+  width: 30%;
+  height: 50px;
+  color: white;
+  font-weight: 900;
+  border-radius: 10px;
+  margin: 30px auto;
+}
+.new-item {
   width: 100%;
   height: 100%;
-  border: 1px solid red; 
-  .item-new_form {
-    border: 1px solid red; 
+  background-color: #eeeeee;
+  .new-item__errors{
+    @include error;
+  }
+  .container__main{ 
+    width: 850px;
+  }
+  &__form{
+    width: 850px;
+    height: 100%;
+    background-color: white;
+    margin: 0 auto; 
+    padding: 10px 30px 10px;
+    #image-box{
+      position: relative;
+      @include form-box;
+      .image-error{
+        position: absolute;
+        top: 190px;
+        left: 300px;
+        color: red;
+        font-size: 16px;
+        font-weight: 800;
+        display: none;
+      }
+      .images-container{
+        width: 100%;
+        margin: 35px auto 0;
+        padding-left: 30px;
+        display: flex;
+        align-items: center;
+        
+        .preview-content {
+          height: 110px;
+          display: flex;
+
+          .preview-box {
+            height: 80px;
+            min-width: 90px;
+            margin-right: 10px;
+            .upper-box {
+              height: 80px;
+              img{
+                height: 80px;
+                min-width: 90px;
+              }
+            }
+            .lower-box {
+              display: flex;
+              text-align: center;
+              .delete-box {
+                color: #00b0ff;
+                width: 100%;
+                height: 30px;
+                font-size: 13px;
+                line-height: 30px;
+                border: 1px solid #eee;
+                background: #f5f5f5;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .label-content{
+          height: 110px;
+          width: 110px;
+          .label-box {
+            display: block;
+            border: 1px dashed #ccc;
+            position: relative;
+            background: #f5f5f5;
+            height: 110px;
+            padding-top: 28px;
+            cursor: pointer;
+            &__text-visible{
+              text-align: center;
+              font-size: 15px;
+            }
+          }
+        }
+        .hidden-content {
+          .hidden-field {
+           margin: 10px;
+           display: none;
+          }
+          .hidden-checkbox {
+            display: none;
+          }
+        }
+      }
+    }
+    #item-discription {
+      @include form-box;
+      .product-name {
+        @include form-size;
+      }
+      .product-discription {
+        width: 80%;
+        height: 300px;
+        padding: 15px;
+        margin-left: 40px;
+        border: 1px solid rgb(224, 222, 222);
+      }
+    }
+    #item-details {
+      @include form-box;
+      #item_category{
+        @include form-size;
+      }
+      #item_brand {
+        @include form-size;
+      }
+      #item_condition {
+        @include form-size;
+      }
+    }
+    #about-sending {
+      @include form-box;
+      .consignor {
+        @include form-size;
+      }
+      #item_shipping_area{
+        @include form-size;
+      }
+      .preparation-days {
+        @include form-size;
+      }
+      #item_delivery_fee {
+        @include form-size;
+      }
+    }
+    #item-price {
+      @include form-box;
+      border: none;
+      .conduct-price {
+        @include form-size;
+        width: 40%;
+        margin: 10px 10px 0 300px;
+        padding-right: 15px;
+        text-align: right;
+      }
+    }
+    #new-item__btns {
+        width: 100%;
+      .exhibition-btn {
+        @include btn-size;
+        background-color: red;
+      }
+      .mypage-btn {
+        @include btn-size;
+        line-height: 50px;
+        text-align: center;
+        background-color: rgb(13, 199, 168);
+      }
+    }
   }
 }
+
+
+
+
+
