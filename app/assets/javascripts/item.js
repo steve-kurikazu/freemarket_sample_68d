@@ -60,7 +60,6 @@ $(function(){
       }
       if (array.length >= 1) {
         array.shift(id);
-        console.log(array);
       }
       $(".image-error").hide();
     }
@@ -85,13 +84,11 @@ $(function(){
     }
     
     array.push(id);
-    console.log(array);
     setLabel(count);
 
     if(id < 5){
       //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
       var num = Math.min.apply(null, array.map(Number));
-      console.log(num);
       $('.label-box').attr({id: `label-box--${num}`,for: `item_images_attributes_${num}_photo`});
     }
   });
