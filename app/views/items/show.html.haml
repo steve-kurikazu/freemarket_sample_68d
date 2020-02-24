@@ -10,11 +10,11 @@
       %h1.main__show__top__item_box__name @name
 
       .main__show__top__item_box__body
-        %ul @images.each.do |image|
-        
-          
+        - @images.each.do |i|
+        %ul 
+             
           = link_to "#", class: "aBtn" do
-            = image_tag @image
+            = i.image
           %li
             = link_to "#", class: "aBtn" do
               = image_tag '/images/pict/pict-reason-01.jpg'
