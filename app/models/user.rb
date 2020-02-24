@@ -1,10 +1,14 @@
 class User < ApplicationRecord
+  has_many :items
   has_many :sendings
+  has_many :cards
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   with_options presence: true do
+
     validates :nickname, uniqueness: true, length: { maximum: 8 }
     validates :email, uniqueness: true 
     validates :birth_year
@@ -20,5 +24,5 @@ class User < ApplicationRecord
     validates :firstname_kana
     validates :lastname_kana
   end
-  
+
 end

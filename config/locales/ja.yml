@@ -1,5 +1,27 @@
 ja:
   activerecord:
+    attributes:
+      item:
+        user: ユーザー
+        images_item: 出品画像
+        name: 商品名
+        text: 商品説明
+        condition: 商品の状態
+        delivery_time: 発送までの日数
+        shipping_area: 発送元の地域
+        delivery_fee: 送料の負担
+        price: 販売価格
+      sending:
+        user: ユーザー
+        first_name: 名前
+        last_name: 名字
+        first_namekana: 名前（かな）
+        last_namekana: 名字(かな）
+        postal_code: 郵便番号
+        prefectures: 都道府県
+        city: 市町村区 
+        address: 番地
+        tell: 電話番号
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -118,7 +140,7 @@ ja:
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       inclusion: は一覧にありません
-      invalid: が不正な値になっています
+      invalid: が正しく入力されていません
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -204,3 +226,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+ 

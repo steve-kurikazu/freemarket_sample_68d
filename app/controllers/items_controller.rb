@@ -24,13 +24,7 @@ class ItemsController < ApplicationController
 
   def destroy
   end
+
   
-
-  private
-
-  def image_params
-    params.require(:item).permit(:item_image)
-  end
-
 end
 

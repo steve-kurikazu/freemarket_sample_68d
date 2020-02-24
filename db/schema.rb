@@ -19,17 +19,14 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
   end
+
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
     t.string "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,6 +49,19 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sending_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_orders_on_card_id"
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["sending_id"], name: "index_orders_on_sending_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "sendings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -91,7 +101,12 @@ ActiveRecord::Schema.define(version: 2020_02_21_054545) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "orders", "cards"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "sendings"
+  add_foreign_key "orders", "users"
   add_foreign_key "sendings", "users"
 end

@@ -2,7 +2,7 @@ $(function(){
   var tab_a = $("#past").css(['background-color', 'color', 'cursor', 'border-top']);
   var tab_b = $("#during-trading").css(['background-color', 'color', 'cursor', 'border-top']);
 
-  var list_reset = {'color':'rgb(102, 100, 100))', 'background-color':'rgb(247, 250, 252)', 'font-weight':'300','pointer-events':'auto' };
+  var list_reset = {'color':'rgb(102, 100, 100)', 'background-color':'rgb(247, 250, 252)', 'font-weight':'300','pointer-events':'auto' };
   var list_add = {'color':'rgb(102, 100, 100)', 'background-color':'rgb(170, 250, 250)', 'font-weight':'900','pointer-events':'none' };
 
   $("#past").click(function(){

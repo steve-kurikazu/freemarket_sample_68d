@@ -1,3 +1,11 @@
+:css
+  .share__header {
+      text-align: center;
+      padding-top: 60px;
+      background-color: #eeeeee;
+  }
+
 .share__header
   .share-header__logo
-    = link_to image_tag "/images/logo/logo.png", size: "190x100"
+    = link_to root_path do
+      =  image_tag "/images/logo/logo.png", size: "190x100"

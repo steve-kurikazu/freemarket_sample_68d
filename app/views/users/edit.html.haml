@@ -5,13 +5,16 @@
     pointer-events:none;
     font-weight: 900;
   }
+
 .my_page
+  .content
   .my_page__sidebar
     .my_page__sidebar__top
       %ul
         %li{class:"my_page-list", id:"a"}< マイページ
         %li{class:"my_page-list", id:"b"}< いいね！一覧
-        %li{class:"my_page-list", id:"c"}< 出品する
+        =link_to new_item_path do
+          %li{class:"my_page-list", id:"c"}< 出品する
         %li{class:"my_page-list", id:"d"}< 出品した商品・出品中
         %li{class:"my_page-list", id:"e"}< 出品した商品・取引中
         %li{class:"my_page-list", id:"f"}< 出品した商品・売却済み
@@ -20,7 +23,8 @@
     .my_page__sidebar__bottom
       .title 設定
       %ul
-        %li{class:"my_page-list", id:"i"}< 発送元・お届け先住所変更
+        = link_to new_sending_path do
+          %li{class:"my_page-list", id:"i"}< 発送元・お届け先
         %li{class:"my_page-list", id:"g"}< 支払い方法
         %li{class:"my_page-list", id:"k"}< メール/パスワード
         %li{class:"my_page-list", id:"l"}< 本人情報
