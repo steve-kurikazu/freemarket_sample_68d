@@ -2,16 +2,24 @@ class OrdersController < ApplicationController
   require 'payjp'
 
   def index
-    # @item = Item.find(params[:id])
-    @item = Item.find(1)
-    @images = @item.images
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to controller: "card", action: "new"
+    @item = Item.find(params[:id])
+    @image = @item.images.first
+    @sending = Sending.where(user_id: current_user.id).first
+    cards = Card.where(user_id: current_user.id)
+    if cards.length == 0
+      @card_error_message = "カードが登録されていません。" 
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      @default_cards_information = []
+      cards.each_with_index do |card, i|
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        @default_cards_information[i] = customer.cards.retrieve(card.card_id)
+      end
+    end
+    if @sending.nil?
+      @sending_error_message = "発送先が登録されていません。" 
+    else
+      @prefecture = Prefecture.find(@sending.prefectures)
     end
   end
 
