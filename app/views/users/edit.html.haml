@@ -25,7 +25,7 @@
       %ul
         = link_to new_sending_path do
           %li{class:"my_page-list", id:"i"}< 発送元・お届け先
-        %li{class:"my_page-list", id:"g"}< 支払い方法
+        -# %li{class:"my_page-list", id:"g"}< 支払い方法
         %li{class:"my_page-list", id:"k"}< メール/パスワード
         %li{class:"my_page-list", id:"l"}< 本人情報
         %li{class:"my_page-list", id:"m"}< ログアウト
@@ -73,3 +73,25 @@
       -#   %b ログアウトする
       = link_to(destroy_user_session_path, method: :delete, class: "logout-btn") do
         %b ログアウトする
+    .my_page__main__credit{class: "main"}
+      %h2 登録クレジットカード情報
+      - if @default_cards_information.nil?
+        %p{class: "card__error-message"}
+          = @card_error_message
+      - else
+        .cards-box
+          - @default_cards_information.each_with_index do |card_information, i|
+            .card-box{id:"card-#{i}"}
+              %h3  Card 
+              .card-number
+                %p カード番号
+                = "**** **** **** #{card_information.last4}"
+              .expiration-date
+                %p 有効期限
+                - exp_month = card_information.exp_month.to_s
+                - exp_year = card_information.exp_year.to_s.slice(2,3)
+                = exp_year + " 年" + "/" + exp_month + " 月 "
+              = link_to card_path(card_information.id), method: :delete, remote: true, class: "delete-btn", id: i  do
+                削除する
+      = link_to new_card_path, class: "card-btn" do
+        カード登録する
