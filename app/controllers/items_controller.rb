@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to edit_user_path(current_user.id)
+      redirect_to root_path
     else
       render :new
     end

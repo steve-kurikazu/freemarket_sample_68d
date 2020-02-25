@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :show, :edit, :destroy]
   resources :sendings, only: [:new, :create]
   resources :users, only: [:edit]
-  resources :cards, only: [:new, :create, :index, :destroy]
+  resources :cards, only: [:new, :create, :destroy]
   resources :orders, only: [:index, :new, :create] do  
 
     collection do
