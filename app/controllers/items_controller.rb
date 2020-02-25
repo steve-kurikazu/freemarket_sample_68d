@@ -13,8 +13,12 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
+  def show
+    @item = Item.find(params[:id])
+    @images = @item.images
+    @first_image = @images.first
+  end
+  
   def edit
     @item = Item.find(params[:id])
   end
