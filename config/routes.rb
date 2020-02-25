@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :cards, only: [:new, :create, :index, :destroy]
   resources :orders, only: [:index, :new, :create] do  
     collection do
-      get 'index', to: 'orders#index'
       post 'pay', to: 'orders#pay'
       get 'done', to: 'orders#done'
     end
