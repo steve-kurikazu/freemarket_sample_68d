@@ -10,7 +10,7 @@
       .card__credit-card__inner
         .card__credit-card__inner__group
           = form_with url: cards_path, method: :post, html: { name: "inputForm" } do |f|
-            .cards-expire{id: "card_number"}
+            .cards-expire{id: "card_number_form"}
               = f.label :カード番号, class: 'label'
               %span.require  必須
               = f.text_field :card_number, type: 'text', class: 'card_number', placeholder: '半角数字のみ', maxlength: "16"
