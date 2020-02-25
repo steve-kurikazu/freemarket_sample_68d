@@ -4,7 +4,7 @@ $(function(){
 
   var list_reset = {'color':'rgb(102, 100, 100)', 'background-color':'rgb(247, 250, 252)', 'font-weight':'300','pointer-events':'auto' };
   var list_add = {'color':'rgb(102, 100, 100)', 'background-color':'rgb(170, 250, 250)', 'font-weight':'900','pointer-events':'none' };
-
+  var cards = $(".card-box").length
   var buildErorr = `<h2>登録クレジットカード情報</h2>
                     <p class="card__error-message">
                       カードが登録されていません。
@@ -12,8 +12,8 @@ $(function(){
                     <a class="card-btn" href="/cards/new">
                       カード登録する
                     </a>`
-    var cards = $(".card-box").length
-    console.log(cards)
+
+   
   $("#past").click(function(){
     $("#during-trading").css(tab_a);
     $(this).css(tab_b);
