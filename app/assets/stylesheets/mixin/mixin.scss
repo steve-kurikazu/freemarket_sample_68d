@@ -1,3 +1,23 @@
+@mixin error {
+  width: 500px;
+    margin: 30px auto 0;
+    text-align: center;
+    border: 5px solid red;
+    & h2 {
+      margin-top: 25px;
+    }
+    & h4{
+      color: rgb(59, 57, 57);
+    }
+    & ul {
+      width: 400px;
+      padding-bottom: 20px;
+      margin-left: 50px;
+      text-align: left;
+      display: block;
+    }
+}
+
 // For home#index
 // apple store and google store
 @mixin app_btn() {

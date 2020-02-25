@@ -1,44 +1,36 @@
-// Place all the styles related to the sendings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+@mixin first {
+  height: 50px;
+  width: 350px;
+}  
+@mixin sending-btns {
+  height: 50px;
+  width: 350px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  font-weight: 900;
+  border-radius: 10px;
+}
 .wrapper {
   background-color: #eeeeee;
+  .sending-form__errors {
+    @include error;
+  }
+  .container__main {
+    width: 700px;
+  }
   .wrap {
     background-color: white;
     margin: 0 auto;
-    width: calc( 100vw - 700px );
-    .share__header {
-      text-align: center;
-      padding-top: 30px;
-      padding-bottom: 50px;
-      background-color: #eeeeee;
-    }
-    .sending-message {
-      .sending-message__info{
-        text-align: center;
-        font-weight: bold;
-        font-size: x-large;
-        border: 2px solid #eeeeee;     
-      }
-    }
+    width: 700px;
+    border: 1px solid white;
     .sending-info {
       .sending-info-wrap {
         margin: 0 auto;
         max-width: 370px;
-        .sending-form__errors {
-          color: red;
-          & ul {
-            border: 5px solid red;
-            width: 300px;
-            padding: 30px;
-            margin: 50px auto;
-            text-align: center;
-            display: block;
-        }
         
-      }
         &__name {
+          
           margin-top: 30px; 
         } 
         &__kana {
@@ -75,10 +67,7 @@
         background-color:gray;
         color: white;
       } 
-      @mixin first {
-        height: 50px;
-        width: 350px;
-      }    
+        
       .form__top {
         @include first;
       }
@@ -93,26 +82,24 @@
         text-align: center;
         font-weight: bold;
         font-size: x-large;
+        
       }
       .btn-red {
-        background-color: red;
-        color: white;
-        @include first;
-        margin-top: 20px;
+        @include sending-btns;
+        margin-top: 60px;
         margin-bottom: 30px;
+        background-color: rgb(255, 0, 0);
+        border-radius: 10px;
+      }
+      .mypage-btn {
+        @include sending-btns;
+        display: block;
+        background-color: rgb(13, 199, 168);
+        margin-bottom: 50px;
       }
     }
   }
-  .footer-logo {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .footer-mark {
-    text-align: center;
-    font-size: 12px;
-    padding-bottom: 80px;
-    text-decoration: none;
-  }
+  
   select {
     box-sizing: border-box;
     width: 100%;

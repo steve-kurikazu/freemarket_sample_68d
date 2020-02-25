@@ -5,21 +5,19 @@
   .main__show
     .main__show__top
       .main__show__top__item_box
-      %h1.main__show__top__item_box__name product
+        = link_to "購入", orders_path(id: @item.id)
+        = link_to "編集"
+        = link_to "削除"
+      %h1.main__show__top__item_box__name @name
 
       .main__show__top__item_box__body
-        = link_to "#", class: "aBtn" do
-          = image_tag '/images/pict/bg-appBanner-pict.jpg'
-          %ul
-            %li
-              = link_to "#", class: "aBtn" do
-                = image_tag '/images/pict/pict-reason-01.jpg'
-            %li
-              = link_to "#", class: "aBtn" do
-                = image_tag '/images/pict/pict-reason-02.jpg'
-            %li
-              = link_to "#", class: "aBtn" do
-                = image_tag '/images/pict/pict-reason-03.jpg'
+        .first_image
+          = image_tag @first_image.photo.url 
+        .image_a
+          - @images.each do |image|
+            .image_b
+              = image_tag image.photo.url
+
       .main__show__top__item_box__price
         %span 2000円
         .main__show__top__item_box__price__detail
@@ -51,6 +49,9 @@
         %tr.record
           %th.table_header 発送日の目安
           %td １〜２日で発送
+
+    .main__show__purchase
+      =link_to "購入する", orders_path(id: @item.id)
     
     .main__show__btn
       %ul
@@ -63,3 +64,5 @@
       =link_to "メンズをもっと見る"
 
 = render "shared/footer"
+
+
