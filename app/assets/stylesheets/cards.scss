@@ -1,3 +1,85 @@
-// Place all the styles related to the cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
+  background-color: #eeeeee;
+  &__content{
+    height: 700px;
+    width: 700px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+    background-color: white;
+    &__title{
+      text-align: center;
+      font-size: 22px;
+      padding: 32px;
+      border-bottom: 1px solid #f5f5f5;
+    }
+  }
+  &__credit-card{
+    height: 445px;
+    padding: 24px 16px 40px;
+    &__inner{
+      margin: 0 auto;
+      height: 380px;
+      width: 343px;
+      &__group{
+        height: 300px;
+        .label{
+          font-weight: 600;
+        }
+        .require {
+          background-color: red;
+          border-radius: 5px;
+          color: white;
+          font-size: 13px;
+          padding: 3px;
+        }
+        #card_number {
+          .card_number {
+            margin-top: 10px;
+            width: 95%;
+            height: 50px;
+            padding-left: 10px;
+          }
+        }
+      #input-expire{
+        padding-left: 15px;
+        margin-top: 20px;
+        .cards-expire__wrap {
+          .input-expire {
+            margin-top: 10px;
+            width: 100px;
+            height: 50px;
+          }
+        }
+      }
+      .cards-expire{
+        padding-left: 15px;
+        margin-top: 20px;
+      }
+      .input-number{
+        height: 50px;
+        width: 95%;
+        padding-left: 15px;
+        margin-top: 20px;
+        }      
+      .content-bottom--add-btn{
+        @include btn-size;
+        background-color: red;
+        margin-top: 30px;
+        width: 200px;
+      }
+      .mypage-btn{
+        @include btn-size;
+        line-height: 50px;
+        text-align: center;
+        background-color: rgb(13, 199, 168);
+        width: 200px;
+      }
+      }
+    }
+  }   
+}
+
+
