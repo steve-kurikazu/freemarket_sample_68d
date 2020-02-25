@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    
     if @item.save
       redirect_to edit_user_path(current_user.id)
     else
@@ -17,6 +16,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @images = @item.images
+    @first_image = @images.first
   end
 
   def edit
