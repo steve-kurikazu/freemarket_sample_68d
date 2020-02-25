@@ -10,25 +10,25 @@
   .content
   .my_page__sidebar
     .my_page__sidebar__top
-      %ul
-        %li{class:"my_page-list", id:"a"}< マイページ
-        %li{class:"my_page-list", id:"b"}< いいね！一覧
+      .my_page-lists
+        .my_page-list{id:"a"}< マイページ
+        .my_page-list{id:"b"}< いいね！一覧
         =link_to new_item_path do
-          %li{class:"my_page-list", id:"c"}< 出品する
-        %li{class:"my_page-list", id:"d"}< 出品した商品・出品中
-        %li{class:"my_page-list", id:"e"}< 出品した商品・取引中
-        %li{class:"my_page-list", id:"f"}< 出品した商品・売却済み
-        %li{class:"my_page-list", id:"g"}< 購入した商品・取引中
-        %li{class:"my_page-list", id:"h"}< 購入した商品・過去の取引
+          .my_page-list{id:"c"}< 出品する
+        .my_page-list{id:"d"}< 出品した商品・出品中
+        .my_page-list{id:"e"}< 出品した商品・取引中
+        .my_page-list{id:"f"}< 出品した商品・売却済み
+        .my_page-list{id:"g"}< 購入した商品・取引中
+        .my_page-list{id:"h"}< 購入した商品・過去の取引
     .my_page__sidebar__bottom
       .title 設定
-      %ul
+      .my_page-lists
         = link_to new_sending_path do
-          %li{class:"my_page-list", id:"i"}< 発送元・お届け先
+          .my_page-list{id:"i"}< 発送元・お届け先
         -# %li{class:"my_page-list", id:"g"}< 支払い方法
-        %li{class:"my_page-list", id:"k"}< メール/パスワード
-        %li{class:"my_page-list", id:"l"}< 本人情報
-        %li{class:"my_page-list", id:"m"}< ログアウト
+        .my_page-list{id:"k"}< メール/パスワード
+        .my_page-list{id:"l"}<クレジット情報
+        .my_page-list{id:"m"}< ログアウト
   .my_page__main
     .my_page__main__user-icon-box
       .user-icon
