@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root "home#index"
+  
 
   resources :items, only: [:new, :create, :show]
   resources :sendings, only: [:new, :create]
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       post 'delete', to: 'cards#delete'
     end
   end
-  resources :orders, only: [:index] do
+  resources :orders, only: [:index, :new, :create] do
     collection do
       get 'index', to: 'orders#index'
       post 'pay', to: 'orders#pay'
