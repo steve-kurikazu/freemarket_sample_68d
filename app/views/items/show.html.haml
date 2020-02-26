@@ -5,9 +5,15 @@
   .main__show
     .main__show__top
       .main__show__top__item_box
-        =link_to "編集"
-        =link_to "削除"
-      %h1.main__show__top__item_box__name @name
+        - if user_signed_in? && current_user.id == @item.user_id
+          %li
+            =link_to "編集", edit_item_path(id: @item.id)
+          %li
+            =link_to "削除", item_path(id: @item.id), method: :delete
+        %end 
+               
+      %h1.main__show__top__item_box__name 
+        = @item.name
 
       .main__show__top__item_box__body
         .first_image
@@ -15,18 +21,19 @@
         .image_a
           - @images.each do |image|
             .image_b
-              = image_tag image.photo.url  
+              = image_tag image.photo.url
 
       .main__show__top__item_box__price
         %span 2000円
         .main__show__top__item_box__price__detail
           %span（税込）
           %span（送料込み）
-      .main__show__top__item_box__detail product
+      .main__show__top__item_box__detail 
+        = @item.name
       %table.table_item
         %tr.record
           %th.table_header 出品者
-          %td ヤマダマン
+          %td = @user.nickname
         %tr.record
           %th.table_header カテゴリー
           %td メンズ  ジャケット/アウター
@@ -38,20 +45,26 @@
           %td 
         %tr.record
           %th.table_header 商品の状態
-          %td 新品/未使用
+          %td 
+            = @item.condition
         %tr.record  
           %th.table_header 配送料の負担
-          %td 着払い（購入者負担
+          %td
+            = @item.delivery_fee
         %tr.record
           %th.table_header 発送元の地域
-          %td 青森県
+          %td 
+            = @item.shipping_area
         %tr.record
           %th.table_header 発送日の目安
-          %td １〜２日で発送
+          %td 
+            = @item.delivery_time
 
     .main__show__purchase
-      =link_to "購入する", orders_path(id: @item.id)
-    
+      - if user_signed_in? && current_user.id != @item.user_id
+        =link_to "購入する", orders_path(id: @item.id)
+
+
     .main__show__btn
       %ul
         %li

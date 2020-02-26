@@ -35,6 +35,13 @@
     }
   }
 }
+@mixin hide_box {
+  display: none;
+  width: 700px;
+  height: 410px;
+  margin-top: 20px;
+  background-color: rgb(247, 250, 252);
+}
 
 .my_page {
   width: 100%;
@@ -48,8 +55,8 @@
     &__top {
       width: 100%;
       margin: 50px 0 100px 0;
-      & ul {
-        & li {
+      .my_page-lists {
+        .my_page-list {
           @include side_bar;
         }
       }
@@ -63,8 +70,8 @@
         font-size: 20px;
         font-weight: 500;
       }
-      & ul {
-        & li {
+      .my_page-lists {
+        .my_page-list {
           @include side_bar;
         }
       }
@@ -134,12 +141,7 @@
       }
     }
     &__logout {
-      display: none;
-      width: 700px;
-      height: 410px;
-      margin-top: 20px;
-      background-color: red;
-      background-color: rgb(247, 250, 252);
+        @include hide_box;
       & h3 {
         padding: 80px 0  0 200px;
       }
@@ -151,6 +153,82 @@
         text-align: center;
         line-height: 70px;
         margin: 70px auto;
+        border-radius: 10px;
+        background-color: rgb(127, 196, 192);
+        text-decoration: none;
+        &:hover {
+          background-color: rgb(143, 218, 214);
+        }
+      }
+    }
+    &__credit {
+      @include hide_box;
+      padding-bottom: 50px;
+      & h2 {
+        border-bottom: 3px solid rgb(190, 196, 194);
+        padding: 20px 0;
+        text-align: center;
+      }
+      .card__error-message {
+        margin-top: 70px;
+        color: gray;
+        text-align: center;
+        font-size: 20px;
+      }
+      .cards-box {
+        width: 622px;
+        height: 230px;
+        margin: 50px auto 0;
+        display: flex;
+        overflow-x: scroll;
+        .card-box {
+          min-width: 200px;
+          margin-right: 10px;
+          background-color: white;
+          border: 1px solid rgb(243, 214, 214);
+          & h3 {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: rgb(102, 100, 100);
+            border-bottom: 2px solid rgb(245, 204, 204);
+          }
+          .card-number {
+            text-align: center;
+            & p{
+              text-align: left;
+              padding: 8px 10px;
+            }
+          }
+          .expiration-date {
+            padding: 0 35px 0 5px;
+            text-align: right;
+            & p{
+              text-align: left;
+              padding: 4px 10px;
+            }
+          }
+          .delete-btn {
+            margin: 15px 0 0 45px;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 35px;
+            color: white;
+            line-height: 35px;
+            background-color: rgb(250, 107, 107);
+            border-radius: 5px;
+          }
+        }
+      }
+      .card-btn {
+        display: block;
+        width: 400px;
+        height: 70px;
+        color: white;
+        text-align: center;
+        line-height: 70px;
+        margin: 70px auto 0;
         border-radius: 10px;
         background-color: rgb(127, 196, 192);
         text-decoration: none;
