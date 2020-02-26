@@ -143,14 +143,16 @@ background-color: #eeeeee;
   }
   #item-details {
     @include form-box;
-    #item_category{
+    .listing-select-wrapper{
       @include form-size;
+      height: 500px;
     }
     #item_brand {
       @include form-size;
     }
     #item_condition {
       @include form-size;
+      border: 1px solid red;
     }
   }
   #about-sending {

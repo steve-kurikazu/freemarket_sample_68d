@@ -3,6 +3,15 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @images = @item.images.new
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
+  end
+
+  def get_category_children
+    @category_children = Category.find_by(id: "#{params[:parent_name]}", ancestry: nil).children
+  end 
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   def create
@@ -40,7 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
   end
 
 end
