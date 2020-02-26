@@ -66,14 +66,16 @@
 // display item_list
 @mixin item_list() {
   .item_list {
-    width: 220px;
+    min-width: 250px;
     height: 245px;
     color: #000000;
     background-color: #ffffff;
     display: inline-block;
     position: relative;
+    margin: 0 10px;
     &:hover {
-      opacity: 0.5;
+    opacity: 0.5;
+    
     }
     &__picture {
       position: absolute;
@@ -85,6 +87,8 @@
       height: 150px;
       z-index: auto;
       object-fit: cover;
+      
+      
     }
     &__body {
       margin-top: 150px;
@@ -96,6 +100,7 @@
       & ul {
         display: flex;
         justify-content: space-between;
+        overflow-x: scroll;
       }
       & p {
         font-size: 10px;
@@ -115,13 +120,15 @@
     font-size: 20px;
     font-weight: bold;
     color: #3ccace;
+    
     }
     &__lists {
-      width: 780px;
+      width: 800px;
       padding: 26px 0;
       margin: 0 auto;
       display: flex;
-      justify-content: space-around;
+
+      overflow-x: scroll;
     }
   }
 }
