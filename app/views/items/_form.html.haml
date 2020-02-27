@@ -61,12 +61,13 @@
         -# -#   %h3ブランド
         -# -#   %span.require 必須
         -# -# %div
-        -# -#   = f.select :brand, [['ACYUSHI', 1], ['YASHUMASA', 2]], prompt: "選択してください"
-      %label.new-item__head
-        %h3商品の状態
-        %span.require 必須
-      %div
-        = f.select :condition , [['新品、未使用', "新品、未使用"], ['未使用に近い', "未使用に近い"], ['目立った傷や汚れなし', "目立った傷や汚れなし"], ['やや傷や汚れあり', "やや傷や汚れあり"], ['傷や汚れあり', "傷や汚れあり"], ['全体に状態が悪い', "全体に状態が悪い"]], prompt: "--", required: true
+          -# -#   = f.select :brand, [['ACYUSHI', 1], ['YASHUMASA', 2]], prompt: "選択してください"
+      .new-item__status{id: "new_item_status"}
+        %label.new-item__head
+          %h3商品の状態
+          %span.require 必須
+        .item-condition
+          = f.select :condition , [['新品、未使用', "新品、未使用"], ['未使用に近い', "未使用に近い"], ['目立った傷や汚れなし', "目立った傷や汚れなし"], ['やや傷や汚れあり', "やや傷や汚れあり"], ['傷や汚れあり', "傷や汚れあり"], ['全体に状態が悪い', "全体に状態が悪い"]], prompt: "--", required: true
       .new-item__form__box{id: "about-sending"}
         
         %label.new-item__head 
@@ -78,7 +79,7 @@
           %h3発送までの日数
           %span.require 必須
         %div
-          = f.number_field :delivery_time, required: true, class: "preparation-days"
+          = f.number_field :delivery_time, required: true, id: 'item_delivery_time'
         %label.new-item__head
           %h3発送料の負担
           %span.require 必須
