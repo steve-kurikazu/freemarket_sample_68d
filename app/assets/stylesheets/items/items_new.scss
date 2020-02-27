@@ -145,7 +145,7 @@ background-color: #eeeeee;
     @include form-box;
     .listing-select-wrapper{
       @include form-size;
-      height: 500px;
+      height: 100px;
     }
     #item_brand {
       @include form-size;

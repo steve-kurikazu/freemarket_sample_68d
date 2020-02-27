@@ -1,7 +1,7 @@
 $(function(){
   // カテゴリーセレクトボックスのオプションを作成
   function appendOption(category){
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
   // 子カテゴリーの表示作成
@@ -48,14 +48,14 @@ $(function(){
         $('#size_wrapper').remove();
         $('#brand_wrapper').remove();
         var insertHTML = '';
-        console.log(children)
+        
         children.forEach(function(child){
           insertHTML += appendOption(child);
         });
         appendChidrenBox(insertHTML);
       })
       .fail(function(){
-        alert('カテゴリー取得に失敗しました');
+        
       })
     }else{
       $('#children_wrapper').remove(); //親カテゴリーが初期値になった時、子以下を削除するする
@@ -89,12 +89,19 @@ $(function(){
         }
       })
       .fail(function(){
-        alert('カテゴリー取得に失敗しました');
+        
       })
     }else{
       $('#grandchildren_wrapper').remove(); //子カテゴリーが初期値になった時、孫以下を削除する
       $('#size_wrapper').remove();
       $('#brand_wrapper').remove();
     }
+  });
+  $('.new-product__form').on('submit', function(){
+    var grandchildId = $('#grandchild_category option:selected').data('category');
+    console.log(grandchildId);
+    var a = $('#parent_category').value(grandchildId); 
+    console.log(a);
+    
   });
 });
