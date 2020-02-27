@@ -53,10 +53,7 @@
           %label.new-item__head{class: "listing-default__label"}
             %h3カテゴリー
             %span.require 必須
-          .listing-select-wrapper
-            .listing-select-wrapper__box
-              = f.select :category_id, @category_parent_array,{prompt: "--"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
-        
+       
         -# -# %label.new-item__head
         -# -#   %h3ブランド
         -# -#   %span.require 必須

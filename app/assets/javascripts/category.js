@@ -99,9 +99,6 @@ $(function(){
   });
   $('.new-product__form').on('submit', function(){
     var grandchildId = $('#grandchild_category option:selected').data('category');
-    console.log(grandchildId);
-    var a = $('#parent_category').value(grandchildId); 
-    console.log(a);
-    
+    var a = $('#parent_category').value(grandchildId);     
   });
 });
