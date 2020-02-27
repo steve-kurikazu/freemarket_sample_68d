@@ -34,7 +34,7 @@
       .user-icon
         = image_tag (src='')
       .user-name
-        新宅あつし
+        = @user.nickname
       .user-info
         .evaluation-count
           評価:
@@ -95,3 +95,26 @@
                 削除する
       = link_to new_card_path, class: "card-btn" do
         カード登録する
+    .my_page__main__item-lists{class: "main"}
+      %h2 出品商品一覧    
+      %ul{class: "my_page__main__item-lists__my-products"}
+        -@myitems.each do |item|
+          %li
+            = link_to item_path(id: item.id) ,class: "my-product" do
+              .product-box
+                .product-box__image
+                  = image_tag item.images.first.photo.url
+                .product-box__name
+                  %p 商品名
+                  %p{class: "product-content"}
+                    =item.name
+                .product-box__price
+                  %p 値段
+                  %p{class: "product-content"}
+                    =item.price
+                  %p 円
+
+              
+
+                
+

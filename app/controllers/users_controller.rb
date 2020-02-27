@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   require 'payjp'
   def edit
+    @user = User.find(current_user.id)
     # クレジットのための記載
     cards = Card.where(user_id: current_user.id)
     if cards.length == 0
@@ -13,5 +14,6 @@ class UsersController < ApplicationController
         @default_cards_information[i] = customer.cards.retrieve(card.card_id)
       end
     end
+    @myitems = Item.where(user_id: current_user.id)
   end
 end

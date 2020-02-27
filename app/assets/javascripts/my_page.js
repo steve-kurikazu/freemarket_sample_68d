@@ -57,4 +57,9 @@ $(function(){
       $(".my_page__main__credit").html(buildErorr)
     }
   });
+
+  $("#d").click(function(){
+    $(".main").css("display","none");
+    $(" .my_page__main__item-lists").css('display','block');
+  });
 });
