@@ -95,24 +95,7 @@
     .main__item__category__item_box
       = link_to "#", class: "main__item__category__item_box__title" do
         新規投稿商品
-
-      %ul.main__item__brand__item_box__lists
-        %li
-        - @items.each do |item| 
-          = link_to item_path(id: item.id) ,class: "main__item__brand__item_box__lists--list, item_list" do
-            - ft_image = item.images.first
-            = image_tag ft_image.photo.url, class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name
-                = item.name
-              %ul
-                %li.item_list__body__price 
-                  = item.price 
-                  = "円"
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
+      = render "shared/list"
 
   .main__item__brand
     %h2.main__item__brand__title
@@ -120,22 +103,6 @@
     .main__item__brand__item_box
       = link_to "#", class: "main__item__brand__item_box__title" do
         アーカイバ
-      %ul.main__item__brand__item_box__lists
-        %li
-        - @items.each do |item| 
-          = link_to item_path(id: item.id) ,class: "main__item__brand__item_box__lists--list, item_list" do
-            - ft_image = item.images.first
-            = image_tag ft_image.photo.url, class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name
-                = item.name
-              %ul
-                %li.item_list__body__price 
-                  = item.price 
-                  = "円"
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
+      = render "shared/list"
 
 = render "shared/footer"
