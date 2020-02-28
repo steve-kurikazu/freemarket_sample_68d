@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item,only: [:show, :edit, :destroy]
+  before_action :set_item,only: [:show, :edit, :update, :destroy]
   def new
     @item = Item.new
     @images = @item.images.new
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   def create
     
     @item = Item.new(item_params)
-   
+    
     if @item.save
       redirect_to root_path
     else
@@ -33,9 +33,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
   end
-
+  
   def update
+    if  @item.update(item_update_params)
+      redirect_to item_path(@item.id)
+    else 
+      render :edit 
+    end
   end
 
   def destroy
@@ -54,7 +60,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
-  
+    
+  end
+
+  def item_update_params
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :category_id, :price, images_attributes: [:photo, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
 end

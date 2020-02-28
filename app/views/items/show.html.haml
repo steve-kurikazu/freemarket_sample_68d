@@ -5,12 +5,13 @@
   .main__show
     .main__show__top
       .main__show__top__item_box
-        - if user_signed_in? && current_user.id == @item.user_id
-          %li
-            =link_to "編集", edit_item_path(id: @item.id)
-          %li
-            =link_to "削除", item_path(id: @item.id), method: :delete
-        %end 
+        %ul
+          - if user_signed_in? && current_user.id == @item.user_id
+            %li
+              =link_to "編集", edit_item_path(id: @item.id)
+            %li
+              =link_to "削除", item_path(id: @item.id), method: :delete
+          %end 
                
       %h1.main__show__top__item_box__name 
         = @item.name
@@ -31,7 +32,6 @@
           %span（税込）
           %span（送料込み）
       .main__show__top__item_box__detail 
-        = @item.name
       %table.table_item
         %tr.record
           %th.table_header 出品者
@@ -40,12 +40,12 @@
         %tr.record
           %th.table_header カテゴリー
           %td メンズ  ジャケット/アウター
-        %tr.record
-          %th.table_header ブランド
-          %td 
-        %tr.record
-          %th.table_header 商品のサイズ
-          %td 
+        -# %tr.record
+        -#   %th.table_header ブランド
+        -#   %td 
+        -# %tr.record
+        -#   %th.table_header 商品のサイズ
+        -#   %td 
         %tr.record
           %th.table_header 商品の状態
           %td 
