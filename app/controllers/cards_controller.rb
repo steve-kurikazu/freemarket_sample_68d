@@ -41,6 +41,7 @@ class CardsController < ApplicationController
 
   def destroy
     card = Card.where(card_id: (params[:id])).first
+    
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
@@ -48,6 +49,9 @@ class CardsController < ApplicationController
       customer.delete
       card.delete
     end
-    redirect_to edit_user_path(current_user.id)
+#     redirect_to edit_user_path(current_user.id)
+    respond_to do |format|
+      format.js
+    end
   end
 end

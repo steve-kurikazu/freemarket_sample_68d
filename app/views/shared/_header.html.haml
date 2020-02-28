@@ -9,13 +9,19 @@
           = image_tag '/images/icon/icon-search 1.png'
     %ul.header__title__search_result
   .header__menu 
-    %ul.header__menu__search_list
-      %li
-        = link_to "#", class: "header__menu__search_list--category" do
-          カテゴリー
-      %li
-        = link_to "#", class: "header__menu__search_list--brand" do
-          ブランド
+    -# %ul.header__menu__search_list
+    -#   %li
+    -#     = link_to "#", class: "header__menu__search_list--category" do
+    -#       カテゴリー
+    -#       %ul
+    -#         - @parents.each do |parent|
+    -#           = parent.name
+    -#           -parent.children.each do |child|
+    -#             = child.name
+    -#         %li
+    -#   %li
+    -#     = link_to "#", class: "header__menu__search_list--brand" do
+    -#       ブランド
     %ul.header__menu__menu-list
       - if user_signed_in?
         %li

@@ -143,15 +143,23 @@ background-color: #eeeeee;
   }
   #item-details {
     @include form-box;
-    #item_category{
+    #parent_category{
       @include form-size;
     }
-    #item_brand {
+    #child_category{
       @include form-size;
+      margin-top: 10px;
     }
-    #item_condition {
+    #grandchild_category{
       @include form-size;
+      margin-top: 10px;
     }
+  }
+  #new_item_status{
+    @include form-box;
+    #item_condition{
+      @include form-size;
+    }  
   }
   #about-sending {
     @include form-box;
@@ -161,7 +169,8 @@ background-color: #eeeeee;
     #item_shipping_area{
       @include form-size;
     }
-    .preparation-days {
+
+    #item_delivery_time{
       @include form-size;
     }
     #item_delivery_fee {
