@@ -26,8 +26,10 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @user = @item.user
     @images = @item.images
     @first_image = @images.first
+    @prefecture = Prefecture.find(@item.shipping_area)
   end
 
   def edit
