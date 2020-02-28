@@ -19,7 +19,7 @@
         .first_image
           = image_tag @first_image.photo.url
           -if @item.status == 1
-            = image_tag "/images/gorilla/photo-sold-out.png", class: "sold_out_display"
+            = render "shared/sold_out"
         .image_a
           - @images.each do |image|
             .image_b
@@ -35,7 +35,8 @@
       %table.table_item
         %tr.record
           %th.table_header 出品者
-          %td = @user.nickname
+          %td 
+            = @user.nickname
         %tr.record
           %th.table_header カテゴリー
           %td メンズ  ジャケット/アウター
@@ -56,7 +57,7 @@
         %tr.record
           %th.table_header 発送元の地域
           %td 
-            = @item.shipping_area
+            = @prefecture.name
         %tr.record
           %th.table_header 発送日の目安
           %td 
