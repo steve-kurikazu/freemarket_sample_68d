@@ -16,6 +16,11 @@ $(function(){
     return html;
   }
 
+  var count = $('.preview-box').length;
+  if (count == 5) { 
+    $('.label-content').hide();
+  }
+  $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_photo`})
   
   // ラベルのwidth操作
   function setLabel() {
@@ -76,6 +81,7 @@ $(function(){
     //取得したidに該当するプレビューを削除
     $(`#preview-box__${id}`).remove();
     //フォームの中身を削除 
+    
     $(`#item_images_attributes_${id}_photo`).val("");
 
     //削除時のラベル操作
