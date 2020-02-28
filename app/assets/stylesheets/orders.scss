@@ -173,3 +173,8 @@
   @include app_btn();
 }
 
+.order_done__mypage-btn {
+  @include sending-btns;
+  display: block;
+  background-color: rgb(13, 199, 168);
+}

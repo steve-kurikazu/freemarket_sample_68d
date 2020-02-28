@@ -140,6 +140,8 @@
         %li
           = link_to "#", class: "main__item__brand__item_box__lists--list, item_list" do
             = image_tag "/images/temp/a007.png", class: "item_list__picture"
+            -# -if @image.status = 1
+            = image_tag "/images/gorilla/photo-sold-out.png", class: "sold_out_display"
             .item_list__body
               %h3.item_list__body__name product3
               %ul

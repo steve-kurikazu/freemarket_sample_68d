@@ -1,7 +1,6 @@
 = render "shared/item_btn"
 = render "shared/share_header"
 
-
 .card
   .card__content
     .card__content__title
@@ -10,7 +9,8 @@
       .card__credit-card__inner
         .card__credit-card__inner__group
           = form_with url: cards_path, method: :post, html: { name: "inputForm" } do |f|
-            .cards-expire{id: "card_number"}
+            %input{name: "item_id", type: "hidden", value: params[:item_id], id: 'item_id' }
+            .cards-expire{id: "card_number_form"}
               = f.label :カード番号, class: 'label'
               %span.require  必須
               = f.text_field :card_number, type: 'text', class: 'card_number', placeholder: '半角数字のみ', maxlength: "16"
@@ -30,48 +30,9 @@
             .content-bottom#card_token
               = f.submit '追加する', class: 'content-bottom--add-btn', id: 'token_submit'
             %div
-              = link_to "戻る", edit_user_path(current_user.id),class: "mypage-btn"
-
+              - if params[:item_id].present?
+                = link_to "戻る", new_order_path(id: params[:item_id]), class: "mypage-btn" 
+              - else
+                = link_to "戻る", edit_user_path(current_user.id), class: "mypage-btn"
 
   = render "shared/footer_logo"
-
-
--# = form_with url: pay_cards_path, method: :post, id: 'charge-form', name: "inputForm" do
--#   %label カード番号
--#   = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
--#   %br
--#   %label 有効期限
--#   %select#exp_month{name: "exp_month", type: "text"}
--#     %option{value: ""} --
--#     %option{value: "1"}01
--#     %option{value: "2"}02
--#     %option{value: "3"}03
--#     %option{value: "4"}04
--#     %option{value: "5"}05
--#     %option{value: "6"}06
--#     %option{value: "7"}07
--#     %option{value: "8"}08
--#     %option{value: "9"}09
--#     %option{value: "10"}10
--#     %option{value: "11"}11
--#     %option{value: "12"}12
--#   %span 月/
--#   %select#exp_year{name: "exp_year", type: "text"}
--#     %option{value: ""} --
--#     %option{value: "2019"}19
--#     %option{value: "2020"}20
--#     %option{value: "2021"}21
--#     %option{value: "2022"}22
--#     %option{value: "2023"}23
--#     %option{value: "2024"}24
--#     %option{value: "2025"}25
--#     %option{value: "2026"}26
--#     %option{value: "2027"}27
--#     %option{value: "2028"}28
--#     %option{value: "2029"}29
--#   %span 年
--#   %br
--#   %label セキュリティコード
--#   = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
--#   #card_token
--#   = submit_tag "追加する", id: "token_submit"

@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_113057) do
     t.integer "delivery_time", null: false
     t.integer "price", null: false
     t.bigint "user_id", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"

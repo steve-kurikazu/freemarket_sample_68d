@@ -125,3 +125,13 @@
     }
   }
 }
+
+// display for sold out
+.sold_out_display {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 220px;
+  height: 150px;
+  z-index: auto;
+}

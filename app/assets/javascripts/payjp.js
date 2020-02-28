@@ -3,6 +3,7 @@ $(function() {
     Payjp.setPublicKey("pk_test_af1eb980f3f0ac3fe3baddd7");
     $("#token_submit").on("click", function(e) {
       e.preventDefault();
+      let item_id = $('#item_id').val();
       let card = {
         number: $("#card_number").val(),
         cvc: $("#cvc").val(),

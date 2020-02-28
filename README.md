@@ -114,7 +114,7 @@
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |sending_id|integer|null: false, foreign_key: true|
-|item_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, unique: true, foreign_key: true|
 |card_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
