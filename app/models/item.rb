@@ -18,6 +18,7 @@ class Item < ApplicationRecord
     validates :price,         numericality:{greater_than: 0}
     validates :user_id
     validates :images
+    validates :status
   end
 end
 

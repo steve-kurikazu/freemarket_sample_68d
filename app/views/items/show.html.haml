@@ -17,7 +17,9 @@
 
       .main__show__top__item_box__body
         .first_image
-          = image_tag @first_image.photo.url 
+          = image_tag @first_image.photo.url
+          -if @item.status == 1
+            = image_tag "/images/gorilla/photo-sold-out.png", class: "sold_out_display"
         .image_a
           - @images.each do |image|
             .image_b
@@ -62,9 +64,8 @@
 
     .main__show__purchase
       - if user_signed_in? && current_user.id != @item.user_id
-        =link_to "購入する", orders_path(id: @item.id)
-
-
+        =link_to "購入する", new_order_path(id: @item.id)
+        
     .main__show__btn
       %ul
         %li
@@ -76,5 +77,3 @@
       =link_to "メンズをもっと見る"
 
 = render "shared/footer"
-
-

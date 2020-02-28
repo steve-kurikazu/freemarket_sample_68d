@@ -1,5 +1,5 @@
 = render "shared/share_header"
-.order-wrap  
+.order-wrap
   .order-container
     .order-mein.clearfix
       %section.order-content
@@ -26,7 +26,7 @@
             %h5 名前
               
             %address.order-content__user
-            = link_to new_sending_path, class: 'order-content__fix' do
+            = link_to new_sending_path(item_id: @item.id), class: 'order-content__fix' do
               %span 変更する
               = icon 'fas', 'chevron-right' 
               
@@ -34,31 +34,29 @@
           .order-content__inner
             %h3 支払方法
             
-            
             %p.order-content__infotext
-            = form_with model: @order, class: :order_form, local: true do |form| 
-              %label
-                %span
-                = form.radio_button :pay, "現金"
-                %span 現金
-              %label
-                %span.require
-                = form.radio_button :pay, "カード"
-                %span カード
-                = link_to new_card_path, class: 'order-content__fixes' do
-                  %span 登録する
-                  = icon 'fas', 'chevron-right' 
-            - if @default_card_information.blank?
-              %br 
-            - else
-              -#以下カード情報を表示
-              **** **** **** #{@default_card_information.last4}
-              //- exp_month = @default_card_information.exp_month.to_s
-              //- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-              //= exp_month + " / " + exp_year
-            %br
-            
-          .order-content__text
-            = form_tag(action: :pay, method: :post) do
-              %button.order-content__btn 購入する
+            = form_with url: pay_orders_path, model: @order, class: :order_form, local: true do |f|
+              = f.hidden_field :item_id, value: @item.id
+              = f.hidden_field :sending_id, value: @sending.try(:id)
+              - if @default_cards_information.nil?
+                %li
+                  %br
+                  = @card_error_message
+              - else
+                - @default_cards_information.each_with_index do |card_information, i|
+                  %li
+                    %br
+                    = f.radio_button :card_id, card_information.id
+                    = "カード: #{i + 1}"
+                    %br
+                      &emsp;  **** **** **** #{card_information.last4}
+                    - exp_month = card_information.exp_month.to_s
+                    - exp_year = card_information.exp_year.to_s.slice(2,3)
+                    = exp_month + " / " + exp_year
+              = link_to new_card_path(item_id: @item.id), class: 'order-content__fixes' do
+                %span 登録する
+                = icon 'fas', 'chevron-right' 
+              %br
+              = f.submit "購入する", class: "order-content__btn"
+
 = render "shared/footer_logo"

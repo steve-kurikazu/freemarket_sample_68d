@@ -1,0 +1,34 @@
+= render "shared/share_header"
+
+.order-wrap  
+  .order-container
+    .order-mein.clearfix
+      %section.order-content
+        %h2.order-content__head
+          - if @order_error_message.nil?
+            購入が完了しました！
+          - else
+            = @order_error_message
+        %section.order-content__item
+          .order-content__inner
+            - if @order_error_message.nil?
+              .order-content__form
+                = image_tag @image.photo.url
+                = @item.name
+                .order-contet__price
+                  = "¥#{@item.price} (税込)"
+                  .order-content__fee
+                  - if @item.delivery_fee == "送料込み（出品者負担)"
+                    = "送料込み"
+                  - else
+                    = "着払い"
+                %br
+                = image_tag '/images/gorilla/photo-order.jpeg'
+            - else
+              = image_tag '/images/gorilla/photo-not-order.jpeg'
+              
+        %section.order-content__info{ id: 'order-bottom' }
+          .order-content__inner
+            = link_to "戻る", item_path(@item.id), class: "order_done__mypage-btn"
+
+= render "shared/footer_logo"

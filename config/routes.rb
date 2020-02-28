@@ -15,13 +15,11 @@ Rails.application.routes.draw do
 
   end
 
-  resources :orders, only: [:index, :new, :create] do  
-
+  resources :orders, only: [:new] do  
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       post 'pay', to: 'orders#pay'
-      get 'done', to: 'orders#done'
     end
 
   end
