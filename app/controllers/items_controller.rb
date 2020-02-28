@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item,only: [:show, :destroy]
+  before_action :set_item,only: [:show, :edit, :update, :destroy]
   def new
     @item = Item.new
     @images = @item.images.new
@@ -30,6 +30,18 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
+  end
+
+  def edit
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
+  end
+  
+  def update
+    if  @item.update(item_update_params)
+      redirect_to item_path(@item.id)
+    else 
+      render :edit 
+    end
   end
 
   def destroy
