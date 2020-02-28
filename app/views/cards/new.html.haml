@@ -9,7 +9,7 @@
     .card__credit-card
       .card__credit-card__inner
         .card__credit-card__inner__group
-          = form_with url: cards_path, method: :post, html: { name: "inputForm" } do |f|
+          = form_with url: cards_path(item_id: @item_id), method: :post, html: { name: "inputForm" } do |f|
             .cards-expire{id: "card_number"}
               = f.label :カード番号, class: 'label'
               %span.require  必須

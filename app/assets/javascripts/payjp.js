@@ -2,7 +2,7 @@ $(function() {
   if ($("#token_submit") != null) {
     Payjp.setPublicKey("pk_test_af1eb980f3f0ac3fe3baddd7");
     $("#token_submit").on("click", function(e) {
-      e.preventDefault();
+      e.preventDefault(); 
       let card = {
         number: $("#card_number").val(),
         cvc: $("#cvc").val(),

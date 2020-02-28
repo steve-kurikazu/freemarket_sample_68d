@@ -23,6 +23,7 @@
             お名前（全角）
             %span.require
               必須
+              = @order
               = form.text_field :first_name, placeholder: :例）山田, required: true, class: :form__top
               = form.text_field :last_name, placeholder: :例）彩, required: true, class: :form__bottom 
           .sending-info-wrap__kana

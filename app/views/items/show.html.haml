@@ -5,7 +5,7 @@
   .main__show
     .main__show__top
       .main__show__top__item_box
-        = link_to "購入", orders_path(id: @item.id)
+        = link_to "購入", new_order_path(id: @item.id)
         = link_to "編集"
         = link_to "削除"
       %h1.main__show__top__item_box__name @name

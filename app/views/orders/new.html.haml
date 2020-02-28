@@ -1,5 +1,5 @@
-= render "shared/share_header"
 .order-wrap  
+  = render "shared/share_header"
   .order-container
     .order-mein.clearfix
       %section.order-content
@@ -7,10 +7,13 @@
         %section.order-content__item
           .order-content__inner
             %h3.order-content__image
-            %p.order-content__item-name
             .order-content__form
               %p.order-contet__price
-                画像
+                = image_tag @image.photo.url
+                = "#{@item.name}"
+                %br
+                = "¥#{@item.price} (税込)"
+                %br
                 %span.order-content__fee
                   送料込み
               %ul.order-content__accordion
@@ -18,47 +21,54 @@
               %ul.order-content__table
                 %li.order-content__youpay
                   .order-content__pricecell 支払い金額
-                  .order-content__pricecells ¥1000           
-        %section.order-content__info
+                  .order-content__pricecells 
+                    = "¥#{@item.price}"         
+        %section.order-content__info-under
+          
           .order-content__inner
-            %h3 配送先
-            %h4 郵便番号
-            %h5 名前
+            .order-content__inner__post
+              = link_to new_sending_path, order: "true", class: 'order-content__change' do
+                %span 変更する
+                = icon 'fas', 'chevron-right'
+              %h3 配送先
+              -if @prefecture.nil?
+                %li
+                  %br
+                  %p.order-error
+                    = @sending_error_message
+              -else
+                %h4
+                  = "〒#{@sending.postal_code.to_s}"
               
-            %address.order-content__user
-            = link_to new_sending_path, class: 'order-content__fix' do
-              %span 変更する
-              = icon 'fas', 'chevron-right' 
-              
-        %section.order-content__info{ id: 'order-bottom' }
-          .order-content__inner
-            %h3 支払方法
-            
-            
-            %p.order-content__infotext
-            = form_with model: @order, class: :order_form, local: true do |form| 
-              %label
+                %h5
+                  = @prefecture.name + @sending.city + @sending.address 
+                  %br
+                  = @sending.building_name
+                %h6
+                  = @sending.first_name + @sending.last_name
+            .order-content__pay-registration
+              %h7  支払方法
+              = link_to new_card_path(item_id: @item.id), class: 'order-content__registration' do
+                %span 登録する
+                = icon 'fas', 'chevron-right' 
+              - if @default_cards_information.nil?
+                %li
+                  %br
+                  %p.order-error
+                    = @card_error_message
+            = form_with url: pay_orders_path, model: @order, class: :order_form, local: true do |f|
+              = f.submit '購入する', class: "order-content__btn" 
+                - @default_cards_information&.each_with_index do |card_information, i|
+                %label.card_label
+                = f.radio_button :card_id, card_information.id
+                = f.hidden_field :item_id, value: @item.id
+                = f.hidden_field :sending_id, value: @sending.try(:id) 
                 %span
-                = form.radio_button :pay, "現金"
-                %span 現金
-              %label
-                %span.require
-                = form.radio_button :pay, "カード"
-                %span カード
-                = link_to new_card_path, class: 'order-content__fixes' do
-                  %span 登録する
-                  = icon 'fas', 'chevron-right' 
-            - if @default_card_information.blank?
-              %br 
-            - else
-              -#以下カード情報を表示
-              **** **** **** #{@default_card_information.last4}
-              //- exp_month = @default_card_information.exp_month.to_s
-              //- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-              //= exp_month + " / " + exp_year
-            %br
-            
-          .order-content__text
-            = form_tag(action: :pay, method: :post) do
-              %button.order-content__btn 購入する
-= render "shared/footer_logo"
+                = "カード#{i + 1}"
+                %br
+                &emsp;     **** **** **** #{card_information.last4}
+                &emsp;
+                - exp_month = card_information.exp_month.to_s
+                - exp_year = card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year                
+  = render "shared/footer_logo"
