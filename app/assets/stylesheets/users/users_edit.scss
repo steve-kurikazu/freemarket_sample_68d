@@ -124,34 +124,34 @@
         }
       }
     }
-    &__product-container {
-      background-color: rgb(247, 250, 252);
-      h3 {
-      padding: 30px 0  0 40px;
-      background-color: rgb(247, 250, 252);
-      }
-      ul {
-        display: flex;
-        #during-trading {
-          @include tab-for-change;
-          border-top: 3px solid rgb(4, 230, 218);
-        }
-        #past {
-          @include tab-for-change;
-          background-color: rgb(218, 213, 213);
-          color: rgb(117, 120, 121);
-          cursor: pointer;
-          border-top: 3px solid rgb(255, 255, 255);
-        }
-      }
-      .during-trading-boxs {
-        @include change_box;
-      }
-      .past-boxs {
-        display: none;
-        @include change_box;
-      }
-    }
+    // &__product-container {
+    //   background-color: rgb(247, 250, 252);
+    //   h3 {
+    //   padding: 30px 0  0 40px;
+    //   background-color: rgb(247, 250, 252);
+    //   }
+    //   ul {
+    //     display: flex;
+    //     #during-trading {
+    //       @include tab-for-change;
+    //       border-top: 3px solid rgb(4, 230, 218);
+    //     }
+    //     #past {
+    //       @include tab-for-change;
+    //       background-color: rgb(218, 213, 213);
+    //       color: rgb(117, 120, 121);
+    //       cursor: pointer;
+    //       border-top: 3px solid rgb(255, 255, 255);
+    //     }
+    //   }
+    //   .during-trading-boxs {
+    //     @include change_box;
+    //   }
+    //   .past-boxs {
+    //     display: none;
+    //     @include change_box;
+    //   }
+    // }
     &__logout {
         @include hide_box;
       & h3 {
@@ -251,6 +251,7 @@
     }
     &__item-lists{
       @include hide_box;
+      display: block;
       padding-bottom: 50px;
       & h2 {
         border-bottom: 3px solid rgb(190, 196, 194);
