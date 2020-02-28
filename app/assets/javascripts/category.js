@@ -95,8 +95,11 @@ $(function(){
       $('#brand_wrapper').remove();
     }
   });
-  $('.new-product__form').on('submit', function(){
-    var grandchildId = $('#grandchild_category option:selected').data('category');
-    var a = $('#parent_category').value(grandchildId);     
-  });
+  // $('.new-product__form').on('submit', function(){
+  //   var grandchildId = $('#grandchild_category option:selected').data('category');
+  //   var a = $('#parent_category').value;
+  //   console.log(a);
+  //   var b = $('#parent_category').value = grandchildId;
+  //   console.log(b);    
+  // });
 });

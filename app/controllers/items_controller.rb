@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item,only: [:show, :edit, :destroy]
+  before_action :set_item,only: [:show, :destroy]
   def new
     @item = Item.new
     @images = @item.images.new
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   def create
     
     @item = Item.new(item_params)
-   
+    
     if @item.save
       redirect_to root_path
     else
@@ -30,12 +30,6 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy
@@ -54,7 +48,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
-  
+    
+  end
+
+  def item_update_params
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :category_id, :price, images_attributes: [:photo, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
 end
