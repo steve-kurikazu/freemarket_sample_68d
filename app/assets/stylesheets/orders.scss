@@ -1,8 +1,7 @@
-
-// Place all the styles related to the orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+h4,h5,h6 {
+  margin: 0;
+}
+.order-wrap  {
   .order-mein{
     display: block;
     background-color: #eeeeee;
@@ -17,7 +16,6 @@
     width: 700px;
     margin: 0 auto;
     background: #fff;
-    border-width: 0;
     &__head{
       padding: 16px;
       font-size: 22px;
@@ -34,58 +32,63 @@
     &__info{
       padding: 24px 12.5% 0;
       border-top: 1px solid #f5f5f5;
+      border-bottom: 1px solid #f5f5f5;
+      border: 1px solid red;
     }
     &__inner{
       max-width: 320px;
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      h3{
-        font-size: 14px;
-        font-weight: bold;
-        position: relative;
+      justify-content: space-between;
+      &__post{
+        h3{
+          font-size: 14px;
+          font-weight: bold;
+        }
+        h4{
+          text-align: left;
+        }
+        h5{
+          margin-right: 30px;
+        }
+        h6{
+          margin-right: 30px;
+          font-size: 16px;
+        }
       }
-      h4{
-        //border: 1px solid red;
-        //padding-right: 60px;
-        //display: inline-block;
-        //margin-right: 60px;
-        position: absolute;
+.order-content__info-under{
+  width: 100%;
+  height: 200px;
+}
+.order-content__pay-registration{
+  margin-top: 30px;
+  .order-content__registration{
+    float: right;
+    color: #0099e8;
+  }
+  h7{
+    margin-right: 30px;
+    margin-top: 10px;
+  }
+}
 
-      }
-      h5{
-        //border: 1px solid blue;
-        margin-top: 60px;
-        margin-right: 30px;
-        position: absolute;
-      }
-    }
-    label {
-      display: block;
-    }
-    &__item-name{
-    width: calc(100% - 80px);
-    margin: 0 0 0 16px;
-    line-height: 1.5;
-    font-weight: 600;
-    }
+  label {
+    display: block;
+  }
+}
     &__form{
       width: 100%;
       display: block;
       text-align: center;
-      //border: 1px solid red;
       p{
         margin: 28px 0 0;
         line-height: 1.5;
-        font-size: 42px;
+        font-size: 16px;
         font-weight: 600;
-        //border: 1px solid green;
         padding: 20px 0 0;
         span{
-          margin: 0 0 0 78px;
+          margin: o auto;
           font-size: 14px;
           font-weight: 400;
-          //border: 1px solid plum;
         }
       }
     }
@@ -101,11 +104,9 @@
       padding: 46px 0;
       font-weight: 600;
       width: 20%;
-      //border: 1px solid red;
     }
     &__pricecells {
       display: table-cell;
-      //border: 1px solid blue;
       width: 30%;
     }
     &__text{
@@ -113,15 +114,13 @@
       line-height: 1.5;
       font-size: 14px;
       margin-top: 8px;
-      //border: 1px solid red;
     }
     &__btn{
       background: #ea352d;
-      //margin: 16px 0 0;
-      margin-top: 40px;
-      margin-left: 20px;
+      margin-top: 30px;
+      margin-bottom: 30px;
       padding: 17px;
-      width: 80%;
+      width: 110%;
       color: white;
       border-radius: 5px;
     }
@@ -130,21 +129,13 @@
       padding: 24px 12.5% 0;
       border-top: 1px solid #f5f5f5;
     }
-    &__user{
-      width: 100%;
-      display: block;
-      margin: 8px 0 0;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    &__fix{
-      margin-left: 220px;
-      margin-bottom: 0px;
-      color: #0099e8;
-      width: 100%;
     
-      
+    &__change{
+      float: right;
+      text-align: right;
+      color: #0099e8;
     }
+    
     &__infotext{
       margin: 8px 0 0;
       font-size: 14px;
@@ -158,23 +149,22 @@
       color: #0099e8;
       width: 100%;
     }
+    
   }
   #order-bottom{
     padding-bottom:65px;
-
   }
-  .footer-logo {
-    text-align: center;
-    background-color: #eeeeee;
-    width: 100%;
-  }
-
 .order__contents {
   @include app_btn();
 }
-
+.footer-logo {
+  text-align: center;
+  background-color: #eeeeee;
+  width: 100%;
+}
 .order_done__mypage-btn {
   @include sending-btns;
   display: block;
   background-color: rgb(13, 199, 168);
+
 }

@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
   require 'payjp'
-
   def new
+    @item_id = params[:item_id]
+
     cards = Card.where(user_id: current_user.id)
     if cards.length == 0
       @card_error_message = "カードが登録されていません。"
@@ -16,6 +17,7 @@ class CardsController < ApplicationController
   end
 
   def create
+    
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjp-token'].blank?
       redirect_to new_card_path

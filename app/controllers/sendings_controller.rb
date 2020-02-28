@@ -2,6 +2,11 @@ class SendingsController < ApplicationController
   def new
     @item_id = params[:item_id]
     @sending = Sending.new
+    
+    if params[:order].present?
+      @order = params[:order]
+      
+    end
   end
 
   def create
