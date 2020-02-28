@@ -17,7 +17,11 @@
         list-style: none;
         text-align: right;
         height: 50px;
-
+        & ul {
+          
+          display: flex;
+          padding-left: 520px;
+        }
         & a{
           color:#3CCACE;
           border: solid 1px;
@@ -32,12 +36,15 @@
           text-align: center;
           font-weight: bold;
           font-size: 24px;
+          height: 60px;
+          line-height: 60px;
+          border-bottom: 1px solid gray;
         }
         &__body{
           .first_image {
             height: 265px;
             width: 400px;
-            margin: 0 auto;
+            margin: 30px auto;
             overflow: scroll;
           }
             .image_a{
