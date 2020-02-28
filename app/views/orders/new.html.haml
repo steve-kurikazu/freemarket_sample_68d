@@ -33,10 +33,8 @@
                 = icon 'fas', 'chevron-right'
               %h3 配送先
               -if @prefecture.nil?
-                %li
-                  %br
-                  %p.order-error
-                    = @sending_error_message
+                %p.order-error
+                  = @sending_error_message
               -else
                 %h4
                   = "〒#{@sending.postal_code.to_s}"
@@ -51,11 +49,9 @@
               = link_to new_card_path(item_id: @item.id), class: 'order-content__registration' do
                 %span 登録する
                 = icon 'fas', 'chevron-right' 
-              - if @default_cards_information.nil?
-                %li
-                  %br
-                  %p.order-error
-                    = @card_error_message
+              - if @default_cards_information.nil? 
+                %p.order-error
+                  = @card_error_message
             = form_with url: pay_orders_path, model: @order, class: :order_form, local: true do |f|
               = f.submit '購入する', class: "order-content__btn" 
                 - @default_cards_information&.each_with_index do |card_information, i|
