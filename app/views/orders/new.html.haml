@@ -6,10 +6,11 @@
         %h2.order-content__head 購入内容の確認
         %section.order-content__item
           .order-content__inner
-            %h3.order-content__image
             .order-content__form
               %p.order-contet__price
                 = image_tag @image.photo.url
+                -if @item.status == 1
+                  = render "shared/sold_out"
                 = "#{@item.name}"
                 %br
                 = "¥#{@item.price} (税込)"
@@ -24,10 +25,9 @@
                   .order-content__pricecells 
                     = "¥#{@item.price}"         
         %section.order-content__info-under
-          
           .order-content__inner
             .order-content__inner__post
-              = link_to new_sending_path, order: "true", class: 'order-content__change' do
+              = link_to new_sending_path(item_id: @item.id), order: "true", class: 'order-content__change' do
                 %span 変更する
                 = icon 'fas', 'chevron-right'
               %h3 配送先
@@ -51,7 +51,7 @@
               - if @default_cards_information.nil? 
                 %p.order-error
                   = @card_error_message
-            = form_with url: pay_orders_path, model: @order, class: :order_form, local: true do |f|
+            = form_with url: pay_item_orders_path, model: @order, class: :order_form, local: true do |f|
               = f.submit '購入する', class: "order-content__btn" 
                 - @default_cards_information&.each_with_index do |card_information, i|
                 %label.card_label

@@ -26,7 +26,8 @@
               = image_tag image.photo.url
 
       .main__show__top__item_box__price
-        %span 2000円
+        %span 
+          = "#{@item.price} 円"
         .main__show__top__item_box__price__detail
           %span（税込）
           %span（送料込み）
@@ -34,7 +35,7 @@
       %table.table_item
         %tr.record
           %th.table_header 出品者
-          %td 
+          %td
             = @user.nickname
         %tr.record
           %th.table_header カテゴリー
@@ -64,7 +65,7 @@
 
     .main__show__purchase
       - if user_signed_in? && current_user.id != @item.user_id
-        =link_to "購入する", new_order_path(id: @item.id)
+        = link_to "購入する", new_item_order_path(params[:id])
         
     .main__show__btn
       %ul
