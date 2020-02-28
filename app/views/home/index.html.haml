@@ -49,7 +49,6 @@
             %span 業界最安
           %p.main__service__introduction__lists--list--text
             最大3％でお得に出品&購入!        
-
     .main__service__image-middle
       .main__service__image-middle__contents
         %h2.main__service__image-middle__contents__subtitle
@@ -96,79 +95,14 @@
     .main__item__category__item_box
       = link_to "#", class: "main__item__category__item_box__title" do
         新規投稿商品
-      %ul.main__item__category__item_box__lists
-        %li
-          = link_to "#", class: "main__item__category__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a007.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product3
-              %ul
-                %li.item_list__body__price 30000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
-        %li
-          = link_to "#", class: "main__item__category__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a004.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product2
-              %ul
-                %li.item_list__body__price 20000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
-        %li
-          = link_to "#", class: "main__item__category__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a001.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product1
-              %ul
-                %li.item_list__body__price 10000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
+      = render "shared/list"
+
   .main__item__brand
     %h2.main__item__brand__title
       ピックアップブランド
     .main__item__brand__item_box
       = link_to "#", class: "main__item__brand__item_box__title" do
         アーカイバ
-      %ul.main__item__brand__item_box__lists
-        %li
-          = link_to "#", class: "main__item__brand__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a007.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product3
-              %ul
-                %li.item_list__body__price 30000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
-        %li
-          = link_to "#", class: "main__item__brand__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a004.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product2
-              %ul
-                %li.item_list__body__price 20000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
-        %li
-          = link_to "#", class: "main__item__brand__item_box__lists--list, item_list" do
-            = image_tag "/images/temp/a001.png", class: "item_list__picture"
-            .item_list__body
-              %h3.item_list__body__name product1
-              %ul
-                %li.item_list__body__price 10000円
-                %li.item_list__body__likes
-                  = icon 'fas', 'star'
-                  0
-              %p (税込)
+      = render "shared/list"
 
 = render "shared/footer"

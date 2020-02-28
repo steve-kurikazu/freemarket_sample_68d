@@ -18,27 +18,26 @@
   .wrap
     .sending-info
       .sending-info-wrap
-        =form_with model: @sending, class: :sending_form, local: true do |form| 
+        =form_with url: sendings_path(item_id: @item_id), model: @sending, class: :sending_form, local: true do |form| 
           .sending-info-wrap__name
             お名前（全角）
             %span.require
               必須
-              = @order
-              = form.text_field :first_name, placeholder: :例）山田, required: true, class: :form__top
-              = form.text_field :last_name, placeholder: :例）彩, required: true, class: :form__bottom 
+            = form.text_field :first_name, placeholder: :例）山田, required: true, class: :form__top
+            = form.text_field :last_name, placeholder: :例）彩, required: true, class: :form__bottom 
           .sending-info-wrap__kana
             
             お名前ふりがな（全角）
             %span.require
               必須
-              = form.text_field :first_namekana, placeholder: :例）ヤマダ, required: true, class: :form__top
-              = form.text_field :last_namekana, placeholder: :例）アヤ, required: true, class: :form__bottom 
+            = form.text_field :first_namekana, placeholder: :例）ヤマダ, required: true, class: :form__top
+            = form.text_field :last_namekana, placeholder: :例）アヤ, required: true, class: :form__bottom 
           .sending-info-wrap__postal-code
             郵便番号  
             %span.require
               必須
             
-              = form.text_field :postal_code, placeholder: :例）１２３−４５６, required: true, class: :form__single
+            = form.text_field :postal_code, placeholder: :例）１２３−４５６, required: true, class: :form__single
           .sending-info-wrap__prefecture
             都道府県  
             %span.require
@@ -51,29 +50,32 @@
             %span.require
               必須
             
-              = form.text_field :city, placeholder: :例）横浜市緑区, required: true, class: :form__single
+            = form.text_field :city, placeholder: :例）横浜市緑区, required: true, class: :form__single
           .sending-info-wrap__address
             番地  
             %span.require
               必須
             
-              = form.text_field :address, placeholder: :例）青山１−１−１, required: true, class: :form__single
+            = form.text_field :address, placeholder: :例）青山１−１−１, required: true, class: :form__single
           .sending-info-wrap__building-name
             建物名  
             %span.requires
               任意
             
-              = form.text_field :building_name, placeholder: :例）柳ビル１０３, class: :form__single
+            = form.text_field :building_name, placeholder: :例）柳ビル１０３, class: :form__single
           .sending-info-wrap__tell
             電話  
-            %span.requires
-              任意
+            %span.require
+              必須
             
-              = form.text_field :tell, placeholder: :例）０９０１２３４５６７８９, class: :form__single
+            = form.text_field :tell, placeholder: :例）０９０１２３４５６７８９, class: :form__single
           .action
             = form.submit "登録する", class: "btn-red"
             %div
-              = link_to "戻る", edit_user_path(current_user.id),class: "mypage-btn"
-
+              - if params[:item_id].present?
+                = link_to "戻る", new_order_path(id: params[:item_id]), class: "mypage-btn" 
+              - else
+                = link_to "戻る", edit_user_path(current_user.id), class: "mypage-btn"
+                
   = render "shared/footer_logo"
 

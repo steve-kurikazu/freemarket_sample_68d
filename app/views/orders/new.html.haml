@@ -1,3 +1,4 @@
+
 .order-wrap  
   = render "shared/share_header"
   .order-container
@@ -39,7 +40,6 @@
               -else
                 %h4
                   = "〒#{@sending.postal_code.to_s}"
-              
                 %h5
                   = @prefecture.name + @sending.city + @sending.address 
                   %br
@@ -72,3 +72,4 @@
                 - exp_year = card_information.exp_year.to_s.slice(2,3)
                 = exp_month + " / " + exp_year                
   = render "shared/footer_logo"
+

@@ -162,4 +162,9 @@ h4,h5,h6 {
   background-color: #eeeeee;
   width: 100%;
 }
+.order_done__mypage-btn {
+  @include sending-btns;
+  display: block;
+  background-color: rgb(13, 199, 168);
+
 }

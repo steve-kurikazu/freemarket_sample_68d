@@ -67,7 +67,7 @@ a {
     &__image-top {
       height: 560px;
       width: 100%;
-      background-image: url(/images/bu.jpg);
+      background-image: url(/images/pict/bg-mainVisual-pict_pc.jpg);
       background-size: cover;
       padding: 0 60px;
       display: flex;
@@ -113,6 +113,7 @@ a {
         width: 100%;
         display: flex;
         margin: 0 auto;
+        
         &--list {
           width: 30%;
           margin: 16px 5% 0 0;
@@ -120,6 +121,7 @@ a {
           display: flex;
           flex-direction: column;
           align-items: center;
+   
           &--pict {
             margin-bottom: 20px;
             position: relative;
@@ -243,6 +245,7 @@ a {
     background-color: #f8f8f8;
     padding: 80px 0 80px;
     text-align: center;
+    
     @include display_lists();
   }
 }
@@ -282,6 +285,7 @@ a {
       margin: 0 auto;
       display: flex;
       justify-content: space-around;
+      
       &__list {
         display: flex;
         flex-direction: column;

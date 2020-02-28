@@ -1,0 +1,19 @@
+%ul.main__item__brand__item_box__lists
+  %li
+  - @items.each do |item| 
+    = link_to item_path(id: item.id) ,class: "main__item__brand__item_box__lists--list, item_list" do
+      - ft_image = item.images.first
+      = image_tag ft_image.photo.url, class: "item_list__picture"
+      -if item.status == 1
+        = render "shared/sold_out"
+      .item_list__body
+        %h3.item_list__body__name
+          = item.name
+        %ul
+          %li.item_list__body__price 
+            = item.price 
+            = "円"
+          %li.item_list__body__likes
+            = icon 'fas', 'star'
+            0
+        %p (税込)
