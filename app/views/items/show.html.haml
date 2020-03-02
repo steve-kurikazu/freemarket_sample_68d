@@ -10,8 +10,8 @@
             =link_to "編集", edit_item_path(id: @item.id)
           %li
             =link_to "削除", item_path(id: @item.id), method: :delete
-        %end 
-               
+        - else
+          
       %h1.main__show__top__item_box__name 
         = @item.name
       .main__show__top__item_box__body
@@ -23,7 +23,7 @@
           - @images.each do |image|
             .image_b
               = image_tag image.photo.url
-
+        
       .main__show__top__item_box__price
         %span 2000円
         .main__show__top__item_box__price__detail
@@ -64,7 +64,9 @@
 
     .main__show__purchase
       - if user_signed_in? && current_user.id != @item.user_id
-        =link_to "購入する", new_order_path(id: @item.id)
+        = link_to "購入する", new_order_path(id: @item.id) 
+      - else 
+        = link_to "購入する", new_order_path(id: @item.id)
         
     .main__show__btn
       %ul

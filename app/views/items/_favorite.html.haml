@@ -1,0 +1,6 @@
+-if @like.present?
+  =link_to item_like_path(@item.id), method: :delete, class: "favorite-btn-b" do
+    = icon 'fas', 'star'
+- else
+  =link_to item_likes_path(@item.id), method: :post, class: "favorite-btn-a" do
+    = icon 'fas', 'star' 

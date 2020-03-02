@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
+    @like = current_user.likes.find_by(item_id: params[:id])
   end
 
   def edit
@@ -53,8 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
-  
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id) 
   end
 
 end

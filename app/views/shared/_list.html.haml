@@ -14,6 +14,10 @@
             = item.price 
             = "円"
           %li.item_list__body__likes
-            = icon 'fas', 'star'
-            0
+            -if item.likes.length == 0
+              = icon 'fas', 'star'
+              0
+            - else
+              = icon 'fas', 'star', class: "color-on"
+              =item.likes.length 
         %p (税込)
