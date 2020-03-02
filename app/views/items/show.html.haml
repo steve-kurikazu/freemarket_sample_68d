@@ -72,10 +72,8 @@
 
     .main__show__purchase
       - if user_signed_in? && current_user.id != @item.user_id
-        = link_to "購入する", new_order_path(id: @item.id) 
-      - else 
-        = link_to "購入する", new_order_path(id: @item.id)
-        
+        = link_to "購入する", new_item_order_path(params[:id]) 
+
     .main__show__btn
       %ul
         %li

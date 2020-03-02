@@ -8,14 +8,14 @@ class LikesController < ApplicationController
     @like.save
     
     # 投稿詳細ページにリダイレクトしてください
-    redirect_to("/items/#{params[:item_id]}")
+    redirect_to item_path(params[:item_id])
     
   end
 
   def destroy
     @like = Like.find_by(user_id: current_user.id, item_id: params[:item_id])
     @like.destroy
-    redirect_to("/items/#{params[:item_id]}")
+    redirect_to item_path(params[:item_id])
   end
 
 end
