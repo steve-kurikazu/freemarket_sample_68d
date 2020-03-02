@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :move_to_index 
   require 'payjp'
-
   def new
     @item = Item.find(params[:item_id])
     @image = @item.images.first
