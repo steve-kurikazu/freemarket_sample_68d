@@ -1,9 +1,14 @@
 = render "shared/header"
 = render "shared/item_btn"
 
+
 .main
   .main__show
+    - breadcrumb :item_show, @item.id
+    = render "shared/breadcrumbs"
+  
     .main__show__top
+
       .main__show__top__item_box
         %ul
           - if user_signed_in? && current_user.id == @item.user_id
