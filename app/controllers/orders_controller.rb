@@ -25,8 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    if order_params[:card_id] == nil || order_params[:sending_id] == nil
-      redirect_to new_item_order_path(order_params[:item_id])
+    if order_params[:card_id] == nil
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert1: '支払方法が選択されていません'}
+    elsif order_params[:sending_id] == nil
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert2: '発送先が入力されていません'}
     else 
       card = Card.find_by(card_id: order_params[:card_id])
       @order = Order.new(order_params.except(:card_id))

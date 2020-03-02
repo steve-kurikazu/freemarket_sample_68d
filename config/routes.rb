@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :cards, only: [:new, :create, :destroy]
 
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :orders, only: [:new] do  
+    resources :orders, only: [:new] do
       collection do
         post 'pay', to: 'orders#pay'
       end
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search'
     end
   end
 end

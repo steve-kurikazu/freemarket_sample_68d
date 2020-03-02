@@ -18,8 +18,8 @@
       .main__show__top__item_box__body
         .first_image
           = image_tag @first_image.photo.url
-          -if @item.status == 1
-            = render "shared/sold_out"
+          - if @item.status == 1
+            = render partial: "shared/sold_out"
         .image_a
           - @images.each do |image|
             .image_b
