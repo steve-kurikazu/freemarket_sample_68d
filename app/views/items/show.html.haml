@@ -6,10 +6,11 @@
     .main__show__top
       .main__show__top__item_box
         - if user_signed_in? && current_user.id == @item.user_id
-          %li
-            =link_to "編集", edit_item_path(id: @item.id)
-          %li
-            =link_to "削除", item_path(id: @item.id), method: :delete
+          %ul
+            %li
+              =link_to "編集", edit_item_path(id: @item.id)
+            %li
+              =link_to "削除", item_path(id: @item.id), method: :delete
         - else
           .favorite
             -if @like.present?
