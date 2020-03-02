@@ -1,56 +1,59 @@
 = render "shared/header"
 = render "shared/item_btn"
 
-
 .main
   .main__show
-    - breadcrumb :item_show, @item.id
-    = render "shared/breadcrumbs"
-  
     .main__show__top
-
       .main__show__top__item_box
-
-        %ul
-          - if user_signed_in? && current_user.id == @item.user_id
+        - if user_signed_in? && current_user.id == @item.user_id
+          %ul
             %li
               =link_to "編集", edit_item_path(id: @item.id)
             %li
               =link_to "削除", item_path(id: @item.id), method: :delete
-               
+        - else
+          .favorite
+            -if @like.present?
+              =link_to item_like_path(@item.id), method: :delete, class: "favorite-btn-b" do
+                = icon 'fas', 'star'
+                
+              %p いいね。済み
+            - else
+              =link_to item_likes_path(@item.id), method: :post, class: "favorite-btn-a" do
+                = icon 'fas', 'star' 
       %h1.main__show__top__item_box__name 
         = @item.name
       .main__show__top__item_box__body
         .first_image
           = image_tag @first_image.photo.url
-          - if @item.status == 1
-            = render partial: "shared/sold_out"
+          -if @item.status == 1
+            = render "shared/sold_out"
         .image_a
           - @images.each do |image|
             .image_b
               = image_tag image.photo.url
         
       .main__show__top__item_box__price
-        %span 
-          = "#{@item.price} 円"
+        %span 2000円
         .main__show__top__item_box__price__detail
           %span（税込）
           %span（送料込み）
       .main__show__top__item_box__detail 
+        = @item.name
       %table.table_item
         %tr.record
           %th.table_header 出品者
-          %td
+          %td 
             = @user.nickname
         %tr.record
           %th.table_header カテゴリー
           %td メンズ  ジャケット/アウター
-        -# %tr.record
-        -#   %th.table_header ブランド
-        -#   %td 
-        -# %tr.record
-        -#   %th.table_header 商品のサイズ
-        -#   %td 
+        %tr.record
+          %th.table_header ブランド
+          %td 
+        %tr.record
+          %th.table_header 商品のサイズ
+          %td 
         %tr.record
           %th.table_header 商品の状態
           %td 
@@ -70,8 +73,8 @@
 
     .main__show__purchase
       - if user_signed_in? && current_user.id != @item.user_id
-        = link_to "購入する", new_item_order_path(params[:id])
-        
+        = link_to "購入する", new_item_order_path(params[:id]) 
+
     .main__show__btn
       %ul
         %li
