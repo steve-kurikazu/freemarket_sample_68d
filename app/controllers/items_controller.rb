@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item,only: [:show, :edit, :update, :destroy]
+
   def new
     @item = Item.new
     @images = @item.images.new
@@ -15,9 +16,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
     @item = Item.new(item_params)
-    
+
     if @item.save
       redirect_to root_path
     else
@@ -49,8 +49,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_back(fallback_location: root_path)
+    end       
+  end
+
+  def search
+    @text = params[:search_text]
+    @items = Item.search(@text)
+    if params[:sort]
+      @items = Item.sort(@items, params[:sort])
     end
-       
   end
 
   private
@@ -60,7 +67,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
-    
   end
 
   def item_update_params
