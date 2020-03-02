@@ -17,6 +17,15 @@
         list-style: none;
         text-align: right;
         height: 50px;
+        .favorite-btn-b {
+          color: rgb(240, 56, 71);
+          font-size: 45px;
+          margin-right: 20px;
+        }
+        .favorite-btn-a {
+          color:gray;
+          font-size: 45px;
+          margin-right: 20px;
         & ul {
           
           display: flex;
@@ -30,6 +39,7 @@
           margin-right: 5px;
           padding: 5px;
         }
+
 
 
         &__name{

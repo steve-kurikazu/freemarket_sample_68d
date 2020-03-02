@@ -6,13 +6,16 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :cards, only: [:new, :create, :destroy]
 
-  resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
+  resources :items, only: [:new, :create, :show, :edit, :destroy] do
+    resources :likes, only: [:create, :destroy] 
+
+
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'search'
     end
-    
+
     resources :orders, only: [:new] do
       collection do
         post 'pay', to: 'orders#pay'

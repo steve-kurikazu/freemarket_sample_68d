@@ -10,13 +10,13 @@
     .main__show__top
 
       .main__show__top__item_box
+
         %ul
           - if user_signed_in? && current_user.id == @item.user_id
             %li
               =link_to "編集", edit_item_path(id: @item.id)
             %li
               =link_to "削除", item_path(id: @item.id), method: :delete
-          %end 
                
       %h1.main__show__top__item_box__name 
         = @item.name
@@ -29,7 +29,7 @@
           - @images.each do |image|
             .image_b
               = image_tag image.photo.url
-
+        
       .main__show__top__item_box__price
         %span 
           = "#{@item.price} 円"

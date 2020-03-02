@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
+    @like = current_user.likes.find_by(item_id: params[:id])
   end
 
   def edit

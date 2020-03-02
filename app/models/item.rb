@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many :images, dependent: :destroy
   belongs_to_active_hash :prefecture
+  has_many :likes
+  has_many :users, through: :likes
 
   accepts_nested_attributes_for :images, allow_destroy: true
   validates_associated :images
