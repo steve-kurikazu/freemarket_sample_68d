@@ -41,7 +41,7 @@
           %h3商品名
           %span.require 必須
         %div
-          = f.text_field :name, placeholder:"４０文字以内", required: true,class: "product-name"
+          = f.text_field :name, placeholder:"1０文字以内", required: true,class: "product-name"
         %label.new-item__head
           %h3商品説明
           %span.require 必須
@@ -53,6 +53,8 @@
           %label.new-item__head{class: "listing-default__label"}
             %h3カテゴリー
             %span.require 必須
+            %span.category-error 
+              ※カテゴリーを選んでください 
           .listing-select-wrapper
             .listing-select-wrapper__box
               = f.select :category_id, @category_parent_array,{prompt: "--"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}

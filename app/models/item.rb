@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates_associated :images
   
   with_options presence: true do
-    validates :name,          length:{maximum: 40}
+    validates :name,          length:{maximum: 10}
     validates :text,          length:{maximum: 1000}
     validates :condition
     validates :delivery_fee

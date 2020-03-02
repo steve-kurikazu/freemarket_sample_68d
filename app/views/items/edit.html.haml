@@ -40,16 +40,15 @@
           .hidden-content
             = f.fields_for :images do |i|
               = i.file_field :photo, class: "hidden-field"
-              %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][photo]", id: "item_images_attributes_1_photo" }
-              %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][photo]", id: "item_images_attributes_2_photo" }
-              %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][photo]", id: "item_images_attributes_3_photo" }
-              %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][photo]", id: "item_images_attributes_4_photo" }
+              = i.check_box :_destroy, class: "hidden-checkbox"
+            - @item.images.length.upto(4) do |i|
+              %input{class:"hidden-field", type: "file", name: "item[images_attributes][#{i}][photo]", id: "item_images_attributes_#{i}_photo"}
       .new-item__form__box{id: "item-discription"}
         %label.new-item__head
           %h3商品名
           %span.require 必須
         %div
-          = f.text_field :name, placeholder:"４０文字以内", required: true,class: "product-name"
+          = f.text_field :name, placeholder:"1０文字以内", required: true,class: "product-name"
         %label.new-item__head
           %h3商品説明
           %span.require 必須
@@ -61,9 +60,21 @@
           %label.new-item__head{class: "listing-default__label"}
             %h3カテゴリー
             %span.require 必須
+            %span.category-error 
+              ※カテゴリーを選んでください
           .listing-select-wrapper
             .listing-select-wrapper__box
-              = f.select :category_id, @category_parent_array,{prompt: "--"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+              .change_box-a
+                .selected_category
+                  = @selected_parent_category.name
+                  ＞
+                  = @selected_child_category.name
+                  ＞
+                  = @selected_grandchild_category.name
+                %span.change_select
+                  変更する
+              .change_box-b
+                = f.select :category_id, @category_parent_array, {prompt: "--"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
         
         -# -# %label.new-item__head
         -# -#   %h3ブランド

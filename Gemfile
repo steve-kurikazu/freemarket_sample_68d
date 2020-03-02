@@ -93,3 +93,5 @@ gem 'fog-aws'
 gem 'active_hash'
 gem 'ancestry'
 gem "gretel"
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
