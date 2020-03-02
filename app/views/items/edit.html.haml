@@ -1,6 +1,120 @@
-= render 'form'
-編集ページ
-
-
-
-
+.new-item
+  = render "shared/share_header"
+  - if @item.errors.any?
+    .new-item__errors
+      %h2 商品出品ができませんでした
+      %br
+      %h4 
+        <
+        = @item.errors.full_messages.length
+        件のエラーメッセージ>
+      %ul
+        -@item.errors.full_messages.each do |message|
+          %li
+            ・
+            =message
+  .container__main
+    %h2 商品編集ページ
+  .new-item__form
+    = form_with model:@item, local:true, class: "new-product__form" do |f|
+      .new-item__form__box{id: "image-box"}
+        .image-error
+          ※写真を追加してください
+        %label.new-item__head
+          %h3出品画像
+          %span.require 必須
+        %p （ 最大5枚までアップロードできます ）
+        .images-container
+          .preview-content
+            - @item.images.each_with_index do |image, i|
+              .preview-box{id: "preview-box__#{i}"}
+                .upper-box
+                  = image_tag image.photo.url, alt: "preview"
+                .lower-box
+                  .delete-box{id:"delete_btn_#{i}"}
+                    .delete-btn
+                      %span 削除
+          .label-content
+            %label{for: "item_images_attributes_0_photo", class: "label-box", id: "label-box--0"}
+              %pre.label-box__text-visible 写真を追加
+          .hidden-content
+            = f.fields_for :images do |i|
+              = i.file_field :photo, class: "hidden-field"
+              = i.check_box :_destroy, class: "hidden-checkbox"
+            - @item.images.length.upto(4) do |i|
+              %input{class:"hidden-field", type: "file", name: "item[images_attributes][#{i}][photo]", id: "item_images_attributes_#{i}_photo"}
+      .new-item__form__box{id: "item-discription"}
+        %label.new-item__head
+          %h3商品名
+          %span.require 必須
+        %div
+          = f.text_field :name, placeholder:"1０文字以内", required: true,class: "product-name"
+        %label.new-item__head
+          %h3商品説明
+          %span.require 必須
+        %div
+          = f.text_area :text, placeholder:"１０００文字以内", required: true,class: "product-discription"
+      
+      .new-item__form__box{id: "item-details"}
+        .listing-product-detail__category  
+          %label.new-item__head{class: "listing-default__label"}
+            %h3カテゴリー
+            %span.require 必須
+            %span.category-error 
+              ※カテゴリーを選んでください
+          .listing-select-wrapper
+            .listing-select-wrapper__box
+              .change_box-a
+                .selected_category
+                  = @selected_parent_category.name
+                  ＞
+                  = @selected_child_category.name
+                  ＞
+                  = @selected_grandchild_category.name
+                %span.change_select
+                  変更する
+              .change_box-b
+                = f.select :category_id, @category_parent_array, {prompt: "--"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+        
+        -# -# %label.new-item__head
+        -# -#   %h3ブランド
+        -# -#   %span.require 必須
+        -# -# %div
+          -# -#   = f.select :brand, [['ACYUSHI', 1], ['YASHUMASA', 2]], prompt: "選択してください"
+      .new-item__status{id: "new_item_status"}
+        %label.new-item__head
+          %h3商品の状態
+          %span.require 必須
+        .item-condition
+          = f.select :condition , [['新品、未使用', "新品、未使用"], ['未使用に近い', "未使用に近い"], ['目立った傷や汚れなし', "目立った傷や汚れなし"], ['やや傷や汚れあり', "やや傷や汚れあり"], ['傷や汚れあり', "傷や汚れあり"], ['全体に状態が悪い', "全体に状態が悪い"]], prompt: "--", required: true
+      .new-item__form__box{id: "about-sending"}
+        
+        %label.new-item__head 
+          %h3発送元の地域
+          %span.require 必須
+        %div
+          = f.collection_select :shipping_area, Prefecture.all, :id, :name, prompt: "--", required: true, class: 'select-prefecture'
+        %label.new-item__head
+          %h3発送までの日数
+          %span.require 必須
+        %div
+          = f.number_field :delivery_time, required: true, id: 'item_delivery_time'
+        %label.new-item__head
+          %h3発送料の負担
+          %span.require 必須
+        %div
+          = f.select :delivery_fee, [['送料込み（出品者負担）', "送料込み（出品者負担)"], ['着払い（購入者負担）',"着払い（購入者負担)"]], prompt: "--", required: true
+      .new-item__form__box{id: "item-price"}
+        %label.new-item__head
+          %h3販売価格
+          %span.require 必須
+        %div
+          = f.number_field :price, required: true, class: "conduct-price"
+          円
+      .new-item__form__box{id: "new-item__btns"}
+        %div
+          = f.submit "編集する", class: "exhibition-btn"
+        %div
+          = link_to "戻る", edit_user_path(current_user.id),class: "mypage-btn"
+            
+  = render "shared/footer_logo"

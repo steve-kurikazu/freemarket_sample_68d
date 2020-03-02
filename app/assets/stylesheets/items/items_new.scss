@@ -118,12 +118,10 @@ background-color: #eeeeee;
         }
       }
       .hidden-content {
+        display: none;
         .hidden-field {
          margin: 10px;
-         display: none;
-        }
-        .hidden-checkbox {
-          display: none;
+        
         }
       }
     }
@@ -143,6 +141,28 @@ background-color: #eeeeee;
   }
   #item-details {
     @include form-box;
+    .category-error {
+      color: red;
+      font-size: 16px;
+      margin-left: 70px;
+      display: none;
+    }
+    .change_box-a {
+      display: flex;
+      margin-top: 20px;
+      padding-left: 80px;
+      .change_select {
+       margin-left: 150px;
+       color: white;
+       background-color: rgb(83, 85, 84);
+       padding: 0 3px;
+       border-radius: 5px;
+       cursor: pointer;
+      }
+    }
+    .change_box-b {
+      display: none;
+    }
     #parent_category{
       @include form-size;
     }
@@ -203,8 +223,5 @@ background-color: #eeeeee;
   }
 }
 }
-
-
-
 
 

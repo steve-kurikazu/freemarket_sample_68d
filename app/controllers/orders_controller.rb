@@ -1,14 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :move_to_index 
   require 'payjp'
-
   def new
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
     @image = @item.images.first
     @sending = Sending.where(user_id: current_user.id).first
     @order = Order.new
     cards = Card.where(user_id: current_user.id)
     if cards.length == 0
-      @card_error_message = "カードが登録されていません。" 
+      @card_error_message = "カードが登録されていません。"
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       @default_cards_information = []
@@ -25,8 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    if order_params[:card_id] == nil || order_params[:sending_id] == nil
-      redirect_to new_order_path(item_id: order_params[:item_id])
+    if order_params[:card_id] == nil
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert1: '支払方法が選択されていません'}
+    elsif order_params[:sending_id] == nil
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert2: '発送先が入力されていません'}
     else 
       card = Card.find_by(card_id: order_params[:card_id])
       @order = Order.new(order_params.except(:card_id))
@@ -51,5 +53,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:item_id, :sending_id, :card_id).merge(user_id: current_user.id)
   end
-
 end

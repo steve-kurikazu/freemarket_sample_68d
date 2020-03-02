@@ -4,8 +4,12 @@
   .order-container
     .order-mein.clearfix
       %section.order-content
+        - breadcrumb :g_children
+        = render "shared/breadcrumbs"
         %h2.order-content__head
+
           - if @order_error_message.nil?
+
             購入が完了しました！
           - else
             = @order_error_message

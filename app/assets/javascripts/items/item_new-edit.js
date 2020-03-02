@@ -1,6 +1,17 @@
 $(function(){
 
-  var array = []
+  if($(".hidden-checkbox").length == 0){
+    var array = ["0","1","2","3","4"];
+  } else{
+    var array = [];
+    var count = $('.preview-box').length;
+    $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_photo`});
+    if (count == 5) { 
+      $('.label-content').hide();
+    };
+  };
+  
+  
   //プレビューのhtmlを定義
   function buildHTML(count) {
     var html = `<div class="preview-box" id="preview-box__${count}">
@@ -15,6 +26,7 @@ $(function(){
                 </div>`
     return html;
   }
+
   
   // ラベルのwidth操作
   function setLabel() {
@@ -30,6 +42,11 @@ $(function(){
      var id = $(this).attr('id').replace(/[^0-9]/g, '');
     //labelボックスのidとforを更新
       $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_photo`});
+      if (array.length >= 1) {
+        var a = array.indexOf(id);
+        array.splice(a, 1)
+        console.log(array)
+      }
     //選択したfileのオブジェクトを取得
     var file = this.files[0];
     var reader = new FileReader();
@@ -58,22 +75,22 @@ $(function(){
         //プレビューの数でラベルのオプションを更新する
         $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_photo`});
       }
-      if (array.length >= 1) {
-        array.shift(id);
-      }
+      
       $(".image-error").hide();
     }
   });
 
   // 画像の削除
   $(document).on('click', '.delete-box', function() {
-   
+    
+    var count = $('.preview-box').length;
     setLabel(count);
     //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
     //取得したidに該当するプレビューを削除
     $(`#preview-box__${id}`).remove();
     //フォームの中身を削除 
+    
     $(`#item_images_attributes_${id}_photo`).val("");
 
     //削除時のラベル操作
@@ -82,10 +99,9 @@ $(function(){
     if (count == 4) {
       $('.label-content').show();
     }
-    
-    array.push(id);
+    array.unshift(id);
     setLabel(count);
-
+    console.log(array)
     if(id < 5){
       //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
       var num = Math.min.apply(null, array.map(Number));
@@ -101,6 +117,10 @@ $(function(){
       $('html, body').scrollTop(100);
       return  false;
     }
+    if($(".hidden-checkbox").length != 0)
+      array.forEach(function(id){
+      $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
+    });
   }); 
   
 });

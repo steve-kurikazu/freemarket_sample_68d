@@ -1,9 +1,13 @@
 = render "shared/header"
+
 = render "shared/item_btn"
+
 
 .main   
   .main__service
+    
     .main__service__image-top
+    
       .main__service__image-top__contents
         %h2.main__service__image-top__contents__subtitle
           %br 人生を変えるフリマアプリ
@@ -95,7 +99,8 @@
     .main__item__category__item_box
       = link_to "#", class: "main__item__category__item_box__title" do
         新規投稿商品
-      = render "shared/list"
+      %ul.main__item__brand__item_box__lists
+        = render "shared/list"
 
   .main__item__brand
     %h2.main__item__brand__title
@@ -103,6 +108,7 @@
     .main__item__brand__item_box
       = link_to "#", class: "main__item__brand__item_box__title" do
         アーカイバ
-      = render "shared/list"
+      %ul.main__item__brand__item_box__lists
+        = render "shared/list"
 
 = render "shared/footer"

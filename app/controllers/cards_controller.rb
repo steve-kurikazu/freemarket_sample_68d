@@ -1,8 +1,8 @@
 class CardsController < ApplicationController
+  before_action :move_to_index 
   require 'payjp'
   def new
     @item_id = params[:item_id]
-
     cards = Card.where(user_id: current_user.id)
     if cards.length == 0
       @card_error_message = "カードが登録されていません。"
@@ -17,7 +17,6 @@ class CardsController < ApplicationController
   end
 
   def create
-    
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjp-token'].blank?
       redirect_to new_card_path
@@ -31,7 +30,7 @@ class CardsController < ApplicationController
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         if params[:item_id].present?
-          redirect_to new_order_path(id: params[:item_id])
+          redirect_to new_item_order_path(params[:item_id])
         else
           redirect_to edit_user_path(current_user.id)
         end
@@ -43,17 +42,19 @@ class CardsController < ApplicationController
 
   def destroy
     card = Card.where(card_id: (params[:id])).first
-    
-    if card.blank?
+    if card.user_id === @current_user.id
+      if card.blank?
+      else
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        customer.delete
+        card.delete
+      end
+      respond_to do |format|
+        format.js
+      end
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
-#     redirect_to edit_user_path(current_user.id)
-    respond_to do |format|
-      format.js
+      redirect_to edit_user_path(current_user.id)
     end
   end
 end

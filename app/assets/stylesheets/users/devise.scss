@@ -5,7 +5,6 @@
 }
 .container{
   background-color: #f5f5f5;
-  padding-bottom:122px;
   &__header{
     .share__header {
       text-align: center;
@@ -67,7 +66,7 @@
           height: 48px;
           width: calc(50% - 6px);
           border-radius: 6px;
-
+          padding-left: 10px;
         }
         #user_birth_year {
           @include devise_form;

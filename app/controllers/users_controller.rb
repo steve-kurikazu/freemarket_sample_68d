@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  before_action :move_to_index 
+  before_action :user_sending
   require 'payjp'
   def edit
-    @user = User.find(current_user.id)
+    @sending = Sending.find_by(user_id: current_user.id)
+    
     # クレジットのための記載
     cards = Card.where(user_id: current_user.id)
     if cards.length == 0
@@ -16,4 +19,22 @@ class UsersController < ApplicationController
     end
     @myitems = Item.where(user_id: current_user.id)
   end
+
+  def update
+    if @user.update(sending_param)
+      redirect_to edit_user_path(current_user.id)
+    else
+      render :edit
+    end
+  end
+
+  private
+  def user_sending
+    @user = User.find(current_user.id)
+  end 
+
+  def sending_param
+    params.require(:user).permit(:nickname, :lastname, :firstname, :lastname_kana, :firstname_kana, :birth_year, :birth_month, :birth_day)
+  end
+
 end

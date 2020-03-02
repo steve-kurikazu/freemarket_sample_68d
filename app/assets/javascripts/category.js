@@ -10,7 +10,7 @@ $(function(){
     childSelectHtml = `<div class='listing-select-wrapper__added' id= 'children_wrapper'>
                         <div class='listing-select-wrapper__box'>
                           <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
-                            <option value="---" data-category="---">--</option>
+                            <option value="--" data-category="--">--</option>
                             ${insertHTML}
                           <select>
                         </div>
@@ -32,8 +32,8 @@ $(function(){
   }
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
-    var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
-    if (parentCategory != "---"){ //親カテゴリーが初期値でないことを確認
+    var parentCategory = document.getElementById('parent_category').value;
+    if (parentCategory != "--"){ //親カテゴリーが初期値でないことを確認
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
@@ -77,8 +77,6 @@ $(function(){
       .done(function(grandchildren){
         if (grandchildren.length != 0) {
           $('#grandchildren_wrapper').remove(); //子が変更された時、孫以下を削除するする
-          $('#size_wrapper').remove();
-          $('#brand_wrapper').remove();
           var insertHTML = '';
           grandchildren.forEach(function(grandchild){
             insertHTML += appendOption(grandchild);
@@ -91,12 +89,27 @@ $(function(){
       })
     }else{
       $('#grandchildren_wrapper').remove(); //子カテゴリーが初期値になった時、孫以下を削除する
-      $('#size_wrapper').remove();
-      $('#brand_wrapper').remove();
     }
   });
-  $('.new-product__form').on('submit', function(){
-    var grandchildId = $('#grandchild_category option:selected').data('category');
-    var a = $('#parent_category').value(grandchildId);     
-  });
+  
+   ($(".change_select").click)(function(){
+    $(".change_box-a").remove();
+    $(".change_box-b").show();
+   }) 
+   
+   $(".new-product__form").on('submit',function(){
+    var d = $('#grandchild_category').val();
+    console.log(d);
+    if($('#grandchild_category').val() == undefined && $('.change_box-a').length == 0){
+      $(" .category-error").show();
+      $('html, body').scrollTop(950);
+      return false;
+    } else if (($('#grandchild_category').val() ==  "--" && $('.change_box-a').length == 0)) {
+      $(".image-error").show;
+      $('html, body').scrollTop(950);
+      return false;
+    } else {
+      return true;
+    }
+  }); 
 });

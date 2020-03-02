@@ -31,7 +31,7 @@
               = f.submit '追加する', class: 'content-bottom--add-btn', id: 'token_submit'
             %div
               - if params[:item_id].present?
-                = link_to "戻る", new_order_path(id: params[:item_id]), class: "mypage-btn" 
+                = link_to "戻る", new_item_order_path(params[:item_id]), class: "mypage-btn" 
               - else
                 = link_to "戻る", edit_user_path(current_user.id), class: "mypage-btn"
 

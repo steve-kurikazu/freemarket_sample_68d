@@ -84,6 +84,7 @@ h4,h5,h6 {
         font-size: 16px;
         font-weight: 600;
         padding: 20px 0 0;
+        position: relative;
         span{
           margin: o auto;
           font-size: 14px;
@@ -166,4 +167,13 @@ h4,h5,h6 {
   @include sending-btns;
   display: block;
   background-color: rgb(13, 199, 168);
+}
+.order_error {
+  color:  #ea352d;
+  font-weight: bold;
+}
+.order_error--top {
+  color:  #ea352d;
+  font-weight: bold;
+  text-align: center;
 }
