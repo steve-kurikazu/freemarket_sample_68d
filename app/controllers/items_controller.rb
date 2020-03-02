@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item,only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index 
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :identity_verification, only: [:edit, :update, :destroy]
   def new
     @item = Item.new
     @images = @item.images.new
@@ -15,7 +17,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
     @item = Item.new(item_params)
     
     if @item.save
@@ -33,7 +34,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
+    @parents = Category.where(ancestry:nil)
+    # 編集する商品を選択
+    @item = Item.find(params[:id])
+      # 登録されている商品の孫カテゴリーのレコードを取得
+      @selected_grandchild_category = @item.category
+      @selected_child_category = @selected_grandchild_category.parent
+      @selected_parent_category = @selected_child_category.parent
+      @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
   end
   
   def update
@@ -58,13 +66,18 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def identity_verification
+    redirect_to edit_user_path(current_user.id) unless @item.user_id === @current_user.id
+  end
   def item_params
-    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id)
-    
+    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :category_id, :delivery_time, :price, images_attributes: [:photo]).merge(user_id: current_user.id, category_id: params[:category_id])
   end
 
   def item_update_params
-    params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :category_id, :price, images_attributes: [:photo, :_destroy, :id]).merge(user_id: current_user.id)
+    if params[:category_id]
+      params.require(:item).permit(:name, :text, :condition, :category_id, :delivery_fee, :shipping_area, :delivery_time, :price, images_attributes: [:photo, :_destroy, :id]).merge(user_id: current_user.id, category_id: params[:category_id])
+    else
+      params.require(:item).permit(:name, :text, :condition, :delivery_fee, :shipping_area, :delivery_time, :price, images_attributes: [:photo, :_destroy, :id]).merge(user_id: current_user.id)
+    end
   end
-
 end
