@@ -49,6 +49,7 @@
     position: fixed;
     bottom: 32px;
     right: 32px;
+    z-index: 1;
     &:hover {
       opacity: 0.7;
     }
@@ -68,14 +69,15 @@
   .item_list {
     min-width: 250px;
     height: 245px;
-    color: #000000;
     background-color: #ffffff;
     display: inline-block;
     position: relative;
     margin: 0 10px;
     &:hover {
-    opacity: 0.5;
-    
+      opacity: 0.5;
+    }
+    & a {
+      color: #000000;
     }
     &__picture {
       position: absolute;
@@ -87,8 +89,6 @@
       height: 150px;
       z-index: auto;
       object-fit: cover;
-      
-      
     }
     &__body {
       margin-top: 150px;
@@ -100,7 +100,6 @@
       & ul {
         display: flex;
         justify-content: space-between;
-        overflow-x: scroll;
       }
       & p {
         font-size: 10px;
@@ -127,7 +126,6 @@
       padding: 26px 0;
       margin: 0 auto;
       display: flex;
-
       overflow-x: scroll;
     }
   }

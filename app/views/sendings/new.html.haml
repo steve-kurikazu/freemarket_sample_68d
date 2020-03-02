@@ -37,7 +37,7 @@
             %span.require
               必須
             
-            = form.text_field :postal_code, placeholder: :例）１２３−４５６, required: true, class: :form__single
+            = form.text_field :postal_code, placeholder: :例）１２３−４５６７, required: true, class: :form__single
           .sending-info-wrap__prefecture
             都道府県  
             %span.require
@@ -73,7 +73,7 @@
             = form.submit "登録する", class: "btn-red"
             %div
               - if params[:item_id].present?
-                = link_to "戻る", new_order_path(id: params[:item_id]), class: "mypage-btn" 
+                = link_to "戻る", new_item_order_path(params[:item_id]), class: "mypage-btn" 
               - else
                 = link_to "戻る", edit_user_path(current_user.id), class: "mypage-btn"
                 

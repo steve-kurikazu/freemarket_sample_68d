@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    
+
     if @item.save
       redirect_to root_path
     else
@@ -57,8 +57,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_back(fallback_location: root_path)
+    end       
+  end
+
+  def search
+    @text = params[:search_text]
+    @items = Item.search(@text)
+    if params[:sort]
+      @items = Item.sort(@items, params[:sort])
     end
-       
   end
 
   private
