@@ -1,8 +1,15 @@
+
 .order-wrap  
   = render "shared/share_header"
   .order-container
+
     .order-mein.clearfix
+
+   
       %section.order-content
+        - breadcrumb :children
+        = render "shared/breadcrumbs"
+
         %h2.order-content__head 購入内容の確認
         .order_error--top
           = flash[:alert1]
