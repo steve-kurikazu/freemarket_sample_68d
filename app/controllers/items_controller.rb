@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index 
+  before_action :move_to_index, except: [:show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :identity_verification, only: [:edit, :update, :destroy]
   def new

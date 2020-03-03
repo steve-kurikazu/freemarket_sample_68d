@@ -95,3 +95,4 @@ gem 'ancestry'
 gem "gretel"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+

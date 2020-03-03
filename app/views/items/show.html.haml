@@ -3,6 +3,10 @@
 
 .main
   .main__show
+
+    - breadcrumb :item_show, @item.id
+    = render "shared/breadcrumbs"
+
     .main__show__top
       .main__show__top__item_box
         - if user_signed_in? && current_user.id == @item.user_id
@@ -70,11 +74,13 @@
           %th.table_header 発送日の目安
           %td 
             = @item.delivery_time
-
+ 
     .main__show__purchase
+ 
       - if user_signed_in? && current_user.id != @item.user_id
-        = link_to "購入する", new_item_order_path(params[:id]) 
-
+        -if @item.status == 0 
+          = link_to "購入する", new_item_order_path(params[:id])
+        
     .main__show__btn
       %ul
         %li
