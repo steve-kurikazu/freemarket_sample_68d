@@ -38,7 +38,8 @@
               = image_tag image.photo.url
         
       .main__show__top__item_box__price
-        %span 2000円
+        %span 
+        = "#{@item.price}円"
         .main__show__top__item_box__price__detail
           %span（税込）
           %span（送料込み）
@@ -52,12 +53,12 @@
         %tr.record
           %th.table_header カテゴリー
           %td メンズ  ジャケット/アウター
-        %tr.record
-          %th.table_header ブランド
-          %td 
-        %tr.record
-          %th.table_header 商品のサイズ
-          %td 
+        -# %tr.record
+        -#   %th.table_header ブランド
+        -#   %td 
+        -# %tr.record
+        -#   %th.table_header 商品のサイズ
+        -#   %td 
         %tr.record
           %th.table_header 商品の状態
           %td 
