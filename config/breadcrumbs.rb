@@ -1,4 +1,26 @@
+crumb :root do
+  link "トップページ", root_path
+end
 
+crumb :item_show do
+  if params[:item_id]
+    link "商品詳細", item_path(params[:item_id])  
+    parent :root
+  else
+    link "商品詳細", item_path(params[:id])  
+    parent :root
+  end
+end
+
+crumb :children do
+  link "購入内容確認",  new_item_order_path(params[:item_id])
+  parent :item_show
+end
+
+crumb :g_children do
+  link "購入完了",  pay_item_orders_path(params[:item_id])
+  parent :children
+end
 
 
 
