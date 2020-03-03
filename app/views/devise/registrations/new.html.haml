@@ -7,10 +7,10 @@
     = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' , local: true do |f|
       .container__main__form
         .field
-          = f.label :ニックネーム
+          = f.label :ニックネーム 
           %span{class: "require"} 必須
           %br/
-          = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: '例）ヤマダマン', required: true, class: "nickname_box"
+          = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: '例）ヤマダマン (7文字まで)', required: true, class: "nickname_box"
         .field
           = f.label :メールアドレス
           %span{class: "require"} 必須

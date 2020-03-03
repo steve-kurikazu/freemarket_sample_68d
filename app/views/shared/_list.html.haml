@@ -1,11 +1,10 @@
-%ul.main__item__brand__item_box__lists
-  %li
-  - @items.each do |item| 
-    = link_to item_path(id: item.id) ,class: "main__item__brand__item_box__lists--list, item_list" do
+- @items.each do |item| 
+  %li.main__item__brand__item_box__lists--list.item_list
+    = link_to item_path(id: item.id) do
       - ft_image = item.images.first
       = image_tag ft_image.photo.url, class: "item_list__picture"
-      -if item.status == 1
-        = render "shared/sold_out"
+      - if item.status == 1
+        = render partial: "shared/sold_out"
       .item_list__body
         %h3.item_list__body__name
           = item.name
@@ -14,6 +13,11 @@
             = item.price 
             = "円"
           %li.item_list__body__likes
-            = icon 'fas', 'star'
-            0
+            -if item.likes.length == 0
+              = icon 'fas', 'star'
+              0
+            - else
+              = icon 'fas', 'star', class: "color-on"
+              =item.likes.length 
+
         %p (税込)

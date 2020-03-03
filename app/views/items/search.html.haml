@@ -1,0 +1,28 @@
+= render "shared/header"
+= render "shared/item_btn"
+.search_wrapper
+  .search__side_bar
+    .search__side_bar__sort
+      = form_with url: search_items_path(), method: :get, local: true do |f|
+        = f.select :sort, options_for_select([['並べ替え', 'default'], ['価格の安い順', 'price_asc'], ['価格の高い順', 'price_desc'] ,['出品の新しい順', 'created_desc']], params[:sort]), {}, {class: 'search__side_bar__sort__box', onchange: 'submit(this.f)'}
+        = f.hidden_field :search_text, value: params[:search_text]
+    .search__side_bar__contents
+      = "詳細検索メニュー実装予定"
+      = "coming soon!"
+
+  %section.search__container
+    %h2
+      = "「#{params[:search_text]}」"
+      %span.search__container__header_text
+        = "検索結果"
+    .search__container__result_number    
+      - if @items.length == 1
+        = "1件表示"
+      - elsif @items.length >= 2
+        = "1-#{@items.length}件表示"
+      - else
+        = "該当する商品が見つかりません。検索条件を変えて、再度お試しください。"
+    %ul.search__container__result_list
+      = render partial:"shared/list"
+
+= render "shared/footer"

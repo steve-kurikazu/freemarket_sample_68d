@@ -1,13 +1,19 @@
+
 .order-wrap  
   = render "shared/share_header"
   .order-container
-    .order-mein.clearfix
-      %section.order-content
 
+    .order-mein.clearfix
+
+   
+      %section.order-content
         - breadcrumb :children
         = render "shared/breadcrumbs"
 
         %h2.order-content__head 購入内容の確認
+        .order_error--top
+          = flash[:alert1]
+          = flash[:alert2]
         %section.order-content__item
           .order-content__inner
             .order-content__form
@@ -17,7 +23,7 @@
                   = render "shared/sold_out"
                 = "#{@item.name}"
                 %br
-                = "¥#{@item.price} (税込)"
+                = "¥ #{@item.price} (税込)"
                 %br
                 %span.order-content__fee
                   送料込み
@@ -27,7 +33,7 @@
                 %li.order-content__youpay
                   .order-content__pricecell 支払い金額
                   .order-content__pricecells 
-                    = "¥#{@item.price}"         
+                    = "¥ #{@item.price}"         
         %section.order-content__info-under
           .order-content__inner
             .order-content__inner__post
@@ -52,13 +58,9 @@
               = link_to new_card_path(item_id: @item.id), class: 'order-content__registration' do
                 %span 登録する
                 = icon 'fas', 'chevron-right' 
-
-
             - if @default_cards_information.nil?
               %p.order_error
                 = @card_error_message
-
-
             = form_with url: pay_item_orders_path, model: @order, class: :order_form, local: true do |f|
               = f.hidden_field :item_id, value: @item.id
               = f.hidden_field :sending_id, value: @sending.try(:id) 
