@@ -52,7 +52,14 @@
             = @user.nickname
         %tr.record
           %th.table_header カテゴリー
-          %td メンズ  ジャケット/アウター
+          %td 
+            = @parent.name
+            >
+            = @child.name
+            >
+            = @grandchild.name
+            -# =@item.category.children.name
+            -# =@item.category.grandchildren
         -# %tr.record
         -#   %th.table_header ブランド
         -#   %td 

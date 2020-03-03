@@ -32,6 +32,10 @@ class ItemsController < ApplicationController
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
     @like = current_user.likes.find_by(item_id: params[:id])
+    @grandchild_id = @item.category_id
+    @grandchild = Category.find(@grandchild_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
   def edit
