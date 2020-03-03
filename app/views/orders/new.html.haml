@@ -3,6 +3,10 @@
   .order-container
     .order-mein.clearfix
       %section.order-content
+
+        - breadcrumb :children
+        = render "shared/breadcrumbs"
+
         %h2.order-content__head 購入内容の確認
         %section.order-content__item
           .order-content__inner
@@ -48,16 +52,20 @@
               = link_to new_card_path(item_id: @item.id), class: 'order-content__registration' do
                 %span 登録する
                 = icon 'fas', 'chevron-right' 
-              - if @default_cards_information.nil? 
-                %p.order-error
-                  = @card_error_message
+
+
+            - if @default_cards_information.nil?
+              %p.order_error
+                = @card_error_message
+
+
             = form_with url: pay_item_orders_path, model: @order, class: :order_form, local: true do |f|
-              = f.submit '購入する', class: "order-content__btn" 
-                - @default_cards_information&.each_with_index do |card_information, i|
+              = f.hidden_field :item_id, value: @item.id
+              = f.hidden_field :sending_id, value: @sending.try(:id) 
+              - @default_cards_information&.each_with_index do |card_information, i|
+              
                 %label.card_label
                 = f.radio_button :card_id, card_information.id
-                = f.hidden_field :item_id, value: @item.id
-                = f.hidden_field :sending_id, value: @sending.try(:id) 
                 %span
                 = "カード#{i + 1}"
                 %br
@@ -65,5 +73,7 @@
                 &emsp;
                 - exp_month = card_information.exp_month.to_s
                 - exp_year = card_information.exp_year.to_s.slice(2,3)
-                = exp_month + " / " + exp_year                
+                = exp_month + " / " + exp_year   
+              -if @item.status == 0 
+                = f.submit '購入する', class: "order-content__btn"              
   = render "shared/footer_logo"
