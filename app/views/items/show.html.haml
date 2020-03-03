@@ -4,7 +4,8 @@
 .main
   .main__show
 
-
+    - breadcrumb :item_show, @item.id
+    = render "shared/breadcrumbs"
 
     .main__show__top
       .main__show__top__item_box
