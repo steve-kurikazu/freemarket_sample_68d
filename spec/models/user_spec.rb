@@ -26,28 +26,28 @@ describe User do
     it "is invalid without a lastname" do
       user = build(:user, lastname: nil)
       user.valid?
-      expect(user.errors[:lastname]).to include("が不正な値になっています")
+      expect(user.errors[:lastname]).to include("が正しく入力されていません")
     end
 
     # 名前が空では登録できないこと
     it "is invalid without a firstname" do
       user = build(:user, firstname: nil)
       user.valid?
-      expect(user.errors[:firstname]).to include("が不正な値になっています")
+      expect(user.errors[:firstname]).to include("が正しく入力されていません")
     end
 
     # 名字（かな）が空では登録できないこと
     it "is invalid without a lastname_kana" do
       user = build(:user, lastname_kana: nil)
       user.valid?
-      expect(user.errors[:lastname_kana]).to include("が不正な値になっています")
+      expect(user.errors[:lastname_kana]).to include("が正しく入力されていません")
     end
 
     # 名前（かな）が空では登録できないこと
     it "is invalid without a firstname_kana" do
       user = build(:user, firstname_kana: nil)
       user.valid?
-      expect(user.errors[:firstname_kana]).to include("が不正な値になっています")
+      expect(user.errors[:firstname_kana]).to include("が正しく入力されていません")
     end
 
     # 生年月日（年）が空では登録できないこと
@@ -123,7 +123,7 @@ describe User do
     it "is invalid with a hankaku lastname" do
       user = build(:user, lastname: "aaaaaaaa")
       user.valid?
-      expect(user.errors[:lastname]).to include("が不正な値になっています")
+      expect(user.errors[:lastname]).to include("が正しく入力されていません")
     end
 
     # 名前が半角の場合登録できる
@@ -137,7 +137,7 @@ describe User do
      it "is invalid with a hankaku firstname" do
       user = build(:user, firstname: "bbbbbbb")
       user.valid?
-      expect(user.errors[:firstname]).to include("が不正な値になっています")
+      expect(user.errors[:firstname]).to include("が正しく入力されていません")
     end
 
     # 名字（かな）がひらがな全角の場合登録できる
@@ -151,7 +151,7 @@ describe User do
      it "is invalid with a hankaku lastname_kana" do
       user = build(:user, lastname_kana: "aaaaaaaa")
       user.valid?
-      expect(user.errors[:lastname_kana]).to include("が不正な値になっています")
+      expect(user.errors[:lastname_kana]).to include("が正しく入力されていません")
     end
 
      # 名前（かな）がひらがな半角の場合登録できる
@@ -165,7 +165,7 @@ describe User do
      it "is invalid with a hankaku firstname_kana" do
       user = build(:user, firstname_kana: "aaaaaaaa")
       user.valid?
-      expect(user.errors[:firstname_kana]).to include("が不正な値になっています")
+      expect(user.errors[:firstname_kana]).to include("が正しく入力されていません")
     end
 
     # 重複したnicknameが存在する場合登録できないこと
