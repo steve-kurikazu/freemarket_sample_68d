@@ -1,5 +1,5 @@
-.header   
-  .header__title  
+.header
+  .header__title
     = link_to root_path, class: :header__title__logo do
       = image_tag "/images/logo/logo.png", alt: "Furima_Logo"
     .header__title__search_bar
@@ -7,21 +7,33 @@
         = f.text_field :search_text, placeholder: "キーワードから探す", type: "text", class: :header__title__search_bar__text
         = button_tag type: "submit", class: :header__title__search_bar__image do
           = image_tag '/images/icon/icon-search 1.png'
-    %ul.header__title__search_result
-  .header__menu 
-    -# %ul.header__menu__search_list
-    -#   %li
-    -#     = link_to "#", class: "header__menu__search_list--category" do
-    -#       カテゴリー
-    -#       %ul
-    -#         - @parents.each do |parent|
-    -#           = parent.name
-    -#           -parent.children.each do |child|
-    -#             = child.name
-    -#         %li
-    -#   %li
-    -#     = link_to "#", class: "header__menu__search_list--brand" do
-    -#       ブランド
+    .header__title__search_result
+  .header__menu
+    %label{id:"category-label"}
+      %p{id:"category"}
+        カテゴリー
+      %ul.category-list
+        %li.category-list__parents
+          %ul.category-list__parents__box
+            - @parents.each_with_index do |parent, i|
+              %li.parent-box{id: "parent-#{i}"}
+                = parent.name
+        %li.category-list__children
+          %ul.category-list__children__box
+            - @parents.each_with_index do |parent, i|
+              .children-box{id: "child__parent-#{i}"}
+                - @parents[i].children.each_with_index do |child, num|
+                  %li.child-box{id: "parent-#{i}__child-#{num}"}
+                    = child.name
+        %li.category-list__grandchildren
+          %ul.category-list__grandchildren__box
+            - @parents.each_with_index do |parent, i|
+              .grandchildren-boxs{id:"grandchilds-#{i}"}
+                -@parents[i].children.each_with_index do |child, num|
+                  .grandchildren-box{id: "grandchild__parent-#{i}__child-#{num}"}
+                    -child.children.each do |grandchild|
+                      %li.grandchild-box
+                        = grandchild.name
     %ul.header__menu__menu-list
       - if user_signed_in?
         %li
