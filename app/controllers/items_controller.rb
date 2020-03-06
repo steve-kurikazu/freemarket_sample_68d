@@ -74,7 +74,9 @@ class ItemsController < ApplicationController
   def search
     # 以下、ransackによる詳細検索
     if params[:q]
-      params[:q][:name_cont_all] = params[:q][:search_text].split(/[\p{blank}\s]+/)
+      if params[:q][:search_text]
+        params[:q][:name_cont_all] = params[:q][:search_text].split(/[\p{blank}\s]+/)
+      end
       @search = Item.ransack(params[:q])
       @items = @search.result
       @text = params.dig(:q,:search_text)

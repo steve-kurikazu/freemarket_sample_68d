@@ -37,4 +37,9 @@ $(function(){
     $('.children-box').hide();
     $('.grandchildren-box').hide();
   });
+
+  $(".grandchild-box").hover(function(){
+     id = $(this).attr('id')
+     $(`#search__${id}`).click();
+  })
 });
