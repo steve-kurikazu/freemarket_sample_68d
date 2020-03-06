@@ -31,6 +31,10 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
+
+    @item = Item.find(params[:id])
+    @comment = Comment.new
+    @comments = @item.comments
     @search = Item.ransack(params[:q])
     @like = current_user.likes.find_by(item_id: params[:id])
     @parents = Category.where(ancestry:nil)

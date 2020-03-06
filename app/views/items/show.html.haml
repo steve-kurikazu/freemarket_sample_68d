@@ -1,6 +1,6 @@
 = render "shared/header"
 = render "shared/item_btn"
-
+    
 .main
   .main__show
 
@@ -88,15 +88,33 @@
       - if user_signed_in? && current_user.id != @item.user_id
         -if @item.status == 0 
           = link_to "購入する", new_item_order_path(params[:id])
-        
     .main__show__btn
       %ul
         %li
           =link_to "<前の商品", class:"" 
         %li
           =link_to "後ろの商品>", class:"" 
-
-    .main__show__footer
-      =link_to "メンズをもっと見る"
-
+    .message-wraper
+      .message-wrap
+        -@comments.each do |comment| 
+          .message-box
+            %strong
+            %br
+            .massage-icon  
+              %a{href: "#{item_comments_path(comment.item_id)}"}
+                = image_tag comment.item.images.first.photo.url, class:"rounded-circle"  
+            .message-field
+              .message-name
+                = link_to comment.user.nickname, "/users/#{comment.user_id}"
+              .message-text
+                = comment.text
+    = form_with model: [@item, @comment],url: item_comments_path(@item.id),method: :post, local:true do |f| 
+      .item-comment-form
+        .message-user-name
+          %p
+          =f.text_area :text, class:"show-message-form" 
+          %br
+          
+          .message-submit__details
+        = f.submit "コメントする", class:"show-comment-button" 
 = render "shared/footer"

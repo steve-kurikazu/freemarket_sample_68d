@@ -1,0 +1,11 @@
+.comments{data: {coment: {id: commentm.id}}}
+  .upper-message
+    .upper-message__user-name
+      = comment.user.name
+    .upper-message__date
+      = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+  .lower-message
+    - if comment.content.present?
+      %p.lower-message__content
+        = comment.content
+    = image_tag comment.image.url, class: 'lower-message__image' if comment.image.present?
