@@ -10,7 +10,7 @@
   cursor: pointer;
   &:hover{
     background-color: rgb(218, 243, 252) ! important;
-    
+
   }
 }
 @mixin tab-for-change {
@@ -47,7 +47,7 @@
   padding-left: 20px;
   display: flex;
   color: black;
-  
+
   .product-content{
     width :160px;
     text-align: center;
@@ -88,7 +88,7 @@
           font-size: 20px;
           font-weight: 500;
         }
-        .my_page-lists {  
+        .my_page-lists {
           .my_page-list {
             @include side_bar;
           }
@@ -98,19 +98,73 @@
     &__main {
       width: 700px;
       height: 100%  ;
-      &__user-icon-box {
+      .user-profile-box {
         margin-top: 50px;
+        padding-top: 60px;
+
         height: 300px;
-        border: 1px solid rgb(170, 179, 178);
         background-color: rgb(215, 234, 235);
         background-size: cover;
         border-radius: 10px;
-        .user-icon {
+          #profile-label{
+            height: 100px;
+            line-height: 100px;
+            display: block;
+          }
+          .profile-hidden{
+            display: none;
+          }
+          .profile-submit{
+            display: none;
+
+          }
+          .profile-label{
+            // display: block;
+            width: 200px;
+            margin: 0 auto;
+            border-radius: 20px;
+          }
+          .profile-image{
+            text-align: center;
+            .profile-tag{
+              border-radius: 20px;
+            }
+            #user-icon{
+            border-radius: 20px;
+            }
+          }
+          .new-product__form{
+            // display: none;
+            // border: 1px solid yellow;
+
+          }
+
+        .profile-name{
+          margin-top: 50px;
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          font-size: 30px;
+        }
+
+        .user_profile {
           width: 100px;
           height: 100px;
           margin: 60px auto 40px auto;
           border-radius: 40px;  
           background-color: rgb(103, 109, 110);
+          .user_icon_form{
+            height: 200px;
+            width: 200px;
+            .user_profile_icon{
+              height: 200px;
+              width: 200px;
+              .file_send{
+                height: 200px;
+                width: 200px;
+              }
+            }
+          }
         }
         .user-name{
           width: 300px;
@@ -136,7 +190,7 @@
           font-weight: 900;
           margin-top: 140px;
           text-align: center;
-        } 
+        }
         &__my-products{
           height: 300px;
           width: 90%;

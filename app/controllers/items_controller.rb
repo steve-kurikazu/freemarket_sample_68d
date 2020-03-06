@@ -48,12 +48,12 @@ class ItemsController < ApplicationController
       @selected_parent_category = @selected_child_category.parent
       @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
   end
-  
+
   def update
     if  @item.update(item_update_params)
       redirect_to item_path(@item.id)
-    else 
-      render :edit 
+    else
+      render :edit
     end
   end
 
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_back(fallback_location: root_path)
-    end       
+    end
   end
 
   def search

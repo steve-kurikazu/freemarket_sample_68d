@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one  :profile
   has_many :items
   has_many :sendings
   has_many :cards

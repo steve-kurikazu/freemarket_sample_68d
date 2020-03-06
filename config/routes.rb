@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root "home#index"
-  
+
   resources :sendings, only: [:new, :create, :edit, :update]
   resources :users, only: [:edit, :update]
   resources :cards, only: [:new, :create, :destroy]
+  resources :profiles, only: [:create, :update]
 
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :likes, only: [:create, :destroy] 
+    resources :likes, only: [:create, :destroy]
 
 
     collection do

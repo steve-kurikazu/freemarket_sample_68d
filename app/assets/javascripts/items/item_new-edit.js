@@ -6,12 +6,12 @@ $(function(){
     var array = [];
     var count = $('.preview-box').length;
     $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_photo`});
-    if (count == 5) { 
+    if (count == 5) {
       $('.label-content').hide();
     };
   };
-  
-  
+
+
   //プレビューのhtmlを定義
   function buildHTML(count) {
     var html = `<div class="preview-box" id="preview-box__${count}">
@@ -27,7 +27,7 @@ $(function(){
     return html;
   }
 
-  
+
   // ラベルのwidth操作
   function setLabel() {
     //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
@@ -66,8 +66,8 @@ $(function(){
       //イメージを追加
       $(`#preview-box__${id} img`).attr('src', `${image}`);
       var count = $('.preview-box').length;
-      //プレビューが5個あったらラベルを隠す 
-      if (count == 5) { 
+      //プレビューが5個あったらラベルを隠す
+      if (count == 5) {
         $('.label-content').hide();
       }
       //ラベルのidとforの値を変更
@@ -75,22 +75,22 @@ $(function(){
         //プレビューの数でラベルのオプションを更新する
         $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_photo`});
       }
-      
+
       $(".image-error").hide();
     }
   });
 
   // 画像の削除
   $(document).on('click', '.delete-box', function() {
-    
+
     var count = $('.preview-box').length;
     setLabel(count);
     //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
     //取得したidに該当するプレビューを削除
     $(`#preview-box__${id}`).remove();
-    //フォームの中身を削除 
-    
+    //フォームの中身を削除
+
     $(`#item_images_attributes_${id}_photo`).val("");
 
     //削除時のラベル操作
@@ -109,7 +109,7 @@ $(function(){
     }
   });
 
-  
+
   $(".new-product__form").on('submit',function(){
     var count = $('.preview-box').length;
     if ( count == 0) {
@@ -121,6 +121,6 @@ $(function(){
       array.forEach(function(id){
       $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
     });
-  }); 
-  
+  });
+
 });
