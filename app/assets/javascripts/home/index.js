@@ -12,7 +12,7 @@ $(function(){
       $('.grandchildren-box').hide();
       // 孫が隠れる
       var parentId = $(this).attr('id');
-      // 変数作る、this=parent-boxの１つ、attr('id')=、thisのid（付与していた）をとってくる
+      // 変数作る、thisはparent-boxの１つ、attr('id')=、thisのid（付与していた）をとってくる
       $(`#child__${parentId}`).show();
       // 子が現れる
       $(this).css({"background-color":"red","color":"white"});

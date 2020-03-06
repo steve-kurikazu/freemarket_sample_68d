@@ -4,7 +4,7 @@
     .new-item__errors
       %h2 商品出品ができませんでした
       %br
-      %h4 
+      %h4
         <
         = @item.errors.full_messages.length
         件のエラーメッセージ>
@@ -54,7 +54,7 @@
           %span.require 必須
         %div
           = f.text_area :text, placeholder:"１０００文字以内", required: true,class: "product-discription"
-      
+
       .new-item__form__box{id: "item-details"}
         .listing-product-detail__category  
           %label.new-item__head{class: "listing-default__label"}
