@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
     @images = @item.images
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
+    @search = Item.ransack(params[:q])
   end
 
   def edit
@@ -61,11 +62,21 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @text = params[:search_text]
-    @items = Item.search(@text)
-    if params[:sort]
-      @items = Item.sort(@items, params[:sort])
+    # 以下、ransackによる詳細検索
+    if params[:q]
+      params[:q][:name_cont_all] = params[:q][:search_text].split(/[\p{blank}\s]+/)
+      @search = Item.ransack(params[:q])
+      @items = @search.result
+      @text = params.dig(:q,:search_text)
+      if params.dig(:q,:sorts)
+        @items = Item.sort(@items, params.dig(:q,:sorts))
+      end
+    else
+      @search = Item.ransack(params[:q])
     end
+    
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
+    @category_parent_array.prepend(["すべて", ""])
   end
 
   private
