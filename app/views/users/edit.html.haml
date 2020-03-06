@@ -6,115 +6,142 @@
     font-weight: 900;
   }
 
-.my_page
-  .content
-  .my_page__sidebar
-    .my_page__sidebar__top
-      .my_page-lists
-        .my_page-list{id:"a"}< マイページ
-        -# .my_page-list{id:"b"}< いいね！一覧
-        =link_to new_item_path do
-          .my_page-list{id:"c"}< 出品する
-        -# .my_page-list{id:"d"}< 出品した商品・出品中
-        -# .my_page-list{id:"e"}< 出品した商品・取引中
-        -# .my_page-list{id:"f"}< 出品した商品・売却済み
-        -# .my_page-list{id:"g"}< 購入した商品・取引中
-        -# .my_page-list{id:"h"}< 購入した商品・過去の取引
-    .my_page__sidebar__bottom
-      .title 設定
-      .my_page-lists
-        = link_to new_sending_path do
-          .my_page-list{id:"i"}< 発送元・お届け先
-        -# %li{class:"my_page-list", id:"g"}< 支払い方法
-        -# .my_page-list{id:"k"}< メール/パスワード
-        .my_page-list{id:"l"}<クレジット情報
-        .my_page-list{id:"m"}< ログアウト
-  .my_page__main
-    .my_page__main__user-icon-box
-      .user-icon
-        = image_tag (src='')
-      .user-name
-        = @user.nickname
-      .user-info
-        .evaluation-count
-          評価:
-          %span 5
-        .exhibition-count
-          出品数:
-          %span 3
-    -# .my_page__main__product-container{class: "main"}
-    -#   %h3 購入した商品
-    -#   %ul
-    -#     %li{id:"during-trading"}取引中
-    -#     %li{id:"past"} 過去の取引
-    -#   .during-trading-boxs
-    -#     .box
-    -#       aiueo
-    -#     .box
-    -#       aiueo
-    -#     .box
-    -#       aiueo
-    -#     .box
-    -#       aiueo
-    -#   .past-boxs
-    -#     .box
-    -#       kakikukeko
-    -#     .box
-    -#       kakikukeko
-    -#     .box
-    -#       kakikukeko
-    -#     .box
-    -#       kakikukeko
-    -#     .box
-    -#       kakikukeko
-    .my_page__main__logout{class: "main"}
-      %h3 ログアウトしてよろしいですか？
-      -# = link_to destroy_user_session_path, method: :delete, class: "header_btn" do
-      -#   %b ログアウトする
-      = link_to(destroy_user_session_path, method: :delete, class: "logout-btn") do
-        %b ログアウトする
-    .my_page__main__credit{class: "main"}
-      %h2 登録クレジットカード情報
-      - if @default_cards_information.nil?
-        %p{class: "card__error-message"}
-          = @card_error_message
-      - else
-        .cards-box
-          - @default_cards_information.each_with_index do |card_information, i|
-            .card-box{id:"card-#{i}"}
-              %h3  Card 
-              .card-number
-                %p カード番号
-                = "**** **** **** #{card_information.last4}"
-              .expiration-date
-                %p 有効期限
-                - exp_month = card_information.exp_month.to_s
-                - exp_year = card_information.exp_year.to_s.slice(2,3)
-                = exp_year + " 年" + "/" + exp_month + " 月 "
-              = link_to card_path(card_information.id), method: :delete, remote: true, class: "delete-btn", id: i  do
-                削除する
-      = link_to new_card_path, class: "card-btn" do
-        カード登録する
-    .my_page__main__item-lists{class: "main"}
-      %h2 出品商品一覧    
-      %ul{class: "my_page__main__item-lists__my-products"}
-        -@myitems.each do |item|
-          %li
-            = link_to item_path(id: item.id) ,class: "my-product" do
-              .product-box
-                .product-box__image
-                  = image_tag item.images.first.photo.url
-                .product-box__name
-                  %p 商品名
-                  %p{class: "product-content"}
-                    =item.name
-                .product-box__price
-                  %p 値段
-                  %p{class: "product-content"}
-                    =item.price
-                  %p 円
+.my_page-wrapper
+  = render "shared/share_header"
+  .my_page
+    .my_page__sidebar
+      .my_page__sidebar__top
+        .title Menu
+        .my_page-lists
+          .my_page-list{id:"a"}< マイページ
+          -# .my_page-list{id:"b"}< いいね！一覧
+          =link_to new_item_path do
+            .my_page-list{id:"c"}< 出品する
+          -# .my_page-list{id:"d"}< 出品した商品・出品中
+          -# .my_page-list{id:"e"}< 出品した商品・取引中
+          -# .my_page-list{id:"f"}< 出品した商品・売却済み
+          -# .my_page-list{id:"g"}< 購入した商品・取引中
+          -# .my_page-list{id:"h"}< 購入した商品・過去の取引
+      .my_page__sidebar__bottom
+        .title Setting
+        .my_page-lists
+          - unless @sending
+            = link_to new_sending_path do
+              .my_page-list{id:"i"}< 発送元・お届け先
+          - else
+            = link_to edit_sending_path(@sending.id) do
+              .my_page-list{id:"i"}< 発送元・お届け先
+          .my_page-list{id:"g"}< 本人情報
+          -# .my_page-list{id:"k"}< メール/パスワード
+          .my_page-list{id:"l"}<クレジット情報
+          .my_page-list{id:"m"}< ログアウト
+    .my_page__main
+      .user-profile-box
+        %label{for:"profile_image", class:"profile-label", id: "profile-label"}
+          -if @profile.image.present?
+            .profile-image
+              = image_tag @profile.image.url, class:"profile-tag"
+              -# データある時
+          -else
+            .profile-image{id:"user-icon-box"}
+              写真を追加
+              -# idのボックスが１つある時
+        = form_with model:@profile, local:true, class: "profile-product__form" do |f|
+          = f.file_field :image, class: "profile-hidden"
+          = f.submit class: "profile-submit"
+        .profile-name
+          = @user.nickname
 
-              
+      .my_page__main__item-lists{class: "main"}
+        %h2 出品商品一覧
+        -if @myitems.present?
+          %ul{class: "my_page__main__item-lists__my-products"}
+            -@myitems.each do |item|
+              %li
+                = link_to item_path(id: item.id) ,class: "my-product" do
+                  .product-box
+                    .product-box__image
+                      = image_tag item.images.first.photo.url
+                    .product-box__name
+                      %p 商品名
+                      %p{class: "product-content"}
+                        =item.name
+                    .product-box__price
+                      %p 値段
+                      %p{class: "product-content"}
+                        =item.price
+                      %p 円
+        -else
+          .nothing-box
+            出品された商品はありません
+      .my_page__main__information{class: "main"}
+        %h2 本人情報編集
+        .edit_user-box
+          = form_with model: @user, url: user_path(current_user.id), id: 'edit_user', class: 'edit_user' , local: true do |f|
+            .container__main__form
+              -# .field
+              -#   %label{for: "user_image", class: "user-image", id: "user-image"}
+              -#     .image_filed
+              -#       あああああ
+              -#   = f.file_field :image
+              .field
+                = f.label :ニックネーム
+                %span{class: "require"} 必須
+                %br/
+                = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: '例）ヤマダマン (7文字まで)', required: true, class: "nickname_box"
+              .field
+                = f.label :お名前（全角）
+                %span{class: "require"} 必須
+                %br/
+                = f.text_field :lastname, autofocus: true, autocomplete: "firstname", placeholder: '例）山田', required: true, class: "name_box"
+                = f.text_field :firstname, autofocus: true, autocomplete: "lastname", placeholder: '例）太郎', required: true, class: "name_box"
 
-                
+              .field
+                = f.label :お名前ふりがな（全角）
+                %span{class: "require"} 必須
+                %br/
+                = f.text_field :lastname_kana, autofocus: true, autocomplete: "firstname_kana", placeholder: '例）やまだ', required: true, class: "name_box"
+                = f.text_field :firstname_kana, autofocus: true, autocomplete: "astname_kana", placeholder: '例）たろう', required: true, class: "name_box"
 
+              .field
+                = f.label :生年月日
+                %span{class: "require"} 必須
+                %br/
+                = f.select :birth_year, [*(1900..2018)], prompt:"--", required: true
+                %span 年
+                = f.select :birth_month, [*(1..12)], prompt:"--", required: true
+                %span 月
+                = f.select :birth_day, [*(1..31)], prompt:"--", required: true
+                %span 日
+              .container__low
+                = f.submit "変更する", class: "form_submit"
+
+      .my_page__main__credit{class: "main"}
+        %h2 登録クレジットカード情報
+        - if @default_cards_information.nil?
+          %p{class: "card__error-message"}
+            = @card_error_message
+        - else
+          .cards-box
+            - @default_cards_information.each_with_index do |card_information, i|
+              .card-box{id:"card-#{i}"}
+                %h3  Card 
+                .card-number
+                  %p カード番号
+                  = "**** **** **** #{card_information.last4}"
+                .expiration-date
+                  %p 有効期限
+                  - exp_month = card_information.exp_month.to_s
+                  - exp_year = card_information.exp_year.to_s.slice(2,3)
+                  = exp_year + " 年" + "/" + exp_month + " 月 "
+                = link_to card_path(card_information.id), method: :delete, remote: true, class: "delete-btn", id: i  do
+                  削除する
+        = link_to new_card_path, class: "card-btn" do
+          カード登録する
+      .my_page__main__logout{class: "main"}
+        %h3 ログアウトしてよろしいですか？
+        -# = link_to destroy_user_session_path, method: :delete, class: "header_btn" do
+        -#   %b ログアウトする
+        = link_to(destroy_user_session_path, method: :delete, class: "logout-btn") do
+          %b ログアウトする
+  = render "shared/footer_logo"

@@ -73,6 +73,7 @@
 
 ## comments table
 |Column|Type|Options|
+|------|----|-------|
 |message|string|null:false|
 |item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|

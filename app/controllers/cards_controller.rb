@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  before_action :move_to_index 
   require 'payjp'
   def new
     @item_id = params[:item_id]
@@ -41,17 +42,19 @@ class CardsController < ApplicationController
 
   def destroy
     card = Card.where(card_id: (params[:id])).first
-    
-    if card.blank?
+    if card.user_id === @current_user.id
+      if card.blank?
+      else
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        customer.delete
+        card.delete
+      end
+      respond_to do |format|
+        format.js
+      end
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
-#     redirect_to edit_user_path(current_user.id)
-    respond_to do |format|
-      format.js
+      redirect_to edit_user_path(current_user.id)
     end
   end
 end

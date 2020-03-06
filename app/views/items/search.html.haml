@@ -1,0 +1,97 @@
+= render "shared/header"
+= render "shared/item_btn"
+.search_wrapper
+  .search__side_bar
+    .search__side_bar__sort
+      = search_form_for @search, url: search_items_path do |f|
+        = f.select :sorts, options_for_select([['並べ替え', 'default'], ['価格の安い順', 'price_asc'], ['価格の高い順', 'price_desc'] ,['出品の新しい順', 'created_desc']], params.dig(:q,:sorts)), {}, {class: 'search__side_bar__sort__box', onchange: 'submit(this.f)'}
+        .search__side_bar__contents
+          %h4 詳細検索
+          = search_form_for @search, url: search_items_path do |f|
+            .form_group
+              %label
+                %i.fas.fa-plus
+                %span キーワードを追加する
+              %br
+              = f.search_field :search_text, value: @text, class: "form_group__search_bar__text"
+            .form_group
+              %label
+                %i.fas.fa-list-ul
+                %span カテゴリーを選択する
+              %br
+              = f.select :category_id_eq_any, @category_parent_array, {}, class: 'listing-select-wrapper__box--select', id: 'search_parent_category', name: 'q[category_id_eq_any][]'
+              .search_listing-product-detail__category
+              .search_listing-product-detail__category__check_box
+            .form_group
+              %label
+                %i.fas.fa-coins
+                %span 価格
+              %br
+              = select_tag('price',options_for_select([['300〜1000', "300-1000"], ['1000〜5000', "1000-5000"],['5000〜10000', "5000-10000"], ['10000〜30000', "10000-30000"], ['30000〜50000', "30000-50000"]]), {prompt: "選択してください", class: 'search__side_bar__sort__box'})
+              .form_group__price
+                = f.number_field :price_gteq, placeholder: '¥Min', class: "form_group__price__form"
+                = "〜"
+                = f.number_field :price_lteq, placeholder: '¥Max', class: "form_group__price__form"
+            .form_group
+              %label
+                %i.far.fa-star
+                %span 商品の状態
+              %br
+              .form_group__check_box
+                %label.form_group__check_box__form
+                  = check_box_tag "すべて", nil, false, id: 'condition_btn_all'
+                  %span すべて
+                - conditions = ['新品、未使用', '未使用に近い', '目立った傷や汚れなし', 'やや傷や汚れあり', '傷や汚れあり', '全体に状態が悪い']
+                - conditions.each do |condition|
+                  %label.form_group__check_box__form
+                    = f.check_box :condition_eq_any, {multiple: true}, condition, nil
+                    = condition
+            .form_group
+              %label
+                %i.fas.fa-shipping-fast
+                %span 配送料の負担
+              %br
+              .form_group__check_box
+                %label.form_group__check_box__form
+                  = check_box_tag "すべて", nil, false, id: 'delivery_btn_all'
+                  %span すべて
+                - delivery_fees = ["送料込み（出品者負担)", "着払い（購入者負担)"]
+                - delivery_fees.each do |delivery_fee|
+                  %label.form_group__check_box__form
+                    = f.check_box(:delivery_fee_eq_any, {multiple: true}, delivery_fee, nil)
+                    = delivery_fee
+
+            .form_group
+              %label
+                %i.fas.fa-shopping-cart
+                %span 販売状況
+              %br
+              .form_group__check_box
+                %label.form_group__check_box__form
+                  = check_box_tag "すべて", nil, false, id: 'status_btn_all'
+                  %span すべて
+                - statuses = ['販売中', '売り切れ']
+                - statuses.each_with_index do |status,i|
+                  %label.form_group__check_box__form
+                    = f.check_box(:status_eq_any,{multiple: true}, i, nil)
+                    = status
+            .form_btn
+              = button_tag 'クリア', type: 'reset', class: "form_btn__search", id: "form_btn__search--clear"
+              = f.submit '完了', class: "form_btn__search"
+
+  %section.search__container
+    %h2
+      = "「#{@text}」"
+      %span.search__container__header_text
+        = "検索結果"
+    .search__container__result_number    
+      - if @items.length == 1
+        = "1件表示"
+      - elsif @items.length >= 2
+        = "1-#{@items.length}件表示"
+      - else
+        = "該当する商品が見つかりません。検索条件を変えて、再度お試しください。"
+    %ul.search__container__result_list
+      = render partial:"shared/list"
+
+= render "shared/footer"

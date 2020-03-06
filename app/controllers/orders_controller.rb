@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :move_to_index
   require 'payjp'
-
   def new
     @item = Item.find(params[:item_id])
     @image = @item.images.first
@@ -18,15 +18,19 @@ class OrdersController < ApplicationController
       end
     end
       if @sending.nil?
-      @sending_error_message = "発送先が登録されていません。" 
+      @sending_error_message = "発送先が登録されていません。"
     else
       @prefecture = Prefecture.find(@sending.prefectures)
     end
   end
 
   def pay
-    if order_params[:card_id] == nil || order_params[:sending_id] == nil
-      redirect_to new_item_order_path(order_params[:item_id])
+    if order_params[:sending_id] == "" && order_params[:card_id] == nil 
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert1: '発送先が入力されていません', alert2: '支払方法が選択されていません'}
+    elsif order_params[:sending_id] == ""
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert1: '発送先が入力されていません'}
+    elsif order_params[:card_id] == nil
+      redirect_to new_item_order_path(order_params[:item_id]), flash: {alert2: '支払方法が選択されていません'}
     else 
       card = Card.find_by(card_id: order_params[:card_id])
       @order = Order.new(order_params.except(:card_id))
