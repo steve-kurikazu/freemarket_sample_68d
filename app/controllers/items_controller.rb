@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index 
+  before_action :move_to_index, except: [:show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :identity_verification, only: [:edit, :update, :destroy]
   def new
@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
 
   def get_category_children
     @category_children = Category.find_by(id: "#{params[:parent_name]}", ancestry: nil).children
-  end 
+  end
 
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
@@ -32,6 +32,11 @@ class ItemsController < ApplicationController
     @first_image = @images.first
     @prefecture = Prefecture.find(@item.shipping_area)
     @search = Item.ransack(params[:q])
+    @like = current_user.likes.find_by(item_id: params[:id])
+    @grandchild_id = @item.category_id
+    @grandchild = Category.find(@grandchild_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
   def edit

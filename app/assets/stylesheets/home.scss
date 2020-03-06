@@ -47,16 +47,62 @@ a {
     }
   }
   &__menu {
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    position: relative;
     display: flex;
     justify-content: space-between;
-    & ul{
-      margin: 10px;
+      .category-list{
+        position: absolute;
+        top: 58px;
+        left: -20px;
+        display: flex;
+        .parent-box {
+          height: 60px;
+          width: 300px;
+          line-height: 60px;
+          padding-left: 10px;
+          display: none;
+          background-color: white;
+        }
+        .children-box{
+          display: none;
+          .child-box {
+            height: 60px;
+            width: 300px;
+            line-height: 60px;
+            padding-left: 10px;
+            border-left: 3px solid rgb(248, 246, 246);
+            background-color: white;
+            &:hover{
+              background-color: rgb(235, 229, 229);
+            }
+          }
+        }
+        .grandchildren-box {
+          display: none;
+          .grandchild-box {
+            height: 60px;
+            width: 300px;
+            line-height: 60px;
+            padding-left: 10px;
+            border-left: 3px solid rgb(248, 246, 246);
+            background-color: white;
+            &:hover{
+              background-color: rgb(235, 229, 229);
+            }
+          }
+        }
+      }
+
+    &__menu-list{
       display: flex;
-    }
-    & a{
-      color: #000000;
-      font-size: 14px;
-      margin: 10px; 
+      & a{
+        color: #000000;
+        font-size: 20px;
+        margin: 10px;
+      }
     }
   }
 }
