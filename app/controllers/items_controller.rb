@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.find(@item.shipping_area)
     @search = Item.ransack(params[:q])
     @like = current_user.likes.find_by(item_id: params[:id])
+    @parents = Category.where(ancestry:nil)
     @grandchild_id = @item.category_id
     @grandchild = Category.find(@grandchild_id)
     @child = @grandchild.parent
@@ -73,6 +74,7 @@ class ItemsController < ApplicationController
       @search = Item.ransack(params[:q])
       @items = @search.result
       @text = params.dig(:q,:search_text)
+      @parents = Category.where(ancestry:nil)
       if params.dig(:q,:sorts)
         @items = Item.sort(@items, params.dig(:q,:sorts))
       end

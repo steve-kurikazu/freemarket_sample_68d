@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :move_to_index 
+  before_action :move_to_index
   require 'payjp'
   def new
     @item = Item.find(params[:item_id])
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       end
     end
       if @sending.nil?
-      @sending_error_message = "発送先が登録されていません。" 
+      @sending_error_message = "発送先が登録されていません。"
     else
       @prefecture = Prefecture.find(@sending.prefectures)
     end
