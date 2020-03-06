@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :sendings, only: [:new, :create]
   resources :users, only: [:edit]
   resources :cards, only: [:new, :create, :destroy]
-
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create]
     resources :orders, only: [:new] do  
       collection do
         post 'pay', to: 'orders#pay'
