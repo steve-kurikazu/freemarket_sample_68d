@@ -3,8 +3,8 @@
     = link_to root_path, class: :header__title__logo do
       = image_tag "/images/logo/logo.png", alt: "Furima_Logo"
     .header__title__search_bar
-      = form_with url: search_items_path, method: :get, local: true do |f|
-        = f.text_field :search_text, placeholder: "キーワードから探す", type: "text", class: :header__title__search_bar__text
+      = search_form_for @search, url: search_items_path do |f|
+        = f.text_field :search_text, placeholder: "キーワードから探す", value: @text, type: "text", class: :header__title__search_bar__text
         = button_tag type: "submit", class: :header__title__search_bar__image do
           = image_tag '/images/icon/icon-search 1.png'
     .header__title__search_result

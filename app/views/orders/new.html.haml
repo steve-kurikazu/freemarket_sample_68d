@@ -13,6 +13,7 @@
         %h2.order-content__head 購入内容の確認
         .order_error--top
           = flash[:alert1]
+          %br
           = flash[:alert2]
         %section.order-content__item
           .order-content__inner
@@ -42,7 +43,7 @@
                 = icon 'fas', 'chevron-right'
               %h3 配送先
               -if @prefecture.nil?
-                %p.order-error
+                %p.order_error
                   = @sending_error_message
               -else
                 %h4
@@ -67,9 +68,9 @@
               - @default_cards_information&.each_with_index do |card_information, i|
               
                 %label.card_label
-                = f.radio_button :card_id, card_information.id
-                %span
-                = "カード#{i + 1}"
+                  = f.radio_button :card_id, card_information.id
+                  %span
+                    = "カード#{i + 1}"
                 %br
                 &emsp;     **** **** **** #{card_information.last4}
                 &emsp;
@@ -78,4 +79,5 @@
                 = exp_month + " / " + exp_year   
               -if @item.status == 0 
                 = f.submit '購入する', class: "order-content__btn"              
-  = render "shared/footer_logo"
+
+= render "shared/footer_logo"

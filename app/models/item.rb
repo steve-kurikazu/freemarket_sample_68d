@@ -22,13 +22,13 @@ class Item < ApplicationRecord
     validates :status
   end
 
-  def self.search(search)
-    if search
-      @item = Item.where('name LIKE(?)', "%#{search}%")
-    else
-      @item = Item.all
-    end
-  end
+  # def self.search(search)
+  #   if search
+  #     @item = Item.where('name LIKE(?)', "%#{search}%")
+  #   else
+  #     @item = Item.all
+  #   end
+  # end
 
   def self.sort(item, sort)
     case sort
