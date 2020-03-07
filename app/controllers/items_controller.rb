@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:show]
+  before_action :move_to_index, except: [:show, :search]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :identity_verification, only: [:edit, :update, :destroy]
   def new
@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
 
     @item = Item.find(params[:id])
     @comment = Comment.new
-    @comments = @item.comments
+    @comments = @item.comments.includes(:user)
     @search = Item.ransack(params[:q])
     @like = current_user.likes.find_by(item_id: params[:id])
     @parents = Category.where(ancestry:nil)
