@@ -88,17 +88,70 @@
       - if user_signed_in? && current_user.id != @item.user_id
         -if @item.status == 0 
           = link_to "購入する", new_item_order_path(params[:id])
-    .main__show__btn
-      %ul
-        %li
-          =link_to "<前の商品", class:"" 
-        %li
-          =link_to "後ろの商品>", class:"" 
+    
     .message-wraper
-      .message-wrap
-        -@comments.each do |comment| 
-          .message-box
-            %strong
+      .messages-box
+        -@comments.each do |comment|
+          -if current_user.id == comment.user_id
+            -if @item.user_id == comment.user_id
+              .message-box-current-user
+                .message-box-current-user__left
+                  .message-box-current-user__left__nickname
+                    = comment.user.nickname
+                    (出品者)
+                  .message-box-current-user__left__comment
+                    = comment.text
+                .message-box-current-user__right
+                  -if comment.user.profile.present?
+                    = image_tag comment.user.profile.image.url ,class:"message-current-user-icon"
+                  -else
+                    .def-icon
+                      = icon 'fas', 'frown-open', class: "icon"
+            -else
+              .message-box-current-user
+                .message-box-current-user__left
+                  .message-box-current-user__left__nickname
+                    = comment.user.nickname
+                  .message-box-current-user__left__comment
+                    = comment.text
+                .message-box-current-user__right
+                  -if comment.user.profile.present?
+                    = image_tag comment.user.profile.image.url ,class:"message-current-user-icon"
+                  -else
+                    .def-icon
+                      = icon 'fas', 'frown-open', class: "icon"
+          -else
+            -if @item.user_id == comment.user_id
+              .message-box
+                .message-box__left
+                  -if comment.user.profile.present?
+                    = image_tag comment.user.profile.image.url ,class:"message-user-icon"
+                  -else
+                    .def-icon
+                      = icon 'fas', 'frown-open', class: "icon"
+                .message-box__right
+                  .message-box__right__nickname
+                    = comment.user.nickname
+                    (出品者)
+                  .message-box__right__comment
+                    = comment.text
+            -else
+              .message-box
+                .message-box__left
+                  -if comment.user.profile.present?
+                    = image_tag comment.user.profile.image.url ,class:"message-user-icon"
+                  -else
+                    .def-icon
+                      = icon 'fas', 'frown-open', class: "icon"
+                .message-box__right
+                  .message-box__right__nickname
+                    = comment.user.nickname
+                  .message-box__right__comment
+                    = comment.text
+      = form_with model: [@item, @comment],url: item_comments_path(@item.id),method: :post, local:true do |f| 
+        .item-comment-form
+          .message-user-name
+            =f.text_area :text, class:"show-message-form" 
             %br
             .massage-icon  
               %a{href: "#{item_comments_path(comment.item_id)}"}
@@ -117,4 +170,5 @@
           
           .message-submit__details
         = f.submit "コメントする", class:"show-comment-button" 
+
 = render "shared/footer"

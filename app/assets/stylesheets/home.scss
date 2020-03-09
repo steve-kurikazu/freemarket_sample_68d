@@ -89,6 +89,9 @@ a {
             padding-left: 10px;
             border-left: 3px solid rgb(248, 246, 246);
             background-color: white;
+            .category-search_form {
+              display: none;
+            }
             &:hover{
               background-color: rgb(235, 229, 229);
             }
