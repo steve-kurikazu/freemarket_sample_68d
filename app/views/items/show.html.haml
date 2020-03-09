@@ -153,6 +153,22 @@
           .message-user-name
             =f.text_area :text, class:"show-message-form" 
             %br
-            .message-submit__details
-          = f.submit "コメントする", class:"show-comment-button" 
+            .massage-icon  
+              %a{href: "#{item_comments_path(comment.item_id)}"}
+                = image_tag comment.user.profile.image.url, class:"rounded-circle"  
+            .message-field
+              .message-name
+                = link_to comment.user.nickname, edit_user_path(comment.user_id)
+              .message-text
+                = comment.text
+    = form_with model: [@item, @comment],url: item_comments_path(@item.id),method: :post, local:true do |f| 
+      .item-comment-form
+        .message-user-name
+          %p
+          =f.text_area :text, class:"show-message-form" 
+          %br
+          
+          .message-submit__details
+        = f.submit "コメントする", class:"show-comment-button" 
+
 = render "shared/footer"
