@@ -154,7 +154,7 @@
       margin: 0px auto 30px;
       display: flex;
       &__left {
-        width: 50px;
+        width: 50px; 
         .message-user-icon {
           border-radius: 10px;
         }
@@ -167,7 +167,6 @@
       }
       &__right {
         margin-left: 15px;
-       
         &__nickname {
           font-size: 14px;
         }
