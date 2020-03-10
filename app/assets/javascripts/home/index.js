@@ -42,4 +42,11 @@ $(function(){
      id = $(this).attr('id')
      $(`#search__${id}`).click();
   })
+  // $(".grandchild-box").hover(function(e){
+  //   id = $(this).attr('id');
+  //   console.log(`#search__${id}`);
+  //   $(`#search__${id}`).click(function(e){
+  //     return false;
+  //   });
+  // });
 });

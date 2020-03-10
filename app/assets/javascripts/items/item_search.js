@@ -65,7 +65,7 @@ $(function(){
     childSelectHtml = `<div class='listing-select-wrapper__added' id= 'children_wrapper'>
                         <div class='listing-select-wrapper__box'>
                           <select class="listing-select-wrapper__box--select" id="search_child_category" name="q[category_id_eq_any][]">
-                            <option value="--" data-category="--">--</option>
+                            <option value="" data-category="--">--</option>
                             ${insertHTML}
                           <select>
                         </div>

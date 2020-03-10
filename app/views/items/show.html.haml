@@ -17,14 +17,15 @@
               =link_to "削除", item_path(id: @item.id), method: :delete
         - else
           .favorite
-            -if @like.present?
-              =link_to item_like_path(@item.id), method: :delete, class: "favorite-btn-b" do
-                = icon 'fas', 'star'
-                
-              %p いいね。済み
-            - else
-              =link_to item_likes_path(@item.id), method: :post, class: "favorite-btn-a" do
-                = icon 'fas', 'star' 
+            - if user_signed_in? 
+              - if @like.present?
+                =link_to item_like_path(@item.id), method: :delete, class: "favorite-btn-b" do
+                  = icon 'fas', 'star'
+                  
+                %p いいね。済み
+              - else
+                =link_to item_likes_path(@item.id), method: :post, class: "favorite-btn-a" do
+                  = icon 'fas', 'star' 
       %h1.main__show__top__item_box__name 
         = @item.name
       .main__show__top__item_box__body
@@ -92,7 +93,7 @@
     .message-wraper
       .messages-box
         -@comments.each do |comment|
-          -if current_user.id == comment.user_id
+          -if user_signed_in? && current_user.id == comment.user_id
             -if @item.user_id == comment.user_id
               .message-box-current-user
                 .message-box-current-user__left
@@ -148,11 +149,12 @@
                     = comment.user.nickname
                   .message-box__right__comment
                     = comment.text
-      = form_with model: [@item, @comment],url: item_comments_path(@item.id),method: :post, local:true do |f| 
-        .item-comment-form
-          .message-user-name
-            =f.text_area :text, class:"show-message-form" 
-            %br
-            .message-submit__details
-          = f.submit "コメントする", class:"show-comment-button" 
+      - if user_signed_in? 
+        = form_with model: [@item, @comment],url: item_comments_path(@item.id),method: :post, local:true do |f| 
+          .item-comment-form
+            .message-user-name
+              =f.text_area :text, class:"show-message-form" 
+              %br
+              .message-submit__details
+              = f.submit "コメントする", class:"show-comment-button" 
 = render "shared/footer"
