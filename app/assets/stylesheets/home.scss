@@ -58,6 +58,7 @@ a {
         top: 58px;
         left: -20px;
         display: flex;
+        z-index: 1;
         .parent-box {
           height: 60px;
           width: 300px;
