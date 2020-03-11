@@ -99,7 +99,6 @@ $(function(){
    
    $(".new-product__form").on('submit',function(){
     var d = $('#grandchild_category').val();
-    console.log(d);
     if($('#grandchild_category').val() == undefined && $('.change_box-a').length == 0){
       $(" .category-error").show();
       $('html, body').scrollTop(950);

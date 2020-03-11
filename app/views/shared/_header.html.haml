@@ -32,7 +32,10 @@
                 -@parents[i].children.each_with_index do |child, num|
                   .grandchildren-box{id: "grandchild__parent-#{i}__child-#{num}"}
                     -child.children.each do |grandchild|
-                      %li.grandchild-box
+                      %li.grandchild-box{id:"btn-#{grandchild.id}"}
+                        = search_form_for @search, url: search_items_path, class: "category-search_form" do |f|
+                          = f.text_field :category_id_eq_any, value: grandchild.id, name: "q[category_id_eq_any][]"
+                          = f.submit  id: "search__btn-#{grandchild.id}"
                         = grandchild.name
     %ul.header__menu__menu-list
       - if user_signed_in?
