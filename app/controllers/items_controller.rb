@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:show, :search]
+  before_action :move_to_index, except: [:show, :search, :get_category_children, :get_category_grandchildren]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :identity_verification, only: [:edit, :update, :destroy]
   def new
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
     @search = Item.ransack(params[:q])
-    @like = current_user.likes.find_by(item_id: params[:id])
+    @like = Like.find_by(item_id: params[:id])
     @parents = Category.where(ancestry:nil)
     @grandchild_id = @item.category_id
     @grandchild = Category.find(@grandchild_id)
@@ -76,6 +76,10 @@ class ItemsController < ApplicationController
     if params[:q]
       if params[:q][:search_text]
         params[:q][:name_cont_all] = params[:q][:search_text].split(/[\p{blank}\s]+/)
+      end
+      if params[:q][:category_id_eq_any]
+        @search_category = Category.find(params[:q][:category_id_eq_any].reject(&:blank?))
+        params[:q][:category_id_eq_any] = params[:q][:category_id_eq_any].reject(&:blank?).map!{|category_id| Category.find_by(id: category_id).subtree_ids}.flatten
       end
       @search = Item.ransack(params[:q])
       @items = @search.result

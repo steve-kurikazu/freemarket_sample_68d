@@ -83,8 +83,13 @@
     %h2
       = "「#{@text}」"
       %span.search__container__header_text
-        = "検索結果"
-    .search__container__result_number    
+        - if @search_category.present?
+          = "（カテゴリー："
+          - @search_category.each do |category|
+            = category.name
+          = "）"
+          = "検索結果"
+    .search__container__result_number
       - if @items.length == 1
         = "1件表示"
       - elsif @items.length >= 2
