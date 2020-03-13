@@ -5,8 +5,9 @@ class Item < ApplicationRecord
   has_many :images, dependent: :destroy
   belongs_to_active_hash :prefecture
   has_many :comments
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :users, through: :likes
+  has_one :order
 
   accepts_nested_attributes_for :images, allow_destroy: true
   validates_associated :images
