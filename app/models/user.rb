@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   has_one  :profile
   has_many :items
-  has_many :sendings
-  has_many :cards
+  has_many :sendings, dependent: :destroy
+  has_many :cards, dependent: :destroy
   has_many :comments
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :items, through: :likes
+  has_many :orders
 
   def already_liked?(item)
     self.likes.exists?(item_id: item.id)
