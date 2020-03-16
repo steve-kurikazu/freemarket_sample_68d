@@ -21,9 +21,17 @@
           %br/
           = f.password_field :password, autofocus: "new-password", placeholder: '例）7文字以上の半角英数字', required: true, class: "nickname_box"
 
-        .container__low
-          %p 
+        %ul.container__low
+          %li 
             = f.submit "ログイン", class: "form_submit"
+          %li.form_submit.form_submit--facebook
+            = link_to user_facebook_omniauth_authorize_path, method: :post, class:"form_submit__registration" do
+              = icon('fab', 'facebook-square', class: "contents__btn--icon")
+              %span Facebookでログイン
+          %li.form_submit.form_submit--google
+            = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class:"form_submit__registration" do
+              = icon('fab', 'google', class: "contents__btn--icon")
+              %span Googleでログイン
         .another_link
           = render "devise/shared/links"
        

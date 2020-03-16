@@ -36,7 +36,9 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
     @search = Item.ransack(params[:q])
-    @like = Like.find_by(item_id: params[:id])
+    if user_signed_in?
+      @like = Like.find_by(user_id: current_user.id, item_id: params[:id])
+    end
     @parents = Category.where(ancestry:nil)
     @grandchild_id = @item.category_id
     @grandchild = Category.find(@grandchild_id)
@@ -48,11 +50,11 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry:nil)
     # 編集する商品を選択
     @item = Item.find(params[:id])
-      # 登録されている商品の孫カテゴリーのレコードを取得
-      @selected_grandchild_category = @item.category
-      @selected_child_category = @selected_grandchild_category.parent
-      @selected_parent_category = @selected_child_category.parent
-      @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
+    # 登録されている商品の孫カテゴリーのレコードを取得
+    @selected_grandchild_category = @item.category
+    @selected_child_category = @selected_grandchild_category.parent
+    @selected_parent_category = @selected_child_category.parent
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
   end
 
   def update

@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
-  before_action :move_to_index
-  before_action :user_sending
+  before_action :move_to_index, except: :new
+  before_action :user_sending, except: :new
   require 'payjp'
+
+  def new
+    @user = User.new
+  end
+  
   def edit
     @profile = Profile.find_by(user_id:current_user.id)
     unless @profile.present?

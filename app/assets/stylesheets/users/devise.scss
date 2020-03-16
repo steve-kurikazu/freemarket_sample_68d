@@ -95,6 +95,23 @@
       color: white;
       background-color: red;
       border-radius: 10px;
+      // 以下はUser#newのために追加
+      text-align: center;
+      &--mail {
+        background-color: #3ccace;
+      }
+      &--facebook {
+        background-color: #4169e1;
+      }
+      &--google {
+        background-color: #dd4b39;
+      }
+      &__registration {
+        width: 100%;
+        height: 100%;
+        color: white;
+        display: block;
+      }
     }
   }
   .another_link {

@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many :images, dependent: :destroy
   belongs_to_active_hash :prefecture
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   has_one :order

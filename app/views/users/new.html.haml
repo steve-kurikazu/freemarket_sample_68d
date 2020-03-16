@@ -1,0 +1,22 @@
+.container
+  .container__header
+    = render "shared/share_header" 
+  .container__main
+    %h2 会員情報入力
+    %ul.container__low
+      %li.form_submit.form_submit--mail
+        = link_to new_user_registration_path, class:"form_submit__registration" do
+          = icon('far', 'envelope', class: "contents__btn--icon")
+          %span メールアドレスで登録
+      %li.form_submit.form_submit--facebook
+        = link_to user_facebook_omniauth_authorize_path, method: :post, class:"form_submit__registration" do
+          = icon('fab', 'facebook-square', class: "contents__btn--icon")
+          %span Facebookで登録
+      %li.form_submit.form_submit--google
+        = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class:"form_submit__registration" do
+          = icon('fab', 'google', class: "contents__btn--icon")
+          %span Googleで登録
+
+      .another_link
+
+  = render "shared/footer_logo" 
